@@ -1,73 +1,42 @@
 {
-  "projectName": "Claude Code Experiments",
-  "description": "Experimental repository for testing Claude Code features and agent configurations",
-  
   "statusLine": {
-    "enabled": true,
-    "format": "🧪 Experimenting | {files_changed} files | {git_branch}"
+    "type": "command",
+    "command": "echo '🧪 Experimenting | {files_changed} files | {git_branch}'"
   },
-  
   "hooks": {
-    "pre-commit": "echo '🔍 Running pre-commit checks for experiments...'",
-    "post-edit": "echo '✏️  File edited in experiments repository'"
-  },
-  
-  "context": {
-    "includePatterns": [
-      "*.md",
-      "*.json",
-      "*.yml",
-      "*.yaml",
-      ".claude/**/*",
-      "*.js",
-      "*.ts",
-      "*.py"
-    ],
-    "excludePatterns": [
-      "node_modules/**",
-      ".git/**",
-      "*.log",
-      "*.tmp",
-      "dist/**",
-      "build/**"
-    ]
-  },
-  
-  "agents": {
-    "defaultAgent": "grimface",
-    "available": [
+    "PreCompact": [
       {
-        "name": "grimface",
-        "path": ".claude/agents/grimface_agent.md",
-        "description": "Skeptical critical thinking agent for challenging assumptions"
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '🔍 Running pre-commit checks for experiments...'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '✏️ File edited in experiments repository'"
+          }
+        ]
       }
     ]
   },
-  
-  "preferences": {
-    "autoSave": true,
-    "showLineNumbers": true,
-    "tabSize": 2,
-    "insertSpaces": true,
-    "trimTrailingWhitespace": true,
-    "insertFinalNewline": true
-  },
-  
-  "experimental": {
-    "enableBetaFeatures": true,
-    "allowAgentChaining": true,
-    "verboseLogging": false
-  },
-  
-  "shortcuts": {
-    "invoke-grimface": "grimface",
-    "list-agents": "agents",
-    "project-status": "status"
-  },
-  
-  "documentation": {
-    "readme": "README.md",
-    "changelog": "CHANGELOG.md",
-    "claudeGuide": "CLAUDE.md"
+  "mcpServers": {
+    "gitlab-api": {
+      "command": "bun",
+      "args": ["run", "mcp/servers/gitlab-api/index.ts"],
+      "cwd": "."
+    },
+    "gitlab-cli": {
+      "command": "bun",
+      "args": ["run", "mcp/servers/gitlab-cli/index.ts"],
+      "cwd": "."
+    }
   }
 }
