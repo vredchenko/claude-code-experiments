@@ -1,0 +1,22 @@
+{
+  "name": "claude-code-experiments",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "mcp:gitlab-cli": "bun run mcp/servers/gitlab-cli/index.ts",
+    "mcp:gitlab-api": "bun run mcp/servers/gitlab-api/index.ts",
+    "dev:mcp:gitlab-cli": "bun --watch run mcp/servers/gitlab-cli/index.ts",
+    "dev:mcp:gitlab-api": "bun --watch run mcp/servers/gitlab-api/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "zx": "^8.8.1"
+  }
+}
