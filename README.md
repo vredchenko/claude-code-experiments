@@ -49,6 +49,7 @@ Custom Model Context Protocol (MCP) servers for various integrations:
 #### Storage & Database
 - **`minio-backend`** - MinIO object storage operations
 - **`redis-backend`** - Redis cache operations
+- **`surrealdb-backend`** - SurrealDB multi-model database operations
 
 ### Server Structure
 
@@ -79,7 +80,7 @@ This project includes **two MCP configuration files** for maximum compatibility:
   - Compatible with other MCP-supporting AI tools and clients
   - More portable across different platforms
 
-Both files define the same 5 servers and should be kept in sync for compatibility.
+Both files define the same 6 servers and should be kept in sync for compatibility.
 
 #### Running Servers
 
@@ -93,6 +94,7 @@ bun run mcp/servers/gitlab-api/index.ts
 # Storage servers
 bun run mcp/servers/minio-backend/index.ts
 bun run mcp/servers/redis-backend/index.ts
+bun run mcp/servers/surrealdb-backend/index.ts
 ```
 
 ### Features
@@ -113,6 +115,13 @@ bun run mcp/servers/redis-backend/index.ts
 - List operations (push/pop/range)
 - Hash operations
 - Pub/sub messaging
+
+**SurrealDB Server:**
+- Document and relational database operations
+- SurrealQL query execution
+- Schema definition and management
+- Transaction support
+- Multi-model data storage
 
 ### Environment Variables
 
