@@ -29,6 +29,13 @@ Through Claude Code, you can now:
 - Browse and organize objects
 - Access web UI at http://localhost:9001
 
+### **Multi-Model Database (SurrealDB)**
+- Full-featured database with document, graph, key-value, and time-series support
+- Natural language queries via Claude Code → SurrealQL translation
+- Relationship modeling and graph traversal
+- Real-time subscriptions and live queries
+- Access database at http://localhost:8000
+- Official SurrealMCP integration for comprehensive tooling
 
 ### **GitLab Integration**
 - List issues and merge requests
@@ -116,15 +123,36 @@ bun run mcp/servers/surrealdb-backend/index.ts
 - Hash operations
 - Pub/sub messaging
 
-**SurrealDB Server:**
-- Document and relational database operations
-- SurrealQL query execution
-- Schema definition and management
-- Transaction support
-- Multi-model data storage
+**SurrealDB Server:** (via official SurrealMCP sidecar)
+- **Architecture**: TypeScript MCP Wrapper → Official SurrealMCP Docker Container → SurrealDB Community Edition
+- **Database Operations**: Full SurrealQL query execution (`query`, `select`, `insert`, `create`, `upsert`, `update`, `delete`)
+- **Relationship Management**: Graph operations (`relate`) for connecting data across tables
+- **Connection Management**: Database switching (`connect_endpoint`, `use_namespace`, `use_database`)
+- **Administration**: List resources (`list_namespaces`, `list_databases`), health monitoring
+- **Multi-Model Storage**: Documents, graphs, key-value, time-series in one database
+- **Claude Code Integration**: Natural language → SurrealQL query translation, schema design assistance
+
+### Docker Services
+
+The project includes the following Docker services in `docker-compose.yml`:
+
+**Database & Storage:**
+- **`surrealdb`** (`surrealdb/surrealdb:latest`): Multi-model database on port 8000
+- **`surrealdb-mcp`** (`surrealdb/surrealmcp:latest`): Official SurrealMCP server on port 3004
+- **`redis`** (`redis:7-alpine`): Redis cache on port 6379  
+- **`minio`** (`minio/minio:latest`): Object storage on ports 9000/9001
+
+**Service Dependencies:**
+- `surrealdb-mcp` depends on `surrealdb` health check
+- All services connected via `dev-network` for internal communication
+- Persistent volumes for data storage
 
 ### Environment Variables
 
-See configuration in `mcp-servers-config.json` for required environment variables for each server.
+Key environment variables (see `.env.template` for full list):
+- `SURREALDB_USERNAME/PASSWORD`: Database authentication
+- `SURREALDB_MCP_URL`: SurrealMCP sidecar endpoint (http://localhost:3004)
+- `MINIO_ROOT_PASSWORD`: MinIO admin password
+- `GITLAB_TOKEN`: GitLab API access token
 
 Built with Bun.js and the official MCP TypeScript SDK.

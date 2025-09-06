@@ -7,19 +7,14 @@ import {
   ListToolsRequestSchema,
   Tool,
 } from "@modelcontextprotocol/sdk/types.js";
-import { Surreal } from "surrealdb.js";
 
-interface SurrealDBConfig {
-  url: string;
-  username?: string;
-  password?: string;
-  namespace: string;
-  database: string;
+interface SurrealMCPConfig {
+  mcpUrl: string;
 }
 
 class SurrealDBMCPServer {
   private server: Server;
-  private db: Surreal;
+  private mcpUrl: string;
 
   constructor() {
     this.server = new Server(
@@ -34,38 +29,49 @@ class SurrealDBMCPServer {
       }
     );
 
-    // SurrealDB configuration
-    const config: SurrealDBConfig = {
-      url: process.env.SURREALDB_URL || "http://localhost:8000/rpc",
-      username: process.env.SURREALDB_USERNAME || "root",
-      password: process.env.SURREALDB_PASSWORD || "root",
-      namespace: process.env.SURREALDB_NAMESPACE || "test",
-      database: process.env.SURREALDB_DATABASE || "test",
+    // SurrealMCP HTTP endpoint configuration
+    const config: SurrealMCPConfig = {
+      mcpUrl: process.env.SURREALDB_MCP_URL || "http://localhost:3004",
     };
 
-    this.db = new Surreal();
-    this.initializeConnection(config);
+    this.mcpUrl = config.mcpUrl;
     this.setupToolHandlers();
   }
 
-  private async initializeConnection(config: SurrealDBConfig): Promise<void> {
+  private async callSurrealMCP(method: string, params: any): Promise<any> {
     try {
-      await this.db.connect(config.url);
-      await this.db.signin({
-        username: config.username!,
-        password: config.password!,
+      const response = await fetch(`${this.mcpUrl}/mcp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          jsonrpc: '2.0',
+          id: Date.now(),
+          method: method,
+          params: params
+        })
       });
-      await this.db.use({
-        namespace: config.namespace,
-        database: config.database,
-      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      
+      if (result.error) {
+        throw new Error(result.error.message || 'SurrealMCP error');
+      }
+
+      return result.result;
     } catch (error) {
-      console.error("Failed to connect to SurrealDB:", error);
+      console.error(`SurrealMCP call failed:`, error);
+      throw error;
     }
   }
 
   private setupToolHandlers(): void {
-    // Define available SurrealDB tools
+    // Define available SurrealDB tools (proxying to official SurrealMCP)
     const SURREALDB_TOOLS: Tool[] = [
       // Database Operations
       {
@@ -85,20 +91,50 @@ class SurrealDBMCPServer {
       },
       {
         name: "surrealdb_select",
-        description: "Select records from a table",
+        description: "Select records from a table with filtering and pagination",
         inputSchema: {
           type: "object",
           properties: {
             table: { type: "string", description: "Table name to select from" },
             where: { type: "string", description: "WHERE clause (optional)" },
             limit: { type: "number", description: "Limit number of results (optional)" },
+            start: { type: "number", description: "Starting offset (optional)" },
           },
           required: ["table"],
         },
       },
       {
+        name: "surrealdb_insert",
+        description: "Insert new records into a table",
+        inputSchema: {
+          type: "object",
+          properties: {
+            table: { type: "string", description: "Table name" },
+            data: { 
+              type: "array", 
+              items: { type: "object" },
+              description: "Array of records to insert" 
+            },
+          },
+          required: ["table", "data"],
+        },
+      },
+      {
         name: "surrealdb_create",
-        description: "Create a new record",
+        description: "Create a single record",
+        inputSchema: {
+          type: "object",
+          properties: {
+            table: { type: "string", description: "Table name" },
+            data: { type: "object", description: "Record data" },
+            id: { type: "string", description: "Record ID (optional)" },
+          },
+          required: ["table", "data"],
+        },
+      },
+      {
+        name: "surrealdb_upsert",
+        description: "Create or update a record",
         inputSchema: {
           type: "object",
           properties: {
@@ -118,7 +154,7 @@ class SurrealDBMCPServer {
             table: { type: "string", description: "Table name" },
             id: { type: "string", description: "Record ID (optional, updates all if not provided)" },
             data: { type: "object", description: "Data to update" },
-            merge: { type: "boolean", description: "Merge with existing data", default: true },
+            where: { type: "string", description: "WHERE clause (optional)" },
           },
           required: ["table", "data"],
         },
@@ -136,93 +172,86 @@ class SurrealDBMCPServer {
           required: ["table"],
         },
       },
-
-      // Schema Operations
       {
-        name: "surrealdb_info",
-        description: "Get database information",
+        name: "surrealdb_relate",
+        description: "Create relationships between records",
         inputSchema: {
           type: "object",
           properties: {
-            target: {
-              type: "string",
-              description: "What to get info about (db, ns, tb, sc, etc.)",
-              default: "db",
-            },
-            name: { type: "string", description: "Specific name (for tables, etc.)" },
+            from: { type: "string", description: "Source record ID" },
+            relation: { type: "string", description: "Relation table name" },
+            to: { type: "string", description: "Target record ID" },
+            data: { type: "object", description: "Relation data (optional)" },
           },
-        },
-      },
-      {
-        name: "surrealdb_define_table",
-        description: "Define a new table with schema",
-        inputSchema: {
-          type: "object",
-          properties: {
-            name: { type: "string", description: "Table name" },
-            drop: { type: "boolean", description: "Allow dropping records", default: false },
-            schemafull: { type: "boolean", description: "Enforce schema", default: false },
-            permissions: { type: "object", description: "Table permissions" },
-          },
-          required: ["name"],
-        },
-      },
-      {
-        name: "surrealdb_define_field",
-        description: "Define a field on a table",
-        inputSchema: {
-          type: "object",
-          properties: {
-            table: { type: "string", description: "Table name" },
-            field: { type: "string", description: "Field name" },
-            type: { type: "string", description: "Field type (string, number, bool, etc.)" },
-            value: { type: "string", description: "Default value expression" },
-            assert: { type: "string", description: "Assertion clause" },
-            permissions: { type: "object", description: "Field permissions" },
-          },
-          required: ["table", "field"],
-        },
-      },
-      {
-        name: "surrealdb_define_index",
-        description: "Define an index on a table",
-        inputSchema: {
-          type: "object",
-          properties: {
-            table: { type: "string", description: "Table name" },
-            name: { type: "string", description: "Index name" },
-            fields: {
-              type: "array",
-              items: { type: "string" },
-              description: "Fields to index",
-            },
-            unique: { type: "boolean", description: "Unique index", default: false },
-          },
-          required: ["table", "name", "fields"],
+          required: ["from", "relation", "to"],
         },
       },
 
-      // Transaction Operations
+      // Connection Management
       {
-        name: "surrealdb_transaction",
-        description: "Execute multiple queries in a transaction",
+        name: "surrealdb_connect_endpoint",
+        description: "Connect to a SurrealDB database endpoint",
         inputSchema: {
           type: "object",
           properties: {
-            queries: {
-              type: "array",
-              items: { type: "string" },
-              description: "Array of SurrealQL queries",
-            },
+            url: { type: "string", description: "Database URL" },
+            username: { type: "string", description: "Username" },
+            password: { type: "string", description: "Password" },
           },
-          required: ["queries"],
+          required: ["url"],
+        },
+      },
+      {
+        name: "surrealdb_disconnect_endpoint",
+        description: "Disconnect from current database endpoint",
+        inputSchema: {
+          type: "object",
+          properties: {},
+        },
+      },
+      {
+        name: "surrealdb_use_namespace",
+        description: "Switch to a different namespace",
+        inputSchema: {
+          type: "object",
+          properties: {
+            namespace: { type: "string", description: "Namespace name" },
+          },
+          required: ["namespace"],
+        },
+      },
+      {
+        name: "surrealdb_use_database",
+        description: "Switch to a different database",
+        inputSchema: {
+          type: "object",
+          properties: {
+            database: { type: "string", description: "Database name" },
+          },
+          required: ["database"],
+        },
+      },
+      {
+        name: "surrealdb_list_namespaces",
+        description: "List available namespaces",
+        inputSchema: {
+          type: "object",
+          properties: {},
+        },
+      },
+      {
+        name: "surrealdb_list_databases",
+        description: "List available databases in current namespace",
+        inputSchema: {
+          type: "object",
+          properties: {},
         },
       },
 
-      // Utility Operations
+      // Health and Info
       {
-        name: "surrealdb_ping",
-        description: "Ping the database connection",
+        name: "surrealdb_health",
+        description: "Check database health status",
         inputSchema: {
           type: "object",
           properties: {},
@@ -230,7 +259,7 @@ class SurrealDBMCPServer {
       },
       {
         name: "surrealdb_version",
-        description: "Get SurrealDB version",
+        description: "Get SurrealDB version information",
         inputSchema: {
           type: "object",
           properties: {},
@@ -249,109 +278,12 @@ class SurrealDBMCPServer {
 
       try {
         let result: any;
-
-        switch (name) {
-          // Database Operations
-          case "surrealdb_query":
-            result = await this.db.query(args.query, args.variables);
-            break;
-
-          case "surrealdb_select":
-            let selectQuery = `SELECT * FROM ${args.table}`;
-            if (args.where) {
-              selectQuery += ` WHERE ${args.where}`;
-            }
-            if (args.limit) {
-              selectQuery += ` LIMIT ${args.limit}`;
-            }
-            result = await this.db.query(selectQuery);
-            break;
-
-          case "surrealdb_create":
-            if (args.id) {
-              result = await this.db.create(`${args.table}:${args.id}`, args.data);
-            } else {
-              result = await this.db.create(args.table, args.data);
-            }
-            break;
-
-          case "surrealdb_update":
-            let target = args.table;
-            if (args.id) {
-              target = `${args.table}:${args.id}`;
-            }
-            if (args.merge) {
-              result = await this.db.merge(target, args.data);
-            } else {
-              result = await this.db.update(target, args.data);
-            }
-            break;
-
-          case "surrealdb_delete":
-            let deleteTarget = args.table;
-            if (args.id) {
-              deleteTarget = `${args.table}:${args.id}`;
-            }
-            if (args.where) {
-              result = await this.db.query(`DELETE FROM ${args.table} WHERE ${args.where}`);
-            } else {
-              result = await this.db.delete(deleteTarget);
-            }
-            break;
-
-          // Schema Operations
-          case "surrealdb_info":
-            result = await this.db.query(`INFO FOR ${args.target.toUpperCase()}${args.name ? ` ${args.name}` : ""}`);
-            break;
-
-          case "surrealdb_define_table":
-            let defineTableQuery = `DEFINE TABLE ${args.name}`;
-            if (args.drop) defineTableQuery += " DROP";
-            if (args.schemafull) defineTableQuery += " SCHEMAFULL";
-            if (args.permissions) {
-              defineTableQuery += ` PERMISSIONS ${JSON.stringify(args.permissions)}`;
-            }
-            result = await this.db.query(defineTableQuery);
-            break;
-
-          case "surrealdb_define_field":
-            let defineFieldQuery = `DEFINE FIELD ${args.field} ON TABLE ${args.table}`;
-            if (args.type) defineFieldQuery += ` TYPE ${args.type}`;
-            if (args.value) defineFieldQuery += ` VALUE ${args.value}`;
-            if (args.assert) defineFieldQuery += ` ASSERT ${args.assert}`;
-            if (args.permissions) {
-              defineFieldQuery += ` PERMISSIONS ${JSON.stringify(args.permissions)}`;
-            }
-            result = await this.db.query(defineFieldQuery);
-            break;
-
-          case "surrealdb_define_index":
-            let defineIndexQuery = `DEFINE INDEX ${args.name} ON TABLE ${args.table} FIELDS ${args.fields.join(", ")}`;
-            if (args.unique) defineIndexQuery += " UNIQUE";
-            result = await this.db.query(defineIndexQuery);
-            break;
-
-          // Transaction Operations
-          case "surrealdb_transaction":
-            result = [];
-            for (const query of args.queries) {
-              const queryResult = await this.db.query(query);
-              result.push(queryResult);
-            }
-            break;
-
-          // Utility Operations
-          case "surrealdb_ping":
-            result = await this.db.ping();
-            break;
-
-          case "surrealdb_version":
-            result = await this.db.version();
-            break;
-
-          default:
-            throw new Error(`Unknown tool: ${name}`);
-        }
+        
+        // Map our tool names to SurrealMCP method names
+        const methodName = name.replace('surrealdb_', '');
+        
+        // Call the official SurrealMCP sidecar
+        result = await this.callSurrealMCP(`tools/${methodName}`, args || {});
 
         return {
           content: [
@@ -366,7 +298,7 @@ class SurrealDBMCPServer {
           content: [
             {
               type: "text",
-              text: `SurrealDB error: ${error instanceof Error ? error.message : String(error)}`,
+              text: `SurrealDB MCP error: ${error instanceof Error ? error.message : String(error)}`,
             },
           ],
           isError: true,
@@ -378,7 +310,7 @@ class SurrealDBMCPServer {
   async start(): Promise<void> {
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
-    console.error("SurrealDB MCP server running on stdio");
+    console.error("SurrealDB MCP proxy server running on stdio");
   }
 }
 

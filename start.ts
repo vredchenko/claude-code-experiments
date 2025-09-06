@@ -67,7 +67,7 @@ async function main() {
       port: parseInt(env.REDIS_PORT || '6379'),
       healthCheck: async () => {
         try {
-          await $`redis-cli -p ${env.REDIS_PORT || '6379'} ping`
+          await $`docker exec redis-backend redis-cli ping`
           return true
         } catch {
           return false
@@ -82,6 +82,23 @@ async function main() {
         try {
           const response = await fetch(`http://localhost:${env.SURREALDB_PORT || '8000'}/health`)
           return response.ok
+        } catch {
+          return false
+        }
+      }
+    },
+    {
+      name: 'SurrealMCP',
+      port: parseInt(env.SURREALDB_MCP_PORT || '3004'),
+      url: `http://localhost:${env.SURREALDB_MCP_PORT || '3004'}`,
+      healthCheck: async () => {
+        try {
+          // Check if the HTTP port is responding
+          const response = await fetch(`http://localhost:${env.SURREALDB_MCP_PORT || '3004'}`, { 
+            method: 'HEAD',
+            timeout: 3000 
+          });
+          return response.status < 500; // Accept any non-5xx status
         } catch {
           return false
         }
@@ -112,7 +129,7 @@ async function main() {
   console.log('🎉 Setup complete! You can now:')
   console.log('   1. Restart Claude Code to reload MCP configuration')
   console.log('   2. Run /mcp to verify all servers are connected')
-  console.log('   3. Use MinIO, Redis, and SurrealDB through Claude Code')
+  console.log('   3. Use MinIO, Redis, and SurrealDB through Claude Code (with official SurrealMCP)')
   console.log('')
   console.log('📚 Useful commands:')
   console.log('   docker compose logs -f        # View service logs')
