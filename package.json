@@ -4,19 +4,34 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "start": "bun start.ts",
+    "setup": "bun start.ts",
     "mcp:gitlab-cli": "bun run mcp/servers/gitlab-cli/index.ts",
     "mcp:gitlab-api": "bun run mcp/servers/gitlab-api/index.ts",
+    "mcp:minio": "bun run mcp/servers/minio-backend/index.ts",
+    "mcp:redis": "bun run mcp/servers/redis-backend/index.ts",
+    "mcp:orlop-cli": "bun run mcp/servers/orlop-cli/index.ts",
     "dev:mcp:gitlab-cli": "bun --watch run mcp/servers/gitlab-cli/index.ts",
-    "dev:mcp:gitlab-api": "bun --watch run mcp/servers/gitlab-api/index.ts"
+    "dev:mcp:gitlab-api": "bun --watch run mcp/servers/gitlab-api/index.ts",
+    "dev:mcp:minio": "bun --watch run mcp/servers/minio-backend/index.ts",
+    "dev:mcp:redis": "bun --watch run mcp/servers/redis-backend/index.ts",
+    "dev:mcp:orlop-cli": "bun --watch run mcp/servers/orlop-cli/index.ts",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "@types/ioredis": "^5.0.0"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.4",
+    "dotenv": "^16.4.5",
+    "ioredis": "^5.7.0",
+    "minio": "^8.0.1",
     "zx": "^8.8.1"
   }
 }

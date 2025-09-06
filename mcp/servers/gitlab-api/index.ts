@@ -21,7 +21,9 @@ const server = new Server(
 );
 
 // GitLab API configuration
-const GITLAB_API_BASE = process.env.GITLAB_API_URL || "https://gitlab.com/api/v4";
+const GITLAB_HOST = process.env.GITLAB_HOST || "gitlab.com";
+const GITLAB_API_VERSION = process.env.GITLAB_API_VERSION || "v4";
+const GITLAB_API_BASE = `https://${GITLAB_HOST}/api/${GITLAB_API_VERSION}`;
 const GITLAB_TOKEN = process.env.GITLAB_TOKEN;
 
 if (!GITLAB_TOKEN) {

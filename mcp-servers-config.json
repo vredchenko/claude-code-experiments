@@ -1,0 +1,47 @@
+{
+  "mcpServers": {
+    "minio-backend": {
+      "command": "bun",
+      "args": ["run", "./mcp/servers/minio-backend/index.ts"],
+      "cwd": "/home/vredchenko/dev/vredchenko-github/claude-code-experiments",
+      "env": {
+        "MINIO_ENDPOINT": "localhost:9000",
+        "MINIO_PORT": "9000", 
+        "MINIO_USE_SSL": "false",
+        "MINIO_ROOT_USER": "admin",
+        "MINIO_ROOT_PASSWORD": "password123"
+      }
+    },
+    "gitlab-api": {
+      "command": "bun",
+      "args": ["run", "./mcp/servers/gitlab-api/index.ts"],
+      "cwd": "/home/vredchenko/dev/vredchenko-github/claude-code-experiments",
+      "env": {
+        "GITLAB_API_URL": "https://gitlab.com/api/v4",
+        "GITLAB_TOKEN": ""
+      }
+    },
+    "gitlab-cli": {
+      "command": "bun",
+      "args": ["run", "./mcp/servers/gitlab-cli/index.ts"],
+      "cwd": "/home/vredchenko/dev/vredchenko-github/claude-code-experiments",
+      "env": {}
+    },
+    "redis-backend": {
+      "command": "bun",
+      "args": ["run", "./mcp/servers/redis-backend/index.ts"],
+      "cwd": "/home/vredchenko/dev/vredchenko-github/claude-code-experiments",
+      "env": {
+        "REDIS_HOST": "localhost",
+        "REDIS_PORT": "6379",
+        "REDIS_PASSWORD": ""
+      }
+    },
+    "orlop-cli": {
+      "command": "bun",
+      "args": ["run", "./mcp/servers/orlop-cli/index.ts"],
+      "cwd": "/home/vredchenko/dev/vredchenko-github/claude-code-experiments",
+      "env": {}
+    }
+  }
+}
