@@ -1,0 +1,40 @@
+# Gitleaks configuration file
+# Default rules will be used
+
+[extend]
+# Use default rules
+useDefault = true
+
+[[rules]]
+description = "Generic API Key"
+id = "generic-api-key"
+regex = '''(?i)(?:key|api|token|secret|password)\s*[:=]\s*['"]?[0-9a-zA-Z]{32,}['"]?'''
+tags = ["key", "API", "generic"]
+
+[[rules]]
+description = "AWS Access Key"
+id = "aws-access-key"
+regex = '''AKIA[0-9A-Z]{16}'''
+tags = ["key", "AWS"]
+
+[[rules]]
+description = "Private SSH key"
+id = "ssh-rsa-private-key"
+regex = '''-----BEGIN RSA PRIVATE KEY-----'''
+tags = ["key", "RSA"]
+
+# Allowlist patterns
+[allowlist]
+description = "Global allowlist"
+paths = [
+    '''.*test.*''',
+    '''.*example.*''',
+    '''.*sample.*''',
+    '''.*\.template$''',
+    '''.*\.example$'''
+]
+regexes = [
+    '''your_.*_here''',
+    '''REPLACE_ME''',
+    '''placeholder'''
+]

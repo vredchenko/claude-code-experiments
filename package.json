@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "bun start.ts",
-    "setup": "bun start.ts",
+    "start": "bun .devtooling/scripts/start.ts",
+    "setup": "bun .devtooling/scripts/start.ts",
     "mcp:gitlab-cli": "bun run mcp/servers/gitlab-cli/index.ts",
     "mcp:gitlab-api": "bun run mcp/servers/gitlab-api/index.ts",
     "mcp:minio": "bun run mcp/servers/minio-backend/index.ts",
@@ -20,11 +20,29 @@
     "dev:mcp:surrealdb": "bun --watch run mcp/servers/surrealdb-backend/index.ts",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
-    "docker:logs": "docker compose logs -f"
+    "docker:logs": "docker compose logs -f",
+    "prepare": "husky",
+    "postinstall": ".devtooling/scripts/install-gitleaks.sh",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "prettier --config .devtooling/configs/.prettierrc.json --write \"**/*.{json,yaml,yml,md}\"",
+    "lint:md": "markdownlint-cli2 --config .devtooling/configs/.markdownlint-cli2.jsonc \"**/*.md\"",
+    "lint:md:fix": "markdownlint-cli2 --config .devtooling/configs/.markdownlint-cli2.jsonc --fix \"**/*.md\"",
+    "lint:json": "jsonlint **/*.json",
+    "lint:yaml": "yamllint **/*.{yml,yaml}",
+    "secrets": ".devtooling/scripts/scan-secrets.sh",
+    "pre-commit": "lint-staged --config .devtooling/configs/.lintstagedrc.json"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.2.3",
     "@types/bun": "latest",
-    "@types/ioredis": "^5.0.0"
+    "@types/ioredis": "^5.0.0",
+    "husky": "^9.1.7",
+    "jsonlint": "^1.6.3",
+    "lint-staged": "^16.1.6",
+    "markdownlint-cli2": "^0.18.1",
+    "prettier": "^3.6.2",
+    "yaml-lint": "^1.7.0"
   },
   "peerDependencies": {
     "typescript": "^5"

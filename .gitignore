@@ -16,3 +16,4 @@ build/
 
 .idea
 .claude/settings.local.json
+.husky/_

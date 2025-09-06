@@ -5,7 +5,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
-  Tool,
+  type Tool,
 } from "@modelcontextprotocol/sdk/types.js";
 import Redis from "ioredis";
 
@@ -35,7 +35,7 @@ class RedisMCPServer {
     // Redis configuration
     const config: RedisConfig = {
       host: process.env.REDIS_HOST || "localhost",
-      port: parseInt(process.env.REDIS_PORT || "6379"),
+      port: parseInt(process.env.REDIS_PORT || "6379", 10),
       password: process.env.REDIS_PASSWORD || undefined,
     };
 
@@ -337,10 +337,11 @@ class RedisMCPServer {
             break;
 
           // Hash Operations
-          case "redis_hset":
+          case "redis_hset": {
             const flatFields = Object.entries(args.fields).flat();
             result = await this.redis.hset(args.key, ...flatFields);
             break;
+          }
 
           case "redis_hget":
             result = await this.redis.hget(args.key, args.field);
@@ -356,7 +357,7 @@ class RedisMCPServer {
             break;
 
           // Stream Operations
-          case "redis_xadd":
+          case "redis_xadd": {
             const streamArgs: any[] = [args.stream, "*"];
             Object.entries(args.fields).forEach(([field, value]) => {
               streamArgs.push(field, value);
@@ -366,8 +367,9 @@ class RedisMCPServer {
             }
             result = await this.redis.xadd(...streamArgs);
             break;
+          }
 
-          case "redis_xread":
+          case "redis_xread": {
             const xreadArgs: any[] = ["COUNT", args.count || 100];
             if (args.block) {
               xreadArgs.unshift("BLOCK", args.block);
@@ -375,6 +377,7 @@ class RedisMCPServer {
             xreadArgs.push("STREAMS", ...args.streams, ...args.streams.map(() => "$"));
             result = await this.redis.xread(...xreadArgs);
             break;
+          }
 
           // Info/Stats Operations
           case "redis_info":

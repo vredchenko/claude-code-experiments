@@ -5,7 +5,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
-  Tool,
+  type Tool,
 } from "@modelcontextprotocol/sdk/types.js";
 
 interface SurrealMCPConfig {
@@ -41,16 +41,16 @@ class SurrealDBMCPServer {
   private async callSurrealMCP(method: string, params: any): Promise<any> {
     try {
       const response = await fetch(`${this.mcpUrl}/mcp`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          jsonrpc: '2.0',
+          jsonrpc: "2.0",
           id: Date.now(),
           method: method,
-          params: params
-        })
+          params: params,
+        }),
       });
 
       if (!response.ok) {
@@ -58,9 +58,9 @@ class SurrealDBMCPServer {
       }
 
       const result = await response.json();
-      
+
       if (result.error) {
-        throw new Error(result.error.message || 'SurrealMCP error');
+        throw new Error(result.error.message || "SurrealMCP error");
       }
 
       return result.result;
@@ -110,10 +110,10 @@ class SurrealDBMCPServer {
           type: "object",
           properties: {
             table: { type: "string", description: "Table name" },
-            data: { 
-              type: "array", 
+            data: {
+              type: "array",
               items: { type: "object" },
-              description: "Array of records to insert" 
+              description: "Array of records to insert",
             },
           },
           required: ["table", "data"],
@@ -152,7 +152,10 @@ class SurrealDBMCPServer {
           type: "object",
           properties: {
             table: { type: "string", description: "Table name" },
-            id: { type: "string", description: "Record ID (optional, updates all if not provided)" },
+            id: {
+              type: "string",
+              description: "Record ID (optional, updates all if not provided)",
+            },
             data: { type: "object", description: "Data to update" },
             where: { type: "string", description: "WHERE clause (optional)" },
           },
@@ -166,7 +169,10 @@ class SurrealDBMCPServer {
           type: "object",
           properties: {
             table: { type: "string", description: "Table name" },
-            id: { type: "string", description: "Record ID (optional, deletes all if not provided)" },
+            id: {
+              type: "string",
+              description: "Record ID (optional, deletes all if not provided)",
+            },
             where: { type: "string", description: "WHERE clause (optional)" },
           },
           required: ["table"],
@@ -278,10 +284,10 @@ class SurrealDBMCPServer {
 
       try {
         let result: any;
-        
+
         // Map our tool names to SurrealMCP method names
-        const methodName = name.replace('surrealdb_', '');
-        
+        const methodName = name.replace("surrealdb_", "");
+
         // Call the official SurrealMCP sidecar
         result = await this.callSurrealMCP(`tools/${methodName}`, args || {});
 

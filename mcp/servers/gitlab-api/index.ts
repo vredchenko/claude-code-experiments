@@ -5,7 +5,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
-  Tool,
+  type Tool,
 } from "@modelcontextprotocol/sdk/types.js";
 
 const server = new Server(
@@ -37,7 +37,7 @@ async function gitLabApiRequest(endpoint: string, options: RequestInit = {}) {
   const response = await fetch(url, {
     ...options,
     headers: {
-      "Authorization": `Bearer ${GITLAB_TOKEN}`,
+      Authorization: `Bearer ${GITLAB_TOKEN}`,
       "Content-Type": "application/json",
       ...options.headers,
     },
@@ -251,7 +251,19 @@ const GITLAB_TOOLS: Tool[] = [
         },
         status: {
           type: "string",
-          enum: ["created", "waiting_for_resource", "preparing", "pending", "running", "success", "failed", "canceled", "skipped", "manual", "scheduled"],
+          enum: [
+            "created",
+            "waiting_for_resource",
+            "preparing",
+            "pending",
+            "running",
+            "success",
+            "failed",
+            "canceled",
+            "skipped",
+            "manual",
+            "scheduled",
+          ],
           description: "Pipeline status filter",
         },
         ref: {
@@ -399,7 +411,9 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "gitlab_api_merge_request_get": {
         const projectId = encodeURIComponent(args.project_id);
-        const data = await gitLabApiRequest(`/projects/${projectId}/merge_requests/${args.merge_request_iid}`);
+        const data = await gitLabApiRequest(
+          `/projects/${projectId}/merge_requests/${args.merge_request_iid}`
+        );
         return {
           content: [
             {

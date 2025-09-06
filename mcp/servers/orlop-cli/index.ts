@@ -1,16 +1,14 @@
 #!/usr/bin/env bun
 
+import { spawn } from "node:child_process";
+import { access, constants } from "node:fs/promises";
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
-  Tool,
+  type Tool,
 } from "@modelcontextprotocol/sdk/types.js";
-import { spawn } from "child_process";
-import { promisify } from "util";
-import { access, constants } from "fs/promises";
-import path from "path";
 
 interface ToolConfig {
   name: string;
@@ -61,7 +59,11 @@ class OrlopCLIMCPServer {
             pattern: { type: "string", description: "Search pattern (regex)" },
             path: { type: "string", description: "Path to search in", default: "." },
             file_type: { type: "string", description: "File type filter (e.g., 'rust', 'js')" },
-            case_sensitive: { type: "boolean", description: "Case sensitive search", default: false },
+            case_sensitive: {
+              type: "boolean",
+              description: "Case sensitive search",
+              default: false,
+            },
             context_lines: { type: "number", description: "Context lines to show", default: 0 },
             max_count: { type: "number", description: "Maximum number of matches" },
           },
@@ -79,7 +81,11 @@ class OrlopCLIMCPServer {
             line_range: { type: "string", description: "Line range (e.g., '10:20')" },
             language: { type: "string", description: "Force syntax highlighting language" },
             style: { type: "string", description: "Output style", default: "auto" },
-            show_all: { type: "boolean", description: "Show non-printable characters", default: false },
+            show_all: {
+              type: "boolean",
+              description: "Show non-printable characters",
+              default: false,
+            },
           },
           required: ["file_path"],
         },
@@ -93,7 +99,11 @@ class OrlopCLIMCPServer {
           properties: {
             file_path: { type: "string", description: "Path to JSON file" },
             pattern: { type: "string", description: "Pattern to search for" },
-            ungron: { type: "boolean", description: "Convert gron output back to JSON", default: false },
+            ungron: {
+              type: "boolean",
+              description: "Convert gron output back to JSON",
+              default: false,
+            },
           },
           required: ["file_path"],
         },
@@ -109,7 +119,11 @@ class OrlopCLIMCPServer {
           properties: {
             pattern: { type: "string", description: "File name pattern" },
             path: { type: "string", description: "Path to search in", default: "." },
-            type: { type: "string", enum: ["f", "d", "l"], description: "Type: f=file, d=directory, l=link" },
+            type: {
+              type: "string",
+              enum: ["f", "d", "l"],
+              description: "Type: f=file, d=directory, l=link",
+            },
             extension: { type: "string", description: "File extension filter" },
             size: { type: "string", description: "Size filter (e.g., '+1M', '-100k')" },
             max_depth: { type: "number", description: "Maximum search depth" },
@@ -143,8 +157,16 @@ class OrlopCLIMCPServer {
           type: "object",
           properties: {
             path: { type: "string", description: "Path to analyze", default: "." },
-            show_apparent_size: { type: "boolean", description: "Show apparent size", default: false },
-            no_cross: { type: "boolean", description: "Don't cross filesystem boundaries", default: false },
+            show_apparent_size: {
+              type: "boolean",
+              description: "Show apparent size",
+              default: false,
+            },
+            no_cross: {
+              type: "boolean",
+              description: "Don't cross filesystem boundaries",
+              default: false,
+            },
           },
         },
       },
@@ -160,8 +182,17 @@ class OrlopCLIMCPServer {
             path: { type: "string", description: "Path to analyze", default: "." },
             languages: { type: "string", description: "Comma-separated list of languages" },
             exclude: { type: "string", description: "Patterns to exclude" },
-            sort: { type: "string", enum: ["files", "lines", "code", "comments", "blanks"], description: "Sort by" },
-            output_format: { type: "string", enum: ["default", "json"], description: "Output format", default: "default" },
+            sort: {
+              type: "string",
+              enum: ["files", "lines", "code", "comments", "blanks"],
+              description: "Sort by",
+            },
+            output_format: {
+              type: "string",
+              enum: ["default", "json"],
+              description: "Output format",
+              default: "default",
+            },
           },
         },
       },
@@ -172,7 +203,11 @@ class OrlopCLIMCPServer {
         schema: {
           type: "object",
           properties: {
-            commands: { type: "array", items: { type: "string" }, description: "Commands to benchmark" },
+            commands: {
+              type: "array",
+              items: { type: "string" },
+              description: "Commands to benchmark",
+            },
             runs: { type: "number", description: "Number of runs", default: 10 },
             warmup: { type: "number", description: "Warmup runs", default: 3 },
             min_time: { type: "number", description: "Minimum time per run (seconds)" },
@@ -222,7 +257,11 @@ class OrlopCLIMCPServer {
           properties: {
             time_delta: { type: "number", description: "Time between updates (ms)", default: 1000 },
             basic: { type: "boolean", description: "Basic mode", default: true },
-            dot_marker: { type: "boolean", description: "Use dot marker for graphs", default: false },
+            dot_marker: {
+              type: "boolean",
+              description: "Use dot marker for graphs",
+              default: false,
+            },
           },
         },
       },
@@ -252,10 +291,18 @@ class OrlopCLIMCPServer {
         schema: {
           type: "object",
           properties: {
-            action: { 
-              type: "string", 
-              enum: ["repo-list", "repo-create", "issue-list", "issue-create", "pr-list", "pr-create", "auth-status"],
-              description: "GitHub action to perform"
+            action: {
+              type: "string",
+              enum: [
+                "repo-list",
+                "repo-create",
+                "issue-list",
+                "issue-create",
+                "pr-list",
+                "pr-create",
+                "auth-status",
+              ],
+              description: "GitHub action to perform",
             },
             args: { type: "array", items: { type: "string" }, description: "Additional arguments" },
           },
@@ -263,7 +310,7 @@ class OrlopCLIMCPServer {
         },
       },
       {
-        name: "gitlab_operation", 
+        name: "gitlab_operation",
         description: "Execute GitLab CLI operations",
         category: "vcs",
         schema: {
@@ -271,8 +318,15 @@ class OrlopCLIMCPServer {
           properties: {
             action: {
               type: "string",
-              enum: ["repo-list", "issue-list", "issue-create", "mr-list", "mr-create", "auth-status"],
-              description: "GitLab action to perform"
+              enum: [
+                "repo-list",
+                "issue-list",
+                "issue-create",
+                "mr-list",
+                "mr-create",
+                "auth-status",
+              ],
+              description: "GitLab action to perform",
             },
             args: { type: "array", items: { type: "string" }, description: "Additional arguments" },
           },
@@ -291,7 +345,7 @@ class OrlopCLIMCPServer {
             action: {
               type: "string",
               enum: ["ls", "cp", "mv", "rm", "mirror", "sync", "alias-set", "alias-list"],
-              description: "MinIO action to perform"
+              description: "MinIO action to perform",
             },
             source: { type: "string", description: "Source path/URL" },
             destination: { type: "string", description: "Destination path/URL" },
@@ -320,15 +374,15 @@ class OrlopCLIMCPServer {
     return new Promise((resolve) => {
       const docker = spawn("docker", ["images", "-q", this.containerImage], { stdio: "pipe" });
       let output = "";
-      
+
       docker.stdout?.on("data", (data) => {
         output += data.toString();
       });
-      
+
       docker.on("close", () => {
         resolve(output.trim().length > 0);
       });
-      
+
       docker.on("error", () => {
         resolve(false);
       });
@@ -348,7 +402,11 @@ class OrlopCLIMCPServer {
 
       // Check if image exists
       if (!(await this.checkImageExists())) {
-        reject(new Error(`Container image ${this.containerImage} not found. Run 'make build' to create it.`));
+        reject(
+          new Error(
+            `Container image ${this.containerImage} not found. Run 'make build' to create it.`
+          )
+        );
         return;
       }
 
@@ -362,15 +420,15 @@ class OrlopCLIMCPServer {
       ];
 
       const allVolumes = [...defaultVolumes, ...(options.volumes || [])];
-      
+
       for (const volume of allVolumes) {
         try {
           await access(volume.host, constants.F_OK);
-          const mountStr = volume.mode 
+          const mountStr = volume.mode
             ? `${volume.host}:${volume.container}:${volume.mode}`
             : `${volume.host}:${volume.container}`;
           dockerArgs.push("-v", mountStr);
-        } catch (error) {
+        } catch (_error) {
           // Skip mounting if host path doesn't exist
         }
       }
@@ -429,7 +487,7 @@ class OrlopCLIMCPServer {
   private setupToolHandlers(): void {
     // Handle tool listing
     this.server.setRequestHandler(ListToolsRequestSchema, async () => {
-      const tools: Tool[] = this.tools.map(tool => ({
+      const tools: Tool[] = this.tools.map((tool) => ({
         name: tool.name,
         description: tool.description,
         inputSchema: tool.schema,
@@ -441,7 +499,7 @@ class OrlopCLIMCPServer {
     // Handle tool execution
     this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name, arguments: args } = request.params;
-      
+
       try {
         let result: { stdout: string; stderr: string; exitCode: number };
 
@@ -522,64 +580,74 @@ class OrlopCLIMCPServer {
   }
 
   // Tool implementation methods
-  private async handleRipgrepSearch(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleRipgrepSearch(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["rg"];
-    
+
     if (!args.case_sensitive) command.push("-i");
     if (args.context_lines) command.push("-C", args.context_lines.toString());
     if (args.file_type) command.push("--type", args.file_type);
     if (args.max_count) command.push("-m", args.max_count.toString());
-    
+
     command.push(args.pattern);
     if (args.path) command.push(args.path);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleViewFile(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleViewFile(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["bat"];
-    
+
     if (args.line_range) command.push("--line-range", args.line_range);
     if (args.language) command.push("--language", args.language);
     if (args.style !== "auto") command.push("--style", args.style);
     if (args.show_all) command.push("--show-all");
-    
+
     command.push(args.file_path);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleJsonGrep(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleJsonGrep(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     let command = ["gron", args.file_path];
-    
+
     if (args.pattern) {
       const result = await this.executeInContainer([...command, "|", "grep", args.pattern]);
       return result;
     }
-    
+
     if (args.ungron) command = ["gron", "--ungron", args.file_path];
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleFindFiles(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleFindFiles(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["fd"];
-    
+
     if (args.type) command.push("--type", args.type);
     if (args.extension) command.push("--extension", args.extension);
     if (args.size) command.push("--size", args.size);
     if (args.max_depth) command.push("--max-depth", args.max_depth.toString());
     if (args.hidden) command.push("--hidden");
-    
+
     command.push(args.pattern);
     if (args.path) command.push(args.path);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleListDirectory(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleListDirectory(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["lsd"];
-    
+
     if (args.all) command.push("--all");
     if (args.long) command.push("--long");
     if (args.tree) {
@@ -588,103 +656,119 @@ class OrlopCLIMCPServer {
     }
     if (args.size_sort) command.push("--size", "short");
     if (args.time_sort) command.push("--timesort");
-    
+
     if (args.path) command.push(args.path);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleDiskUsage(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleDiskUsage(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["gdu"];
-    
+
     if (args.show_apparent_size) command.push("-a");
     if (args.no_cross) command.push("-x");
     command.push("-n"); // Non-interactive mode
-    
+
     if (args.path) command.push(args.path);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleCodeStatistics(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleCodeStatistics(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["tokei"];
-    
+
     if (args.languages) command.push("--languages", args.languages);
     if (args.exclude) command.push("--exclude", args.exclude);
     if (args.sort) command.push("--sort", args.sort);
     if (args.output_format === "json") command.push("--output", "json");
-    
+
     if (args.path) command.push(args.path);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleBenchmarkCommand(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleBenchmarkCommand(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["hyperfine"];
-    
+
     if (args.runs) command.push("--runs", args.runs.toString());
     if (args.warmup) command.push("--warmup", args.warmup.toString());
     if (args.min_time) command.push("--min-time", args.min_time.toString());
     if (args.export_json) command.push("--export-json", args.export_json);
-    
+
     command.push(...args.commands);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleHexDump(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleHexDump(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["hexyl"];
-    
+
     if (args.length) command.push("--length", args.length.toString());
     if (args.skip) command.push("--skip", args.skip.toString());
     if (args.display_offset) command.push("--display-offset", args.display_offset.toString());
-    
+
     command.push(args.file_path);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleProcessInfo(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleProcessInfo(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["procs"];
-    
+
     if (args.tree) command.push("--tree");
     if (args.thread) command.push("--thread");
     if (args.tcp) command.push("--tcp");
     if (args.udp) command.push("--udp");
-    
+
     if (args.pattern) command.push(args.pattern);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleSystemMonitor(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleSystemMonitor(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["btm"];
-    
+
     if (args.basic) command.push("--basic");
     if (args.time_delta) command.push("--time_delta", args.time_delta.toString());
     if (args.dot_marker) command.push("--dot_marker");
     command.push("--once"); // Run once for MCP usage
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleGitDiffEnhanced(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleGitDiffEnhanced(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["delta"];
-    
+
     if (args.syntax_theme) command.push("--syntax-theme", args.syntax_theme);
     if (args.side_by_side) command.push("--side-by-side");
     if (args.line_numbers) command.push("--line-numbers");
-    
+
     if (args.file1 && args.file2) {
       command.push(args.file1, args.file2);
     }
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleGithubOperation(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleGithubOperation(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["gh"];
-    
+
     switch (args.action) {
       case "repo-list":
         command.push("repo", "list");
@@ -710,15 +794,17 @@ class OrlopCLIMCPServer {
       default:
         throw new Error(`Unknown GitHub action: ${args.action}`);
     }
-    
+
     if (args.args) command.push(...args.args);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleGitlabOperation(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleGitlabOperation(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["glab"];
-    
+
     switch (args.action) {
       case "repo-list":
         command.push("repo", "list");
@@ -741,15 +827,17 @@ class OrlopCLIMCPServer {
       default:
         throw new Error(`Unknown GitLab action: ${args.action}`);
     }
-    
+
     if (args.args) command.push(...args.args);
-    
+
     return this.executeInContainer(command);
   }
 
-  private async handleMinioOperation(args: any): Promise<{ stdout: string; stderr: string; exitCode: number }> {
+  private async handleMinioOperation(
+    args: any
+  ): Promise<{ stdout: string; stderr: string; exitCode: number }> {
     const command = ["mc"];
-    
+
     switch (args.action) {
       case "ls":
         command.push("ls");
@@ -794,9 +882,9 @@ class OrlopCLIMCPServer {
       default:
         throw new Error(`Unknown MinIO action: ${args.action}`);
     }
-    
+
     if (args.args) command.push(...args.args);
-    
+
     return this.executeInContainer(command);
   }
 
