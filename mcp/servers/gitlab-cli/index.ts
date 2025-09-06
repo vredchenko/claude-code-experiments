@@ -5,7 +5,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
-  Tool,
+  type Tool,
 } from "@modelcontextprotocol/sdk/types.js";
 import { $ } from "zx";
 
@@ -34,7 +34,8 @@ const GITLAB_TOOLS: Tool[] = [
       properties: {
         project: {
           type: "string",
-          description: "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
+          description:
+            "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
         },
         state: {
           type: "string",
@@ -70,7 +71,8 @@ const GITLAB_TOOLS: Tool[] = [
         },
         project: {
           type: "string",
-          description: "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
+          description:
+            "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
         },
       },
       required: ["issue_id"],
@@ -84,7 +86,8 @@ const GITLAB_TOOLS: Tool[] = [
       properties: {
         project: {
           type: "string",
-          description: "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
+          description:
+            "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
         },
         state: {
           type: "string",
@@ -120,7 +123,8 @@ const GITLAB_TOOLS: Tool[] = [
         },
         project: {
           type: "string",
-          description: "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
+          description:
+            "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
         },
       },
       required: ["mr_id"],
@@ -134,7 +138,8 @@ const GITLAB_TOOLS: Tool[] = [
       properties: {
         project: {
           type: "string",
-          description: "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
+          description:
+            "Project path (owner/repo) or project ID. Optional - uses current repo if omitted",
         },
       },
     },
@@ -156,7 +161,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     switch (name) {
       case "gitlab_issues_list": {
         let command = "glab issue list";
-        
+
         if (args.project) command += ` --repo ${args.project}`;
         if (args.state) command += ` --state ${args.state}`;
         if (args.assignee) command += ` --assignee ${args.assignee}`;
@@ -176,7 +181,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "gitlab_issue_view": {
         let command = `glab issue view ${args.issue_id}`;
-        
+
         if (args.project) command += ` --repo ${args.project}`;
 
         const result = await $`${command.split(" ")}`;
@@ -192,7 +197,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "gitlab_mr_list": {
         let command = "glab mr list";
-        
+
         if (args.project) command += ` --repo ${args.project}`;
         if (args.state) command += ` --state ${args.state}`;
         if (args.assignee) command += ` --assignee ${args.assignee}`;
@@ -212,7 +217,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "gitlab_mr_view": {
         let command = `glab mr view ${args.mr_id}`;
-        
+
         if (args.project) command += ` --repo ${args.project}`;
 
         const result = await $`${command.split(" ")}`;
@@ -228,7 +233,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
 
       case "gitlab_project_info": {
         let command = "glab repo view";
-        
+
         if (args.project) command += ` ${args.project}`;
 
         const result = await $`${command.split(" ")}`;
