@@ -44,10 +44,37 @@ services:
     networks:
       - dev-network
 
+  surrealdb:
+    image: surrealdb/surrealdb:latest
+    container_name: surrealdb-backend
+    ports:
+      - "${SURREALDB_PORT:-8000}:8000"
+    environment:
+      - SURREAL_USER=${SURREALDB_USERNAME:-root}
+      - SURREAL_PASS=${SURREALDB_PASSWORD:-root}
+    volumes:
+      - surrealdb_data:/data
+    command: >
+      start
+      --log trace
+      --user ${SURREALDB_USERNAME:-root}
+      --pass ${SURREALDB_PASSWORD:-root}
+      --bind 0.0.0.0:8000
+      file:/data/database.db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - dev-network
+
 volumes:
   minio_data:
     driver: local
   redis_data:
+    driver: local
+  surrealdb_data:
     driver: local
 
 networks:

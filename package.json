@@ -11,11 +11,13 @@
     "mcp:minio": "bun run mcp/servers/minio-backend/index.ts",
     "mcp:redis": "bun run mcp/servers/redis-backend/index.ts",
     "mcp:orlop-cli": "bun run mcp/servers/orlop-cli/index.ts",
+    "mcp:surrealdb": "bun run mcp/servers/surrealdb-backend/index.ts",
     "dev:mcp:gitlab-cli": "bun --watch run mcp/servers/gitlab-cli/index.ts",
     "dev:mcp:gitlab-api": "bun --watch run mcp/servers/gitlab-api/index.ts",
     "dev:mcp:minio": "bun --watch run mcp/servers/minio-backend/index.ts",
     "dev:mcp:redis": "bun --watch run mcp/servers/redis-backend/index.ts",
     "dev:mcp:orlop-cli": "bun --watch run mcp/servers/orlop-cli/index.ts",
+    "dev:mcp:surrealdb": "bun --watch run mcp/servers/surrealdb-backend/index.ts",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f"
@@ -32,6 +34,7 @@
     "dotenv": "^16.4.5",
     "ioredis": "^5.7.0",
     "minio": "^8.0.1",
+    "surrealdb.js": "^1.0.0",
     "zx": "^8.8.1"
   }
 }

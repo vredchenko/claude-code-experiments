@@ -39,6 +39,14 @@
         "-c",
         "source .env && bun run mcp/servers/orlop-cli/index.ts"
       ]
+    },
+    "surrealdb-backend": {
+      "type": "stdio",
+      "command": "bash",
+      "args": [
+        "-c",
+        "source .env && bun run mcp/servers/surrealdb-backend/index.ts"
+      ]
     }
   }
 }
