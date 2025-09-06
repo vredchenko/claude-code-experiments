@@ -48,11 +48,7 @@
       "args": ["run", "./mcp/servers/surrealdb-backend/index.ts"],
       "cwd": "/home/vredchenko/dev/vredchenko-github/claude-code-experiments",
       "env": {
-        "SURREALDB_URL": "http://localhost:8000/rpc",
-        "SURREALDB_USERNAME": "root",
-        "SURREALDB_PASSWORD": "root",
-        "SURREALDB_NAMESPACE": "test",
-        "SURREALDB_DATABASE": "test"
+        "SURREALDB_MCP_URL": "http://localhost:3004"
       }
     }
   }
