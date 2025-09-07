@@ -1,0 +1,21 @@
+{
+  "config": {
+    "MD013": {
+      "line_length": 120,
+      "code_blocks": false,
+      "tables": false,
+      "headings": false
+    },
+    "MD024": false,
+    "MD033": {
+      "allowed_elements": ["br", "sub", "sup"]
+    },
+    "MD034": {
+      "domains": ["localhost", "127.0.0.1"]
+    }
+  },
+  "ignores": [
+    "node_modules/**",
+    ".husky/**"
+  ]
+}

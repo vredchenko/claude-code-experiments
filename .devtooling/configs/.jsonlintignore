@@ -1,0 +1,33 @@
+# Node.js
+node_modules/**
+
+# TypeScript config files (JSONC format with comments)
+tsconfig*.json
+jsconfig*.json
+
+# Build outputs
+dist/**
+build/**
+out/**
+
+# Cache directories
+.cache/**
+.parcel-cache/**
+
+# IDE files
+.vscode/**
+.idea/**
+
+# Auto-generated files
+.eslintcache
+
+# Package manager files (valid JSON but often auto-generated)
+# package-lock.json
+# yarn.lock (not JSON but gets picked up sometimes)
+
+# Custom excludes (add your patterns here)
+# examples:
+# config/local.json
+# fixtures/**
+# test-data/**
+# legacy/**

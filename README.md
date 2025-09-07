@@ -31,7 +31,7 @@ Through Claude Code, you can now:
 - Create and manage storage buckets
 - Upload/download files
 - Browse and organize objects
-- Access web UI at http://localhost:9001
+- Access web UI at <http://localhost:9001>
 
 ### **Multi-Model Database (SurrealDB)**
 
@@ -40,7 +40,7 @@ Through Claude Code, you can now:
 - Natural language queries via Claude Code → SurrealQL translation
 - Relationship modeling and graph traversal
 - Real-time subscriptions and live queries
-- Access database at http://localhost:8000
+- Access database at <http://localhost:8000>
 - Official SurrealMCP integration for comprehensive tooling
 
 ### **GitLab Integration**
@@ -69,7 +69,7 @@ Custom Model Context Protocol (MCP) servers for various integrations:
 
 ### Server Structure
 
-```
+```text
 mcp/
 └── servers/
     ├── gitlab-api/
@@ -176,7 +176,7 @@ The project includes the following Docker services in `docker-compose.yml`:
 Key environment variables (see `.env.template` for full list):
 
 - `SURREALDB_USERNAME/PASSWORD`: Database authentication
-- `SURREALDB_MCP_URL`: SurrealMCP sidecar endpoint (http://localhost:3004)
+- `SURREALDB_MCP_URL`: SurrealMCP sidecar endpoint (<http://localhost:3004>)
 - `MINIO_ROOT_PASSWORD`: MinIO admin password
 - `GITLAB_TOKEN`: GitLab API access token
 

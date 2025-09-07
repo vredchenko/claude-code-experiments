@@ -1,0 +1,37 @@
+# Node.js
+node_modules/**
+
+# Build outputs
+dist/**
+build/**
+out/**
+
+# Cache directories
+.cache/**
+.parcel-cache/**
+
+# IDE files
+.vscode/**
+.idea/**
+
+# Git
+.git/**
+
+# Auto-generated files
+.github/workflows/generated/**
+
+# Package manager files
+yarn.lock
+
+# Docker Swarm files (often have special formatting)
+# docker-stack*.yml
+
+# Kubernetes manifests with templating
+# k8s/templates/**
+
+# Custom excludes (add your patterns here)
+# examples:
+# config/local.yml
+# fixtures/**
+# test-data/**
+# legacy/**
