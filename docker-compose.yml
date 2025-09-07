@@ -52,7 +52,15 @@ services:
       - SURREAL_PASS=${SURREALDB_PASSWORD:-root}
       - SURREAL_LOG=info
       - SURREAL_BIND=0.0.0.0:8000
-    command: ["start", "--user", "${SURREALDB_USERNAME:-root}", "--pass", "${SURREALDB_PASSWORD:-root}", "memory"]
+    command:
+      [
+        "start",
+        "--user",
+        "${SURREALDB_USERNAME:-root}",
+        "--pass",
+        "${SURREALDB_PASSWORD:-root}",
+        "memory",
+      ]
     healthcheck:
       test: ["CMD", "/surreal", "is-ready", "--endpoint", "http://localhost:8000"]
       interval: 15s
