@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+# Cancel in-progress runs when a new commit is pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-format:
+    name: Lint & Format Checks
+    runs-on: ubuntu-latest
+    # Skip CI on draft PRs
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install Gitleaks
+        run: .devtooling/scripts/install-gitleaks.sh
+
+      - name: Run Biome check (TypeScript/JavaScript)
+        run: bun run lint
+
+      - name: Run Prettier check (JSON/YAML/Markdown)
+        run: bun x prettier --config .devtooling/configs/.prettierrc.json --check "**/*.{json,yaml,yml,md}"
+
+      - name: Run Markdownlint
+        run: bun run lint:md
+
+      - name: Run JSONlint
+        run: |
+          # Find and lint JSON files individually since jsonlint doesn't support globs well
+          for file in $(find . -name "*.json" -not -path "./node_modules/*"); do
+            echo "Checking JSON: $file"
+            bun x jsonlint "$file" > /dev/null || { echo "JSON validation failed for $file"; exit 1; }
+          done
+
+      - name: Run YAMLlint
+        run: bun run lint:yaml
+
+      - name: Run Gitleaks (secrets scan)
+        run: bun run secrets
