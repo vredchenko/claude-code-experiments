@@ -12,6 +12,15 @@
   },
   "ignores": [
     "node_modules/**",
-    ".husky/**"
+    ".husky/**",
+    "dist/**",
+    "build/**",
+    "out/**",
+    ".cache/**",
+    ".git/**",
+    "logs/**",
+    "coverage/**",
+    "docs/api/**",
+    "docs/generated/**"
   ]
 }

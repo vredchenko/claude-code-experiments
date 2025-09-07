@@ -1,0 +1,37 @@
+# Test files with dummy secrets
+tests/**/*test*
+test/**/*test*
+spec/**/*spec*
+__tests__/**
+**/*.test.*
+**/*.spec.*
+
+# Example/template files
+examples/**
+templates/**
+docs/examples/**
+
+# Configuration templates
+*.template
+*.example
+config/*.example.*
+
+# Build outputs (may contain hashed values)
+dist/**
+build/**
+out/**
+
+# Node modules
+node_modules/**
+
+# Lock files (contain hashes that look like secrets)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lock
+
+# Custom excludes for known false positives
+# examples:
+# fixtures/**
+# mock-data/**
+# legacy/**

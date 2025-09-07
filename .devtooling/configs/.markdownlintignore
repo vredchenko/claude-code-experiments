@@ -1,0 +1,49 @@
+# Node.js
+node_modules/**
+
+# Build outputs
+dist/**
+build/**
+out/**
+.next/**
+.nuxt/**
+
+# Cache directories
+.cache/**
+.parcel-cache/**
+
+# Git
+.git/**
+.husky/**
+
+# IDE files
+.vscode/**
+.idea/**
+
+# Logs
+logs/**
+*.log
+
+# Auto-generated documentation
+docs/api/**
+docs/generated/**
+CHANGELOG.md
+CHANGELOG-*.md
+
+# Package manager files (some contain markdown)
+pnpm-lock.yaml
+yarn.lock
+
+# Templates that shouldn't be linted
+templates/**
+examples/generated/**
+
+# License files (often have non-standard formatting)
+# LICENSE*
+
+# Custom excludes (add your patterns here)
+# examples:
+# legacy/**
+# vendor/**
+# third-party/**
+# README-*.md

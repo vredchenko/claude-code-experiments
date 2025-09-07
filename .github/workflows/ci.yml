@@ -36,18 +36,13 @@ jobs:
         run: bun run lint
 
       - name: Run Prettier check (JSON/YAML/Markdown)
-        run: bun x prettier --config .devtooling/configs/.prettierrc.json --check "**/*.{json,yaml,yml,md}"
+        run: bun x prettier --config .devtooling/configs/.prettierrc.json --ignore-path .devtooling/configs/.prettierignore --check "**/*.{json,yaml,yml,md}"
 
       - name: Run Markdownlint
         run: bun run lint:md
 
       - name: Run JSONlint
-        run: |
-          # Find and lint JSON files individually since jsonlint doesn't support globs well
-          for file in $(find . -name "*.json" -not -path "./node_modules/*"); do
-            echo "Checking JSON: $file"
-            bun x jsonlint "$file" > /dev/null || { echo "JSON validation failed for $file"; exit 1; }
-          done
+        run: bun run lint:json
 
       - name: Run YAMLlint
         run: bun run lint:yaml

@@ -1,0 +1,72 @@
+# Node.js
+node_modules/**
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/**
+build/**
+out/**
+.next/**
+.nuxt/**
+
+# Cache directories
+.cache/**
+.parcel-cache/**
+.vite/**
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE files
+.vscode/**
+.idea/**
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/**
+
+# Logs
+logs/**
+*.log
+
+# Temporary files
+tmp/**
+temp/**
+
+# Package manager files
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Auto-generated files
+CHANGELOG.md
+CHANGELOG-*.md
+
+# Documentation that shouldn't be formatted
+docs/api/**
+docs/generated/**
+
+# Docker
+Dockerfile*
+
+# Binary/compiled files
+*.min.js
+*.min.css
+*.bundle.js
+
+# Custom excludes (add your patterns here)
+# examples:
+# legacy/**
+# vendor/**
+# third-party/**
+# templates/**
