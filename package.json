@@ -18,6 +18,7 @@
     "dev:mcp:redis": "bun --watch run mcp/servers/redis-backend/index.ts",
     "dev:mcp:orlop-cli": "bun --watch run mcp/servers/orlop-cli/index.ts",
     "dev:mcp:surrealdb": "bun --watch run mcp/servers/surrealdb-backend/index.ts",
+    "dev:inspector": ".devtooling/scripts/start-inspector.sh",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.3",
+    "@modelcontextprotocol/inspector": "latest",
     "@types/bun": "latest",
     "@types/ioredis": "^5.0.0",
     "husky": "^9.1.7",
