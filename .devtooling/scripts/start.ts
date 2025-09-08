@@ -31,6 +31,14 @@ async function main() {
     const _input = await question("Press Enter to continue after editing .env file...");
   }
 
+  // Check if MCP servers config exists
+  const mcpConfigExists = await fs.pathExists("mcp-servers-config.json");
+  if (!mcpConfigExists) {
+    console.log("📝 Creating MCP servers config from template...");
+    await fs.copy("mcp-servers-config.template.json", "mcp-servers-config.json");
+    console.log("✅ MCP servers configuration created successfully");
+  }
+
   // Install dependencies
   console.log("📦 Installing dependencies...");
   await $`bun install`;
