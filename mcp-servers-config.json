@@ -1,48 +1,11 @@
 {
   "mcpServers": {
-    "minio-backend": {
+    "karakeep-cli": {
       "command": "bun",
-      "args": ["run", "./mcp/servers/minio-backend/index.ts"],
+      "args": ["run", "./mcp/servers/karakeep-cli/index.ts"],
       "env": {
-        "MINIO_ENDPOINT": "localhost:9000",
-        "MINIO_PORT": "9000",
-        "MINIO_USE_SSL": "false",
-        "MINIO_ROOT_USER": "admin",
-        "MINIO_ROOT_PASSWORD": "password123"
-      }
-    },
-    "gitlab-api": {
-      "command": "bun",
-      "args": ["run", "./mcp/servers/gitlab-api/index.ts"],
-      "env": {
-        "GITLAB_API_URL": "https://gitlab.com/api/v4",
-        "GITLAB_TOKEN": ""
-      }
-    },
-    "gitlab-cli": {
-      "command": "bun",
-      "args": ["run", "./mcp/servers/gitlab-cli/index.ts"],
-      "env": {}
-    },
-    "redis-backend": {
-      "command": "bun",
-      "args": ["run", "./mcp/servers/redis-backend/index.ts"],
-      "env": {
-        "REDIS_HOST": "localhost",
-        "REDIS_PORT": "6379",
-        "REDIS_PASSWORD": ""
-      }
-    },
-    "orlop-cli": {
-      "command": "bun",
-      "args": ["run", "./mcp/servers/orlop-cli/index.ts"],
-      "env": {}
-    },
-    "surrealdb-backend": {
-      "command": "bun",
-      "args": ["run", "./mcp/servers/surrealdb-backend/index.ts"],
-      "env": {
-        "SURREALDB_MCP_URL": "http://localhost:3004"
+        "KARAKEEP_API_KEY": "",
+        "KARAKEEP_SERVER_ADDR": ""
       }
     }
   }

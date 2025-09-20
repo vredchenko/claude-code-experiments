@@ -1,34 +1,12 @@
 {
   "mcpServers": {
-    "minio-backend": {
-      "type": "stdio",
-      "command": "bash",
-      "args": ["-c", "source .env && bun run mcp/servers/minio-backend/index.ts"]
-    },
-    "gitlab-api": {
-      "type": "stdio",
-      "command": "bash",
-      "args": ["-c", "source .env && bun run mcp/servers/gitlab-api/index.ts"]
-    },
-    "gitlab-cli": {
-      "type": "stdio",
-      "command": "bash",
-      "args": ["-c", "source .env && bun run mcp/servers/gitlab-cli/index.ts"]
-    },
-    "redis-backend": {
-      "type": "stdio",
-      "command": "bash",
-      "args": ["-c", "source .env && bun run mcp/servers/redis-backend/index.ts"]
-    },
-    "orlop-cli": {
-      "type": "stdio",
-      "command": "bash",
-      "args": ["-c", "source .env && bun run mcp/servers/orlop-cli/index.ts"]
-    },
-    "surrealdb-backend": {
-      "type": "stdio",
-      "command": "bash",
-      "args": ["-c", "source .env && bun run mcp/servers/surrealdb-backend/index.ts"]
+    "karakeep-cli": {
+      "command": "bun",
+      "args": ["run", "./mcp/servers/karakeep-cli/index.ts"],
+      "env": {
+        "KARAKEEP_API_KEY": "",
+        "KARAKEEP_SERVER_ADDR": ""
+      }
     }
   }
 }

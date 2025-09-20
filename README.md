@@ -110,16 +110,44 @@ mcp/
 This project includes **two MCP configuration files** for maximum compatibility:
 
 - **`.mcp.json`** - Used by **Claude Code CLI**
-  - Simpler format with automatic `.env` file loading
-  - Uses `bash -c "source .env && ..."` to load environment variables
-  - All servers configured as `stdio` type
 - **`mcp-servers-config.json`** - **Standard MCP format** for other AI providers
-  - Explicit environment variable configuration
-  - Compatible with other MCP-supporting AI tools and clients
-  - More portable across different platforms
 
-Both files define the same 6 servers and should be kept in sync for
-compatibility.
+Both files define the same servers and are kept in sync for compatibility.
+
+#### Enabling MCP Connectors
+
+**By default, all MCP servers are disabled** to save on token usage and improve
+performance. MCP servers are selectively enabled as needed:
+
+1. **Template files contain complete configurations:**
+   - `.devtooling/configs/.mcp.template.json` - Complete Claude Code MCP
+     configuration
+   - `.devtooling/configs/mcp-servers-config.template.json` - Complete standard
+     MCP configuration
+
+2. **Actual config files start empty:**
+   - `.mcp.json` - Contains only `{"mcpServers": {}}`
+
+   - `mcp-servers-config.json` - Contains only `{"mcpServers": {}}`
+
+3. **To enable specific MCP servers:**
+
+   ```bash
+   # Copy desired server configs from template to actual config
+   # Example: Enable MinIO and GitLab API servers
+   # Manually copy the server objects from .devtooling/configs/ template files to root config files
+   ```
+
+4. **Available MCP servers:**
+   - `minio-backend` - MinIO object storage operations
+   - `gitlab-api` - Direct GitLab REST API integration
+   - `gitlab-cli` - GitLab CLI operations
+   - `redis-backend` - Redis cache operations
+   - `surrealdb-backend` - SurrealDB database operations
+   - `orlop-cli` - Orlop CLI operations
+   - `karakeep-cli` - Karakeep bookmark manager operations
+
+5. **After enabling servers, restart Claude Code** to load the new configuration
 
 #### Running Servers
 
