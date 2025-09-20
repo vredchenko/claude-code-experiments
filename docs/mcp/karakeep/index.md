@@ -2,19 +2,20 @@
 
 TODO
 
-## General refs:
-- Website: https://karakeep.app/
-- Github: https://github.com/karakeep-app/karakeep
-- Docker compose install: https://docs.karakeep.app/Installation/docker
-- CLI (needs node.js): https://docs.karakeep.app/command-line
-- Firefox extension: https://addons.mozilla.org/en-US/firefox/addon/karakeep/
+## General refs
+
+- Website: <https://karakeep.app/>
+- Github: <https://github.com/karakeep-app/karakeep>
+- Docker compose install: <https://docs.karakeep.app/Installation/docker>
+- CLI (needs node.js): <https://docs.karakeep.app/command-line>
+- Firefox extension: <https://addons.mozilla.org/en-US/firefox/addon/karakeep/>
 
 ## Karakeep CLI
 
-Karakeep CLI is installed as a global npm module (by Ansible).
-For manual installation: `npm i -g @karakeep/cli`
+Karakeep CLI is installed as a global npm module (by Ansible). For manual
+installation: `npm i -g @karakeep/cli`
 
-```
+```bash
 karakeep --help
 
 Usage: karakeep [options] [command]
