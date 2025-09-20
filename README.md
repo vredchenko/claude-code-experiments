@@ -1,6 +1,9 @@
 # claude-code-experiments
 
-Sandbox for playing around with Claude Code
+[![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.ai/code)
+
+Sandbox for playing around with Claude Code. Co-authored together with Claude
+Code
 
 ## Quick Start
 
@@ -21,6 +24,21 @@ Sandbox for playing around with Claude Code
    ```
 
 4. **Restart Claude Code** to load MCP servers
+
+## Dev Dependencies
+
+This project requires the following development dependencies:
+
+- **[Claude Code](https://claude.ai/code)** - Anthropic's agentic coding tool
+  (Claude Code alternatives are possible but not tested)
+- **[Bun.js](https://bun.sh/)** - Fast JavaScript runtime and package manager
+- **[Docker](https://www.docker.com/)** - Container platform for services
+- **[Docker Compose](https://docs.docker.com/compose/)** - Multi-container
+  application orchestration
+
+Additional MCP component-specific dependencies are automatically installed
+during setup and include specialized libraries for GitLab integration, database
+connections, and storage operations.
 
 ## What You Get
 
@@ -180,4 +198,5 @@ Key environment variables (see `.env.template` for full list):
 - `MINIO_ROOT_PASSWORD`: MinIO admin password
 - `GITLAB_TOKEN`: GitLab API access token
 
-Built with Bun.js and the official MCP TypeScript SDK.
+Built with [Bun.js](https://bun.sh/) and the official
+[MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
