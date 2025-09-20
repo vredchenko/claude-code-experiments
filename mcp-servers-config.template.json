@@ -44,6 +44,14 @@
       "env": {
         "SURREALDB_MCP_URL": "http://localhost:3004"
       }
+    },
+    "karakeep-cli": {
+      "command": "bun",
+      "args": ["run", "./mcp/servers/karakeep-cli/index.ts"],
+      "env": {
+        "KARAKEEP_API_KEY": "",
+        "KARAKEEP_SERVER_ADDR": ""
+      }
     }
   }
 }
