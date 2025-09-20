@@ -2,13 +2,13 @@
 
 [![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.ai/code)
 
-Sandbox for playing around with Claude Code. Built with [Bun.js](https://bun.sh/) and the official
+Sandbox for playing around with Claude Code. Built with
+[Bun.js](https://bun.sh/) and the official
 [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
 
-Co-authored together with **Claude
-Code**!
+Co-authored together with **Claude Code**!
 
-**Project board**: https://github.com/users/vredchenko/projects/2/views/1
+**Project board**: <https://github.com/users/vredchenko/projects/2/views/1>
 
 ## Quick Start
 
