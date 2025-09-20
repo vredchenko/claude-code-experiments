@@ -2,8 +2,13 @@
 
 [![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.ai/code)
 
-Sandbox for playing around with Claude Code. Co-authored together with Claude
-Code
+Sandbox for playing around with Claude Code. Built with [Bun.js](https://bun.sh/) and the official
+[MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
+
+Co-authored together with **Claude
+Code**!
+
+**Project board**: https://github.com/users/vredchenko/projects/2/views/1
 
 ## Quick Start
 
@@ -197,6 +202,3 @@ Key environment variables (see `.env.template` for full list):
 - `SURREALDB_MCP_URL`: SurrealMCP sidecar endpoint (<http://localhost:3004>)
 - `MINIO_ROOT_PASSWORD`: MinIO admin password
 - `GITLAB_TOKEN`: GitLab API access token
-
-Built with [Bun.js](https://bun.sh/) and the official
-[MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
