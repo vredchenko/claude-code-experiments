@@ -1,3 +1,9 @@
 {
-  "*.{ts,js,tsx,jsx}": ["biome format --write"]
+  "*.{ts,js,tsx,jsx}": ["biome check --write"],
+  "*.{json,yaml,yml,md}": [
+    "prettier --config .devtooling/configs/.prettierrc.json --ignore-path .devtooling/configs/.prettierignore --write"
+  ],
+  "*.md": ["markdownlint-cli2 --config .devtooling/configs/.markdownlint-cli2.jsonc --fix"],
+  "*.json": [".devtooling/scripts/lint-json.sh"],
+  "*.{yaml,yml}": [".devtooling/scripts/lint-yaml.sh"]
 }
