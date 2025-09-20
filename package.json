@@ -34,7 +34,10 @@
     "lint:json": ".devtooling/scripts/lint-json.sh",
     "lint:yaml": ".devtooling/scripts/lint-yaml.sh",
     "secrets": ".devtooling/scripts/scan-secrets.sh",
-    "pre-commit": "lint-staged --config .devtooling/configs/.lintstagedrc.json"
+    "pre-commit": "lint-staged --config .devtooling/configs/.lintstagedrc.json",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.3",
@@ -46,6 +49,7 @@
     "lint-staged": "^16.1.6",
     "markdownlint-cli2": "^0.18.1",
     "prettier": "^3.6.2",
+    "vitepress": "^1.6.4",
     "yaml-lint": "^1.7.0"
   },
   "peerDependencies": {
