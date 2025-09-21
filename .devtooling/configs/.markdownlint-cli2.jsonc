@@ -8,11 +8,13 @@
     "MD024": false,
     "MD033": {
       "allowed_elements": ["br", "sub", "sup"]
+    },
+    "MD041": {
+      "front_matter_title": "^\\s*name\\s*[:=]"
     }
   },
   "ignores": [
     "node_modules/**",
-    ".husky/**",
     "dist/**",
     "build/**",
     "out/**",

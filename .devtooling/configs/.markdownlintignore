@@ -47,3 +47,6 @@ examples/generated/**
 # vendor/**
 # third-party/**
 # README-*.md
+
+# Claude agents (frontmatter should not be formatted)
+.claude/agents/**
