@@ -19,4 +19,6 @@ mcp-servers-config.json
 
 .idea
 .claude/settings.local.json
-.husky/_
+
+# VitePress
+docs/.vitepress/cache/
