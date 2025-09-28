@@ -18,10 +18,38 @@ export default defineConfig({
           text: "MCP Servers",
           items: [
             { text: "Overview", link: "/mcp/" },
-            { text: "GitLab Integration", link: "/mcp/gitlab" },
-            { text: "Storage & Database", link: "/mcp/storage" },
-            { text: "Karakeep Bookmarks", link: "/mcp/karakeep/" },
-            { text: "Development", link: "/mcp/development" },
+            {
+              text: "GitLab Integration",
+              collapsed: false,
+              items: [
+                { text: "GitLab API", link: "/mcp/gitlab-api/" },
+                { text: "GitLab CLI", link: "/mcp/gitlab-cli/" },
+              ],
+            },
+            {
+              text: "Storage & Database",
+              collapsed: false,
+              items: [
+                { text: "MinIO Backend", link: "/mcp/minio-backend/" },
+                { text: "Redis Backend", link: "/mcp/redis-backend/" },
+                { text: "SurrealDB Backend", link: "/mcp/surrealdb-backend/" },
+              ],
+            },
+            {
+              text: "Code Search & Repository",
+              collapsed: false,
+              items: [{ text: "Sourcegraph", link: "/mcp/sourcegraph/" }],
+            },
+            {
+              text: "Bookmark Management",
+              collapsed: false,
+              items: [{ text: "Karakeep", link: "/mcp/karakeep/" }],
+            },
+            {
+              text: "Infrastructure",
+              collapsed: false,
+              items: [{ text: "Orlop CLI", link: "/mcp/orlop-cli/" }],
+            },
           ],
         },
       ],

@@ -10,7 +10,7 @@ Co-authored together with **Claude Code**!
 
 **Project board**: <https://github.com/users/vredchenko/projects/2/views/1>
 
-**Github Pages**: https://vredchenko.github.io/claude-code-experiments/
+**Github Pages**: <https://vredchenko.github.io/claude-code-experiments/>
 
 ## Quick Start
 

@@ -1,12 +1,3 @@
 {
-  "mcpServers": {
-    "karakeep-cli": {
-      "command": "bun",
-      "args": ["run", "./mcp/servers/karakeep-cli/index.ts"],
-      "env": {
-        "KARAKEEP_API_KEY": "",
-        "KARAKEEP_SERVER_ADDR": ""
-      }
-    }
-  }
+  "mcpServers": {}
 }
