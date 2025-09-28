@@ -1,38 +1,83 @@
-# Karakeep MCP connector
+# Karakeep MCP Server
 
-TODO
+Bookmark management integration with Karakeep for organizing and accessing web
+resources.
 
-## General refs
+## Overview
 
-- Website: <https://karakeep.app/>
-- Github: <https://github.com/karakeep-app/karakeep>
-- Docker compose install: <https://docs.karakeep.app/Installation/docker>
-- CLI (needs node.js): <https://docs.karakeep.app/command-line>
-- Firefox extension: <https://addons.mozilla.org/en-US/firefox/addon/karakeep/>
+The Karakeep MCP server provides comprehensive bookmark management capabilities
+through integration with the Karakeep bookmark manager, enabling efficient
+organization and retrieval of web resources.
 
-## Karakeep CLI
+## Features
 
-Karakeep CLI is installed as a global npm module (by Ansible). For manual
-installation: `npm i -g @karakeep/cli`
+- **Bookmark Management**: Create, read, update, and delete bookmarks
+- **List Organization**: Organize bookmarks into custom lists
+- **Tag System**: Categorize bookmarks with tags for easy filtering
+- **Search Capabilities**: Find bookmarks by title, URL, or tags
+- **Self-Hosted Support**: Works with custom Karakeep instances
+
+## Prerequisites
+
+- Karakeep CLI tool (`karakeep`) installed
+- Valid Karakeep API credentials
+- Access to a Karakeep instance (self-hosted or managed)
+
+## Configuration
+
+Set the following environment variables:
+
+- `KARAKEEP_API_KEY`: API key for Karakeep authentication
+- `KARAKEEP_SERVER_ADDR`: Karakeep server URL
+
+## Tools
+
+### `karakeep_bookmarks_list`
+
+List bookmarks with optional filtering by list or tag.
+
+### `karakeep_bookmarks_create`
+
+Create a new bookmark with title, description, and tags.
+
+### `karakeep_bookmarks_get`
+
+Retrieve detailed information about a specific bookmark.
+
+### `karakeep_bookmarks_update`
+
+Update existing bookmark properties.
+
+### `karakeep_bookmarks_delete`
+
+Remove a bookmark from the system.
+
+### `karakeep_lists_list`
+
+List all available bookmark lists.
+
+### `karakeep_lists_create`
+
+Create a new bookmark list.
+
+### `karakeep_tags_list`
+
+List all available tags.
+
+### `karakeep_tags_create`
+
+Create a new tag with optional color coding.
+
+## Usage Examples
 
 ```bash
-karakeep --help
+# Run the server
+bun run mcp:karakeep
 
-Usage: karakeep [options] [command]
-
-A CLI interface to interact with the karakeep api
-
-Options:
-  --api-key <key>       the API key to interact with the API (env: KARAKEEP_API_KEY)
-  --server-addr <addr>  the address of the server to connect to (env: KARAKEEP_SERVER_ADDR)
-  --json                to output the result as JSON
-  -V, --version         output the version number
-  -h, --help            display help for command
-
-Commands:
-  bookmarks             manipulating bookmarks
-  lists                 manipulating lists
-  tags                  manipulating tags
-  whoami                returns info about the owner of this API key
-  help [command]        display help for command
+# Development mode with auto-reload
+bun run dev:mcp:karakeep
 ```
+
+## See Also
+
+- [Karakeep Documentation](https://github.com/karakeep/karakeep)
