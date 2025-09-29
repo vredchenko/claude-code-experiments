@@ -22,6 +22,9 @@
     "dev:mcp:surrealdb": "bun --watch run mcp/surrealdb-backend/index.ts",
     "dev:mcp:karakeep": "bun --watch run mcp/karakeep-cli/index.ts",
     "dev:mcp:sourcegraph": "bun --watch run mcp/sourcegraph/index.ts",
+    "inspector": ".devtooling/scripts/start-inspector.sh",
+    "inspector:ui": "bunx mcp-inspector",
+    "inspector:cli": "bunx mcp-inspector --help",
     "dev:inspector": ".devtooling/scripts/start-inspector.sh",
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
@@ -43,7 +46,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.3",
-    "@modelcontextprotocol/inspector": "latest",
+    "@modelcontextprotocol/inspector": "^0.16.8",
     "@types/bun": "latest",
     "@types/ioredis": "^5.0.0",
     "jsonlint": "^1.6.3",
