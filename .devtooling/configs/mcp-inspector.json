@@ -1,0 +1,108 @@
+{
+  "inspector": {
+    "ui": {
+      "host": "localhost",
+      "port": 6274,
+      "openBrowser": true
+    },
+    "proxy": {
+      "host": "localhost",
+      "port": 3005
+    },
+    "servers": [
+      {
+        "name": "gitlab-api",
+        "description": "GitLab REST API integration",
+        "command": "bun",
+        "args": ["run", "./mcp/gitlab-api/index.ts"],
+        "env": {
+          "GITLAB_HOST": "gitlab.com",
+          "GITLAB_TOKEN": "${GITLAB_TOKEN}"
+        }
+      },
+      {
+        "name": "gitlab-cli",
+        "description": "GitLab CLI integration",
+        "command": "bun",
+        "args": ["run", "./mcp/gitlab-cli/index.ts"],
+        "env": {
+          "GITLAB_HOST": "gitlab.com",
+          "GITLAB_TOKEN": "${GITLAB_TOKEN}"
+        }
+      },
+      {
+        "name": "minio-backend",
+        "description": "MinIO object storage operations",
+        "command": "bun",
+        "args": ["run", "./mcp/minio-backend/index.ts"],
+        "env": {
+          "MINIO_ENDPOINT": "${MINIO_ENDPOINT}",
+          "MINIO_PORT": "${MINIO_PORT}",
+          "MINIO_ROOT_USER": "${MINIO_ROOT_USER}",
+          "MINIO_ROOT_PASSWORD": "${MINIO_ROOT_PASSWORD}",
+          "MINIO_USE_SSL": "${MINIO_USE_SSL}"
+        }
+      },
+      {
+        "name": "redis-backend",
+        "description": "Redis caching operations",
+        "command": "bun",
+        "args": ["run", "./mcp/redis-backend/index.ts"],
+        "env": {
+          "REDIS_HOST": "${REDIS_HOST}",
+          "REDIS_PORT": "${REDIS_PORT}",
+          "REDIS_PASSWORD": "${REDIS_PASSWORD}"
+        }
+      },
+      {
+        "name": "surrealdb-backend",
+        "description": "SurrealDB multi-model database operations",
+        "command": "bun",
+        "args": ["run", "./mcp/surrealdb-backend/index.ts"],
+        "env": {
+          "SURREALDB_URL": "${SURREALDB_URL}",
+          "SURREALDB_USERNAME": "${SURREALDB_USERNAME}",
+          "SURREALDB_PASSWORD": "${SURREALDB_PASSWORD}",
+          "SURREALDB_NAMESPACE": "${SURREALDB_NAMESPACE}",
+          "SURREALDB_DATABASE": "${SURREALDB_DATABASE}"
+        }
+      },
+      {
+        "name": "karakeep-cli",
+        "description": "Karakeep bookmark management",
+        "command": "bun",
+        "args": ["run", "./mcp/karakeep-cli/index.ts"],
+        "env": {
+          "KARAKEEP_API_KEY": "${KARAKEEP_API_KEY}",
+          "KARAKEEP_SERVER_ADDR": "${KARAKEEP_SERVER_ADDR}"
+        }
+      },
+      {
+        "name": "sourcegraph",
+        "description": "Sourcegraph code search and repository exploration",
+        "command": "bun",
+        "args": ["run", "./mcp/sourcegraph/index.ts"],
+        "env": {
+          "SRC_ENDPOINT": "${SRC_ENDPOINT}",
+          "SRC_ACCESS_TOKEN": "${SRC_ACCESS_TOKEN}"
+        }
+      },
+      {
+        "name": "orlop-cli",
+        "description": "Infrastructure management with Orlop CLI",
+        "command": "bun",
+        "args": ["run", "./mcp/orlop-cli/index.ts"],
+        "env": {
+          "ORLOP_CONFIG_PATH": "${ORLOP_CONFIG_PATH}",
+          "ORLOP_INVENTORY_PATH": "${ORLOP_INVENTORY_PATH}"
+        }
+      }
+    ]
+  },
+  "development": {
+    "autoReload": true,
+    "logLevel": "info",
+    "enableCors": true,
+    "debugMode": false
+  }
+}
