@@ -10,6 +10,7 @@ export default defineConfig({
       { text: "Home", link: "/" },
       { text: "MCP Servers", link: "/mcp/" },
       { text: "Agents", link: "/agents/" },
+      { text: "Development", link: "/development/" },
     ],
 
     sidebar: {
@@ -59,6 +60,18 @@ export default defineConfig({
           items: [
             { text: "Overview", link: "/agents/" },
             { text: "Grimface Agent", link: "/agents/grimface" },
+          ],
+        },
+      ],
+      "/development/": [
+        {
+          text: "Development",
+          items: [
+            { text: "Overview", link: "/development/" },
+            { text: "MCP Inspector", link: "/development/mcp-inspector" },
+            { text: "Development Workflow", link: "/development/workflow" },
+            { text: "Testing", link: "/development/testing" },
+            { text: "Debugging", link: "/development/debugging" },
           ],
         },
       ],
