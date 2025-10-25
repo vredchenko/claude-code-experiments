@@ -23,6 +23,7 @@
     "logs/**",
     "coverage/**",
     "docs/api/**",
-    "docs/generated/**"
+    "docs/generated/**",
+    ".claude/skills/**"
   ]
 }
