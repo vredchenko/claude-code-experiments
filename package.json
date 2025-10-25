@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.4",
+    "colord": "^2.9.3",
     "dotenv": "^16.4.5",
     "ioredis": "^5.7.0",
     "minio": "^8.0.1",
