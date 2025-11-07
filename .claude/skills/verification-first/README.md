@@ -113,6 +113,16 @@ Based on research into:
 - Manual-first learning (pilot simulator analogy)
 - Cognitive engagement vs surface fluency
 
+## Attribution
+
+Inspired by and based on concepts from Eric J. Ma's blog posts:
+
+- **"Earn the privilege to use automation"**
+  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+
+- **"From nerd sniped to shipped: Using AI as a thinking tool"**
+  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
+
 ---
 
 _"Give a developer an AI-generated solution, and they ship one feature. Teach a

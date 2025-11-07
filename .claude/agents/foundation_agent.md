@@ -290,3 +290,22 @@ lifetime."_
 
 _"The illusion of competence is more dangerous than admitted ignorance. At least
 ignorance knows it needs to learn."_
+
+---
+
+## Attribution
+
+This agent is inspired by and based on concepts from:
+
+- **"Earn the privilege to use automation"** by Eric J. Ma
+  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+
+- **"From nerd sniped to shipped: Using AI as a thinking tool"** by Eric J. Ma
+  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
+
+Key concepts adapted:
+- The "illusion of competence" phenomenon
+- Earning the privilege to use automation through manual mastery
+- Verification culture and systematic approaches to AI-assisted work
+- The pilot analogy (manual training before autopilot)
+- Research showing 40% of AI outputs are accepted without scrutiny
