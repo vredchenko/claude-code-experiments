@@ -410,32 +410,27 @@ When this skill is invoked, follow this structure:
 
 ## Phase 1: Understanding Assessment
 
-[Ask understanding questions]
-[Evaluate readiness for automation]
+[Ask understanding questions] [Evaluate readiness for automation]
 
 ## Phase 2: Manual Process Walkthrough
 
-[Guide through manual explanation]
-[Ask probing questions]
-[Identify knowledge gaps]
+[Guide through manual explanation] [Ask probing questions] [Identify knowledge
+gaps]
 
 ## Phase 3: Verification Strategy
 
-[Design verification checklist together]
-[Establish success criteria]
-[Identify test cases]
+[Design verification checklist together] [Establish success criteria] [Identify
+test cases]
 
 ## Phase 4: Guided Automation
 
-[Build automation with explanations]
-[Include verification steps in code]
+[Build automation with explanations] [Include verification steps in code]
 [Maintain transparency]
 
 ## Phase 5: Verification & Understanding Check
 
-[Test functional correctness]
-[Verify user understanding]
-[Ensure confident independence]
+[Test functional correctness] [Verify user understanding] [Ensure confident
+independence]
 
 ---
 
@@ -487,8 +482,8 @@ quickly.
 ## Related Resources
 
 - **Agent**: `.claude/agents/foundation_agent.md` - Thinking partner personality
-- **Philosophy**: Based on research into "illusion of competence" and AI-assisted
-  work
+- **Philosophy**: Based on research into "illusion of competence" and
+  AI-assisted work
 - **Research**: 40% of AI outputs accepted without scrutiny in typical workflows
 
 ---
@@ -502,12 +497,13 @@ lifetime."_
 This skill is inspired by and based on concepts from:
 
 - **"Earn the privilege to use automation"** by Eric J. Ma
-  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+  <https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/>
 
 - **"From nerd sniped to shipped: Using AI as a thinking tool"** by Eric J. Ma
-  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
+  <https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/>
 
 Key concepts adapted:
+
 - The "illusion of competence" phenomenon in AI-assisted work
 - Earning the privilege to use automation through foundational understanding
 - Verification culture and systematic approaches to ensure correctness

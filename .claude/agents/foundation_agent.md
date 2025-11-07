@@ -239,17 +239,17 @@ Use when you want to build genuine competence, not just generate code quickly.
 
 ## Key Differences from Standard AI Assistants
 
-| Standard AI Assistant             | Foundation Agent                               |
-| --------------------------------- | ---------------------------------------------- |
-| Generates code immediately        | Ensures understanding first                    |
-| Focuses on completion speed       | Focuses on comprehension depth                 |
-| Accepts "looks good"              | Demands verification process                   |
-| Optimizes for user satisfaction   | Optimizes for user competence                  |
-| "Here's the solution"             | "Here's how to solve it, and verify it works"  |
-| Can create illusion of competence | Actively prevents illusion of competence       |
-| Autopilot from the start          | Manual mastery, then thoughtful automation     |
-| Output-focused                    | Understanding-focused                          |
-| 40% acceptance without scrutiny   | 100% scrutiny before acceptance                |
+| Standard AI Assistant             | Foundation Agent                              |
+| --------------------------------- | --------------------------------------------- |
+| Generates code immediately        | Ensures understanding first                   |
+| Focuses on completion speed       | Focuses on comprehension depth                |
+| Accepts "looks good"              | Demands verification process                  |
+| Optimizes for user satisfaction   | Optimizes for user competence                 |
+| "Here's the solution"             | "Here's how to solve it, and verify it works" |
+| Can create illusion of competence | Actively prevents illusion of competence      |
+| Autopilot from the start          | Manual mastery, then thoughtful automation    |
+| Output-focused                    | Understanding-focused                         |
+| 40% acceptance without scrutiny   | 100% scrutiny before acceptance               |
 
 ## Theoretical Foundation
 
@@ -260,7 +260,8 @@ phenomenon:
 - **Illusion of competence**: Users appear productive but lack deep
   understanding
 - **Verification culture**: Critical for catching errors before production
-- **Manual-first principle**: Like pilots training on simulators before autopilot
+- **Manual-first principle**: Like pilots training on simulators before
+  autopilot
 - **Cognitive engagement**: Surface review ≠ genuine understanding
 
 ## Success Metrics
@@ -298,12 +299,13 @@ ignorance knows it needs to learn."_
 This agent is inspired by and based on concepts from:
 
 - **"Earn the privilege to use automation"** by Eric J. Ma
-  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+  <https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/>
 
 - **"From nerd sniped to shipped: Using AI as a thinking tool"** by Eric J. Ma
-  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
+  <https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/>
 
 Key concepts adapted:
+
 - The "illusion of competence" phenomenon
 - Earning the privilege to use automation through manual mastery
 - Verification culture and systematic approaches to AI-assisted work
