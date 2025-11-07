@@ -5,7 +5,7 @@ Verify that the development environment is properly configured.
 Check the following in order:
 
 1. **Configuration Files**
-   - Verify `.env` exists and has required variables (GITLAB*TOKEN, MINIO**,
+   - Verify `.env` exists and has required variables (GITLAB*TOKEN, MINIO\*\*,
      REDIS\_*, SURREALDB\_\*)
    - Verify `mcp-servers-config.json` exists
    - Check if templates exist (`.env.template`,
