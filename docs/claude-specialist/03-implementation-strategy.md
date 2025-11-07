@@ -1,6 +1,7 @@
 # Implementation Strategy
 
-This document outlines the four-pronged approach for implementing the Claude Code Specialist system.
+This document outlines the four-pronged approach for implementing the Claude
+Code Specialist system.
 
 ## Overview
 
@@ -16,12 +17,16 @@ Each serves a distinct purpose and operates at different levels of proactivity.
 ## 1. Specialist Agent
 
 ### Purpose
-Deep analysis of project history and patterns to propose comprehensive improvements.
+
+Deep analysis of project history and patterns to propose comprehensive
+improvements.
 
 ### File Location
+
 `.claude/agents/specialist_agent.md`
 
 ### When Invoked
+
 - Weekly/monthly reviews (explicit `/reflect` command)
 - After major feature completions
 - When explicitly requested by user
@@ -29,21 +34,25 @@ Deep analysis of project history and patterns to propose comprehensive improveme
 ### Responsibilities
 
 **Analyze git history for patterns**:
+
 - Frequent command sequences in commit messages
 - Files modified together often
 - Commit message patterns and conventions
 
 **Review conversation logs** (if available):
+
 - Repeated operations across sessions
 - Common questions asked multiple times
 - Pain points mentioned by user
 
 **Identify gaps in current tooling**:
+
 - Operations that should be commands but aren't
 - Knowledge that should be in CLAUDE.md
 - Enforcement needs without hooks
 
 **Propose comprehensive updates**:
+
 - Specific additions to CLAUDE.md
 - New commands to create
 - New agents for specialized domains
@@ -51,6 +60,7 @@ Deep analysis of project history and patterns to propose comprehensive improveme
 - .claudeignore patterns
 
 **Perform cost/benefit analysis**:
+
 - Estimated time savings
 - Maintenance burden
 - Risk of false positives
@@ -107,14 +117,14 @@ Proceed with these improvements? (all/selective/none)
 ### Agent Prompt Structure
 
 ```markdown
-You are the Claude Code Specialist Agent, responsible for analyzing
-project patterns and proposing improvements to Claude's project-specific
-tooling.
+You are the Claude Code Specialist Agent, responsible for analyzing project
+patterns and proposing improvements to Claude's project-specific tooling.
 
 ## Your Task
 
-Analyze the project and identify opportunities to improve Claude's
-effectiveness through:
+Analyze the project and identify opportunities to improve Claude's effectiveness
+through:
+
 1. New commands for repeated workflows
 2. CLAUDE.md updates for discovered conventions
 3. New agents for specialized domains
@@ -133,6 +143,7 @@ effectiveness through:
 ## Decision Criteria
 
 Only propose improvements that:
+
 - Save significant time (>30 sec per use)
 - Prevent common mistakes
 - Capture universal truths (not opinions)
@@ -142,6 +153,7 @@ Only propose improvements that:
 ## Output Format
 
 For each recommendation:
+
 1. Pattern observed (with frequency)
 2. Proposed improvement (specific)
 3. Expected benefit (quantified if possible)
@@ -154,12 +166,15 @@ Prioritize recommendations by impact.
 ## 2. Improvement Command
 
 ### Purpose
+
 Explicit trigger for capturing learnings from recent work.
 
 ### File Location
+
 `.claude/commands/improve-claude.md`
 
 ### When Invoked
+
 - End of feature development
 - After resolving complex issues
 - When user wants to "remember this"
@@ -168,28 +183,32 @@ Explicit trigger for capturing learnings from recent work.
 ### Responsibilities
 
 **Review recent work**:
+
 - Git log (last N commits)
 - Files changed recently
 - Commands run in this session
 
 **Identify patterns worth capturing**:
+
 - Repeated operations
 - Emerging conventions
 - New knowledge discovered
 
 **Propose specific additions/modifications**:
+
 - Draft CLAUDE.md updates
 - Suggest command names and workflows
 - Identify automation opportunities
 
 **Create commits with improvements**:
+
 - Clear commit messages
 - Explain what was learned
 - Document the rationale
 
 ### Example Invocation
 
-```
+````
 User: /improve-claude
 
 Claude:
@@ -212,12 +231,14 @@ Recommendation: Add to CLAUDE.md
 - JWT tokens use RS256 (asymmetric) for better security
 - Private key in AUTH_PRIVATE_KEY env var
 - Public key in AUTH_PUBLIC_KEY env var
-```
+````
 
 Proceed? (yes/no/modify)
 
 ### 2. CORS Debugging Command
+
 Observed: Debugged CORS twice with same sequence:
+
 1. Check preflight: curl -X OPTIONS -H "Origin: ..."
 2. Check headers: curl -v ... | grep -i cors
 3. Restart API server
@@ -227,15 +248,18 @@ Recommendation: Create /debug-cors command
 Proceed? (yes/no/modify)
 
 ### 3. Rate Limiting Pattern
+
 Found: All API routes use express-rate-limit with:
-- windowMs: 15 * 60 * 1000 (15 min)
+
+- windowMs: 15 _ 60 _ 1000 (15 min)
 - max: 100 requests
 - standardHeaders: true
 
 Recommendation: Add to CLAUDE.md
 
 Proceed? (yes/no/modify)
-```
+
+````
 
 ### Command Prompt Structure
 
@@ -270,19 +294,22 @@ Present findings one at a time:
 - Where to capture it
 - Specific content to add
 - Ask for confirmation before committing
-```
+````
 
 ## 3. Background Pattern Detection
 
 ### Purpose
+
 Passive observation without interrupting work.
 
 ### Mechanism
+
 Built-in awareness during normal Claude operation (not a separate file/tool).
 
 ### Behavior
 
 **Track patterns silently**:
+
 - Count repeated operations
   - Bash command sequences
   - File search patterns
@@ -298,24 +325,26 @@ Built-in awareness during normal Claude operation (not a separate file/tool).
   - Context pollution
 
 **Do NOT auto-act**:
+
 - Store observations internally
 - Track occurrence counts
 - Note temporal patterns (across sessions if possible)
 
 **Occasionally propose**:
+
 - After hitting threshold (3+ occurrences)
 - At natural breakpoints (task completion)
 - Non-intrusive suggestions
 
 ### Trigger Thresholds
 
-| Pattern | Threshold | Suggestion |
-|---------|-----------|------------|
-| Identical bash sequence | 3 times | "Create command?" |
-| Similar file operations | 5 times | "Create hook?" |
-| Same search repeated | 3 times | "Add to CLAUDE.md?" |
-| Files repeatedly loaded | 5 times | "Add to .claudeignore?" |
-| Same question asked | 2 times | "Create agent or documentation?" |
+| Pattern                 | Threshold | Suggestion                       |
+| ----------------------- | --------- | -------------------------------- |
+| Identical bash sequence | 3 times   | "Create command?"                |
+| Similar file operations | 5 times   | "Create hook?"                   |
+| Same search repeated    | 3 times   | "Add to CLAUDE.md?"              |
+| Files repeatedly loaded | 5 times   | "Add to .claudeignore?"          |
+| Same question asked     | 2 times   | "Create agent or documentation?" |
 
 ### Example Interaction
 
@@ -338,16 +367,19 @@ Claude: [Creates command, commits]
 ### Non-Intrusive Suggestions
 
 **Good timing**:
+
 - After completing a task
 - During natural pauses
 - When pattern just crossed threshold
 
 **Bad timing**:
+
 - Middle of debugging
 - During error investigation
 - When user is clearly focused
 
 **Phrasing**:
+
 - ✅ "I noticed [pattern]. Would you like me to [action]?"
 - ✅ "This is the third time [operation]. Create a shortcut?"
 - ❌ "PATTERN DETECTED - RECOMMENDATION FOLLOWS" (too robotic)
@@ -356,12 +388,15 @@ Claude: [Creates command, commits]
 ## 4. Post-Session Hook (Optional)
 
 ### Purpose
+
 Prompt for lightweight reflection after work sessions.
 
 ### File Location
+
 `.claude/config.json` (post-session hook, if supported)
 
 ### When Triggered
+
 - End of significant work sessions
 - After completing major tasks
 - Natural stopping points
@@ -369,16 +404,19 @@ Prompt for lightweight reflection after work sessions.
 ### Behavior
 
 **Quick summary**:
+
 - What was accomplished
 - Patterns observed
 - Potential learnings
 
 **Low friction question**:
+
 - "Anything worth capturing?"
 - Easy to skip/dismiss
 - Optional engagement
 
 **Avoid**:
+
 - Lengthy questionnaires
 - Forced documentation
 - Interrupting flow
@@ -422,7 +460,8 @@ Claude: [Updates CLAUDE.md, commits]
 }
 ```
 
-**Note**: Post-session hooks may not be currently supported. This is a design concept for future implementation.
+**Note**: Post-session hooks may not be currently supported. This is a design
+concept for future implementation.
 
 ## Integration: How They Work Together
 
@@ -432,7 +471,8 @@ Claude: [Updates CLAUDE.md, commits]
 2. **Background Detection** (suggests): "Create /test-auth command?"
 3. **User**: "Yes"
 4. **Improvement Command** (auto): Creates command, commits
-5. **Specialist Agent** (later): Validates command is being used, kept in monthly review
+5. **Specialist Agent** (later): Validates command is being used, kept in
+   monthly review
 
 ### Scenario 2: Discovered Convention
 
@@ -448,7 +488,8 @@ Claude: [Updates CLAUDE.md, commits]
 
 1. **User**: Repeatedly asks about database optimization
 2. **Background Detection** (tracks): DB optimization questions - 5 occurrences
-3. **Claude**: "I notice DB optimization comes up often. Create specialized agent?"
+3. **Claude**: "I notice DB optimization comes up often. Create specialized
+   agent?"
 4. **User**: "Yes"
 5. **Specialist Agent** (invoked): Creates comprehensive DB optimization agent
 6. **Usage Tracking** (ongoing): Monitors agent invocations
@@ -466,14 +507,15 @@ Claude: [Updates CLAUDE.md, commits]
 
 Different mechanisms have different proactivity:
 
-| Mechanism | Proactivity | User Control |
-|-----------|-------------|--------------|
-| Specialist Agent | User-initiated | Full control |
-| Improvement Command | User-initiated | Full control |
-| Background Detection | Suggests | Accept/reject |
-| Post-Session Hook | Prompts | Can skip |
+| Mechanism            | Proactivity    | User Control  |
+| -------------------- | -------------- | ------------- |
+| Specialist Agent     | User-initiated | Full control  |
+| Improvement Command  | User-initiated | Full control  |
+| Background Detection | Suggests       | Accept/reject |
+| Post-Session Hook    | Prompts        | Can skip      |
 
 **Balance**:
+
 - More automation for low-risk (e.g., .claudeignore)
 - More user control for high-risk (e.g., CLAUDE.md changes)
 - Never silently change core instructions
@@ -482,24 +524,18 @@ Different mechanisms have different proactivity:
 
 The system is working well when:
 
-✅ User rarely explains same pattern twice
-✅ Common operations become one-command shortcuts
-✅ Claude proactively offers useful suggestions
-✅ Suggestions are relevant, not annoying
-✅ Easy to accept or decline proposals
-✅ Low maintenance burden
-✅ Knowledge compounds visibly over time
-✅ Tools created are actually used
+✅ User rarely explains same pattern twice ✅ Common operations become
+one-command shortcuts ✅ Claude proactively offers useful suggestions ✅
+Suggestions are relevant, not annoying ✅ Easy to accept or decline proposals ✅
+Low maintenance burden ✅ Knowledge compounds visibly over time ✅ Tools created
+are actually used
 
 ## Failure Modes to Avoid
 
-❌ Too many suggestions (interruption fatigue)
-❌ Capturing noise (one-off operations)
-❌ Codifying bad patterns (temporary workarounds)
-❌ Creating tools that aren't used
-❌ Making CLAUDE.md unwieldy
-❌ Hooks that fail frequently
-❌ Suggestions at bad times (mid-debugging)
+❌ Too many suggestions (interruption fatigue) ❌ Capturing noise (one-off
+operations) ❌ Codifying bad patterns (temporary workarounds) ❌ Creating tools
+that aren't used ❌ Making CLAUDE.md unwieldy ❌ Hooks that fail frequently ❌
+Suggestions at bad times (mid-debugging)
 
 ## Next Steps
 

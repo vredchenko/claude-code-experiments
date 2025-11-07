@@ -2,9 +2,13 @@
 
 ## Overview
 
-The Claude Code Specialist is a system that enables Claude to automatically improve and advance its project-specific expertise through organic learning during development work.
+The Claude Code Specialist is a system that enables Claude to automatically
+improve and advance its project-specific expertise through organic learning
+during development work.
 
-Instead of requiring manual authoring and continuous refinement of Claude Code customizations, this system allows Claude to:
+Instead of requiring manual authoring and continuous refinement of Claude Code
+customizations, this system allows Claude to:
+
 - **Learn patterns, conventions, and workflows** as it works
 - **Propose or automatically implement** improvements to its own tooling
 - **Track usage and effectiveness** of tools
@@ -14,28 +18,32 @@ Instead of requiring manual authoring and continuous refinement of Claude Code c
 ## Core Idea
 
 As Claude works on a project, it observes:
+
 - Operations repeated frequently (candidates for commands)
 - Project conventions discovered in code (additions to CLAUDE.md)
 - Specialized knowledge domains (potential agents)
 - Pain points that need automation (hooks)
 - Context pollution from irrelevant files (.claudeignore)
 
-Rather than losing these learnings between sessions, Claude captures them in version-controlled artifacts that make it progressively more capable for this specific project.
+Rather than losing these learnings between sessions, Claude captures them in
+version-controlled artifacts that make it progressively more capable for this
+specific project.
 
 ## Design Principles
 
-✅ **Organic knowledge capture** - Patterns emerge naturally during work
-✅ **Version controlled** - Full history and rollback capability
-✅ **User in control** - Clear boundaries on automation levels
-✅ **Compound effectiveness** - Each session makes Claude more capable
-✅ **Low maintenance** - Self-improving without manual curation burden
-✅ **Quality over quantity** - Only capture validated, useful patterns
+✅ **Organic knowledge capture** - Patterns emerge naturally during work ✅
+**Version controlled** - Full history and rollback capability ✅ **User in
+control** - Clear boundaries on automation levels ✅ **Compound
+effectiveness** - Each session makes Claude more capable ✅ **Low
+maintenance** - Self-improving without manual curation burden ✅ **Quality over
+quantity** - Only capture validated, useful patterns
 
 ## How It Works
 
 ### Four-Pronged Implementation
 
-1. **Specialist Agent** - Deep periodic analysis (weekly/monthly `/reflect` command)
+1. **Specialist Agent** - Deep periodic analysis (weekly/monthly `/reflect`
+   command)
 2. **Improvement Command** - Explicit `/improve-claude` trigger after work
 3. **Background Pattern Detection** - Passive observation during normal work
 4. **Post-Session Hook** - Optional lightweight reflection prompts
@@ -51,7 +59,8 @@ Rather than losing these learnings between sessions, Claude captures them in ver
 ### Quality Control
 
 - **Confidence thresholds** - Only capture patterns after 3+ observations
-- **Decision framework** - Auto-commit low-risk, propose medium-risk, ask for high-risk
+- **Decision framework** - Auto-commit low-risk, propose medium-risk, ask for
+  high-risk
 - **Validation checks** - Prevent contradictions and bad patterns
 - **Easy rollback** - Git history enables quick corrections
 
@@ -60,25 +69,36 @@ Rather than losing these learnings between sessions, Claude captures them in ver
 This design is split into focused documents:
 
 ### Foundation
-- **[Claude Code Techniques](01-techniques.md)** - All customization mechanisms (CLAUDE.md, agents, commands, hooks, skills, .claudeignore, config)
-- **[Design Mappings](02-design-mappings.md)** - Which improvements should use which techniques
+
+- **[Claude Code Techniques](01-techniques.md)** - All customization mechanisms
+  (CLAUDE.md, agents, commands, hooks, skills, .claudeignore, config)
+- **[Design Mappings](02-design-mappings.md)** - Which improvements should use
+  which techniques
 
 ### Implementation
-- **[Implementation Strategy](03-implementation-strategy.md)** - Four-pronged approach details
-- **[Usage Tracking & Feedback](04-usage-tracking.md)** - How to measure and validate tool utility
-- **[Decision Framework](05-decision-framework.md)** - When to auto-commit vs. propose vs. ask
+
+- **[Implementation Strategy](03-implementation-strategy.md)** - Four-pronged
+  approach details
+- **[Usage Tracking & Feedback](04-usage-tracking.md)** - How to measure and
+  validate tool utility
+- **[Decision Framework](05-decision-framework.md)** - When to auto-commit vs.
+  propose vs. ask
 
 ### Quality & Refinement
-- **[Quality Control](06-quality-control.md)** - Preventing bad patterns from being codified
+
+- **[Quality Control](06-quality-control.md)** - Preventing bad patterns from
+  being codified
 - **[Signal vs. Noise](07-signal-vs-noise.md)** - What learnings deserve capture
 
 ### Planning
+
 - **[Implementation Roadmap](08-roadmap.md)** - Phased rollout plan
 - **[Open Questions](09-open-questions.md)** - Unresolved design decisions
 
 ## Why This Matters
 
 **Without this system:**
+
 - Learnings are lost between sessions
 - Same patterns are explained repeatedly
 - Manual documentation is a chore that gets skipped
@@ -86,6 +106,7 @@ This design is split into focused documents:
 - New team members start from zero
 
 **With this system:**
+
 - Claude gets progressively better at understanding your project
 - Common operations become one-command shortcuts
 - Best practices are automatically enforced
@@ -94,10 +115,10 @@ This design is split into focused documents:
 
 ## Status
 
-**Current Phase**: Design
-**Next Step**: Implementation Phase 1 (Foundation)
+**Current Phase**: Design **Next Step**: Implementation Phase 1 (Foundation)
 
-This is a living design that will evolve as the system is built and refined through actual usage.
+This is a living design that will evolve as the system is built and refined
+through actual usage.
 
 ## Quick Links
 

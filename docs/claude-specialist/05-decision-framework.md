@@ -1,20 +1,22 @@
 # Decision Framework: When to Auto-Commit vs. Propose vs. Ask
 
-This document defines clear criteria for different levels of automation in Claude Code improvements.
+This document defines clear criteria for different levels of automation in
+Claude Code improvements.
 
 ## Three Levels of Autonomy
 
-| Level | When to Use | Risk | Examples |
-|-------|-------------|------|----------|
-| **Auto-Commit** | Low-risk, factual, reversible | Low | .claudeignore, usage stats |
-| **Propose First** | Medium-risk, interpretive | Medium | CLAUDE.md updates, new commands |
-| **Always Ask** | High-risk, structural, destructive | High | Removing tools, changing core instructions |
+| Level             | When to Use                        | Risk   | Examples                                   |
+| ----------------- | ---------------------------------- | ------ | ------------------------------------------ |
+| **Auto-Commit**   | Low-risk, factual, reversible      | Low    | .claudeignore, usage stats                 |
+| **Propose First** | Medium-risk, interpretive          | Medium | CLAUDE.md updates, new commands            |
+| **Always Ask**    | High-risk, structural, destructive | High   | Removing tools, changing core instructions |
 
 ## Auto-Commit (Low Risk)
 
 ### Criteria
 
 Changes that are:
+
 - ✅ **Factual** (not interpretive or opinion-based)
 - ✅ **Reversible** (easy to undo via git)
 - ✅ **Low impact** (won't break workflows)
@@ -24,6 +26,7 @@ Changes that are:
 ### Examples
 
 **Add to .claudeignore**:
+
 ```
 Observation: node_modules/ appears in 15 search results, never useful
 Action: Add node_modules/ to .claudeignore
@@ -32,6 +35,7 @@ Rationale: Standard practice, obviously irrelevant, easy to revert
 ```
 
 **Create command for clear pattern**:
+
 ```
 Observation: User ran "bun test && bun run lint && bun run type-check" 5 times
 Action: Create /pre-commit command
@@ -40,6 +44,7 @@ Rationale: Clear repeated workflow, low risk, easy to remove
 ```
 
 **Update usage statistics**:
+
 ```
 Observation: Command invoked
 Action: Increment usage counter in usage-stats.json
@@ -48,6 +53,7 @@ Rationale: Automated tracking, no user impact, expected behavior
 ```
 
 **Document discovered facts**:
+
 ```
 Observation: Found explicit comment in code: "Always use React Query"
 Action: Add to CLAUDE.md
@@ -84,6 +90,7 @@ Risk: Low (simple command, easy to remove if not useful)"
 ### When NOT to Auto-Commit
 
 Even low-risk changes should be proposed first if:
+
 - ❌ First occurrence (wait for pattern confirmation)
 - ❌ Could be temporary situation
 - ❌ Might conflict with existing setup
@@ -95,6 +102,7 @@ Even low-risk changes should be proposed first if:
 ### Criteria
 
 Changes that:
+
 - ⚠️ **Require interpretation** (pattern recognition)
 - ⚠️ **Modify core behavior** (CLAUDE.md, hooks)
 - ⚠️ **Create new tools** (agents, complex commands)
@@ -104,6 +112,7 @@ Changes that:
 ### Examples
 
 **Update CLAUDE.md with observed pattern**:
+
 ```
 Observation: Found .lean() used in 12 database query files
 Action: Add to CLAUDE.md: "Use .lean() for read-only queries"
@@ -112,6 +121,7 @@ Rationale: Interpretation of pattern, could be wrong, affects core guidance
 ```
 
 **Create new agent**:
+
 ```
 Observation: 5 database optimization questions in 2 weeks
 Action: Create database_optimization_agent.md
@@ -120,6 +130,7 @@ Rationale: Significant new tool, need to validate scope and content
 ```
 
 **Add hook for automation**:
+
 ```
 Observation: Code formatting inconsistencies in commits
 Action: Add post-edit hook to run prettier
@@ -128,6 +139,7 @@ Rationale: Auto-executing change, could be disruptive, user should approve
 ```
 
 **Modify existing command**:
+
 ```
 Observation: /test-all command could be faster by running changed files first
 Action: Update /test-all to be smarter
@@ -138,6 +150,7 @@ Rationale: Changing existing behavior, user might prefer current version
 ### Proposal Format
 
 **Template**:
+
 ```
 I've noticed [pattern/observation].
 
@@ -161,16 +174,18 @@ Proceed? (yes/no/modify)
 **Example proposal**:
 
 ```markdown
-I've noticed React Query is used in all API calls (found in 12 components),
-and the README.md explicitly states "use React Query for all data fetching."
+I've noticed React Query is used in all API calls (found in 12 components), and
+the README.md explicitly states "use React Query for all data fetching."
 
 I propose adding this to CLAUDE.md:
-
 ```
+
 ## API Patterns
+
 - All data fetching uses React Query (never native fetch directly)
 - Query keys follow pattern: ['resource', id, ...filters]
 - Mutations use optimistic updates for better UX
+
 ```
 
 Benefits:
@@ -191,10 +206,9 @@ Proceed? (yes/no/modify)
 
 ### User Response Options
 
-**Yes**: Proceed with proposal as-is
-**No**: Don't make this change
-**Modify**: Suggest different approach or content
-**Later**: Defer decision (don't ask again this session)
+**Yes**: Proceed with proposal as-is **No**: Don't make this change **Modify**:
+Suggest different approach or content **Later**: Defer decision (don't ask again
+this session)
 
 ### Handling Responses
 
@@ -202,24 +216,24 @@ Proceed? (yes/no/modify)
 // Pseudocode
 function handleProposalResponse(response: string, proposal: Proposal) {
   switch (response.toLowerCase()) {
-    case 'yes':
+    case "yes":
       applyChange(proposal);
       commitChange(proposal);
-      recordDecision(proposal, 'accepted');
+      recordDecision(proposal, "accepted");
       break;
 
-    case 'no':
-      recordDecision(proposal, 'rejected');
+    case "no":
+      recordDecision(proposal, "rejected");
       // Don't ask about this pattern again
       break;
 
-    case 'modify':
+    case "modify":
       askForModifications(proposal);
       // User provides feedback, iterate
       break;
 
-    case 'later':
-      recordDecision(proposal, 'deferred');
+    case "later":
+      recordDecision(proposal, "deferred");
       // Can ask again in future session
       break;
   }
@@ -231,6 +245,7 @@ function handleProposalResponse(response: string, proposal: Proposal) {
 ### Criteria
 
 Changes that:
+
 - 🚨 **Destructive** (delete tools, remove content)
 - 🚨 **Structural** (reorganize, refactor)
 - 🚨 **High impact** (change fundamental behavior)
@@ -240,6 +255,7 @@ Changes that:
 ### Examples
 
 **Remove existing tool**:
+
 ```
 Observation: /debug-cors command used 0 times in 30 days
 Action: Remove the command
@@ -248,6 +264,7 @@ Rationale: Destructive, might be needed later, user should decide
 ```
 
 **Change core instruction**:
+
 ```
 Observation: CLAUDE.md says "use fetch()" but seeing React Query everywhere
 Action: Change CLAUDE.md to contradict itself
@@ -256,6 +273,7 @@ Rationale: High risk, might be wrong, need user clarification
 ```
 
 **Restructure .claude/ organization**:
+
 ```
 Observation: Many agents, could organize into subdirectories
 Action: Reorganize .claude/agents/ into categories
@@ -264,6 +282,7 @@ Rationale: Structural change, user might have preferences
 ```
 
 **Disable or modify hook**:
+
 ```
 Observation: pre-commit hook fails 30% of time
 Action: Disable or make less strict
@@ -274,6 +293,7 @@ Rationale: User explicitly set up hook, should decide changes
 ### Question Format
 
 **Template**:
+
 ```
 Analysis suggests [observation].
 
@@ -296,21 +316,21 @@ What would you like to do?
 Analysis suggests the /debug-cors command may not be useful:
 
 Current situation:
+
 - Created: 2025-10-01 (5 weeks ago)
 - Total invocations: 1 (at creation)
 - Last used: 2025-10-01
 - Feedback: No ratings collected
 
 A/B test results:
+
 - Test duration: 30 days
 - Command requested: 0 times during disable
 
-Options:
-a) Keep as-is (low usage doesn't mean not valuable)
-b) A/B test for another 30 days (maybe timing was bad)
-c) Remove command (hasn't proven useful, reduce maintenance)
-d) Modify command to be more useful (refactor approach)
-e) Other (please specify)
+Options: a) Keep as-is (low usage doesn't mean not valuable) b) A/B test for
+another 30 days (maybe timing was bad) c) Remove command (hasn't proven useful,
+reduce maintenance) d) Modify command to be more useful (refactor approach) e)
+Other (please specify)
 
 What would you like to do?
 ```
@@ -318,6 +338,7 @@ What would you like to do?
 ### User-Initiated Changes
 
 **If user explicitly requests removal/change**:
+
 - Always confirm understanding
 - Show what will be removed/changed
 - Ask for final confirmation
@@ -374,16 +395,20 @@ New improvement identified
 ### CLAUDE.md Changes
 
 **Documented facts** (found in code comments, README, docs):
+
 - Propose first with source citation
 - Example: "Found in README.md:15 - 'Use React Query for all API calls'"
 
 **Observed patterns** (inferred from code):
+
 - Always propose first
 - Requires 3+ observations
 - Show evidence
-- Example: "Observed .lean() in 12 files, consistently used for read-only queries"
+- Example: "Observed .lean() in 12 files, consistently used for read-only
+  queries"
 
 **Removal of outdated info**:
+
 - Always ask
 - Show what's being removed and why
 - User should confirm
@@ -391,30 +416,36 @@ New improvement identified
 ### Commands
 
 **Simple commands** (3+ identical operations):
+
 - Auto-commit if unambiguous
 - Commit message includes occurrence count
 
 **Complex commands** (multi-step with logic):
+
 - Propose first
 - Show exact workflow
 - Get approval
 
 **Command modifications**:
+
 - Always propose first
 - Existing behavior might be relied upon
 
 ### Agents
 
 **New agents**:
+
 - Propose first (significant addition)
 - Show scope and purpose
 - Demonstrate need (invocation frequency)
 
 **Agent modifications**:
+
 - Propose first
 - Show what's changing and why
 
 **Agent removal**:
+
 - Always ask
 - Show usage stats
 - Offer A/B test alternative
@@ -422,15 +453,18 @@ New improvement identified
 ### Hooks
 
 **New hooks**:
+
 - Always propose first
 - Could be disruptive
 - User should opt-in to automation
 
 **Hook modifications**:
+
 - Propose first
 - Changing auto-executing behavior
 
 **Hook removal/disabling**:
+
 - Always ask
 - User set up intentionally
 - Might have important reason
@@ -440,6 +474,7 @@ New improvement identified
 All automated or proposed changes should have clear commit messages:
 
 **Template**:
+
 ```
 <type>(claude): <description>
 
@@ -454,6 +489,7 @@ Risk: <any risks or caveats>
 **Examples**:
 
 **Auto-commit**:
+
 ```
 chore(claude): Add dist/ to .claudeignore
 
@@ -464,6 +500,7 @@ Risk: Low (standard practice, easy to revert)
 ```
 
 **After proposal accepted**:
+
 ```
 feat(claude): Add React Query convention to CLAUDE.md
 
@@ -476,6 +513,7 @@ Approved-by: User (proposal accepted 2025-11-07)
 ```
 
 **After user request**:
+
 ```
 feat(claude): Create /test-auth command per user request
 
@@ -519,10 +557,10 @@ Allow user to set preferences:
 ```json
 {
   "improvements": {
-    "auto_commit_level": "conservative",  // "aggressive" | "conservative" | "ask_always"
-    "auto_ignore": true,  // Auto-commit .claudeignore changes
-    "auto_commands": false,  // Propose commands instead of auto-creating
-    "proposal_format": "concise"  // "concise" | "detailed"
+    "auto_commit_level": "conservative", // "aggressive" | "conservative" | "ask_always"
+    "auto_ignore": true, // Auto-commit .claudeignore changes
+    "auto_commands": false, // Propose commands instead of auto-creating
+    "proposal_format": "concise" // "concise" | "detailed"
   }
 }
 ```

@@ -1,10 +1,12 @@
 # Signal vs. Noise: What to Capture
 
-This document provides clear guidance on distinguishing valuable patterns (signal) from irrelevant or temporary patterns (noise).
+This document provides clear guidance on distinguishing valuable patterns
+(signal) from irrelevant or temporary patterns (noise).
 
 ## Core Principle
 
-**Capture patterns that will be useful in the future, not just artifacts of current work.**
+**Capture patterns that will be useful in the future, not just artifacts of
+current work.**
 
 ## High Signal (Capture These)
 
@@ -26,13 +28,15 @@ Signal: User searches for same pattern in codebase 3 times across sessions
 ```
 
 **Why high signal**:
+
 - Proven need (not hypothetical)
 - Clear time savings
 - Will likely recur
 
 ### ✅ Discovered Conventions
 
-**Pattern**: Found in project documentation, code comments, or consistent codebase patterns.
+**Pattern**: Found in project documentation, code comments, or consistent
+codebase patterns.
 
 **Examples**:
 
@@ -51,6 +55,7 @@ Signal: All test files use vitest describe/it/expect pattern
 ```
 
 **Why high signal**:
+
 - Documented intent (not just happenstance)
 - Project-wide standard
 - New code should follow
@@ -73,6 +78,7 @@ Signal: Formatting inconsistencies in PRs
 ```
 
 **Why high signal**:
+
 - Prevents repeated mistakes
 - Clear value proposition
 - Automation opportunity
@@ -95,6 +101,7 @@ Signal: Testing strategy for async operations (repeated successfully)
 ```
 
 **Why high signal**:
+
 - Proven effective
 - Should be default approach
 - Saves reinventing
@@ -117,6 +124,7 @@ Signal: Redis connections must be closed in tests (caused CI failures)
 ```
 
 **Why high signal**:
+
 - Prevents real problems
 - Hard-won knowledge
 - Easy to forget
@@ -139,6 +147,7 @@ Signal: Microservices communicate via REST APIs, not direct DB access
 ```
 
 **Why high signal**:
+
 - Foundational decisions
 - Affects many implementation choices
 - Should be consistent
@@ -163,6 +172,7 @@ Noise: Exploratory git command to analyze history
 ```
 
 **Why noise**:
+
 - Not proven to be recurring need
 - May be specific to situation
 - Would clutter tooling
@@ -185,6 +195,7 @@ Noise: User runs tests with --verbose flag (preference, not requirement)
 ```
 
 **Why noise**:
+
 - Not project-wide standard
 - Other team members may differ
 - Would impose opinion
@@ -209,6 +220,7 @@ Noise: Manually mocking module due to test bug
 ```
 
 **Why noise**:
+
 - Should be fixed, not codified
 - Temporary situation
 - Not best practice
@@ -231,6 +243,7 @@ Noise: Refactoring component multiple times to find best structure
 ```
 
 **Why noise**:
+
 - Pattern not established yet
 - Approach still evolving
 - Wait for decision
@@ -254,6 +267,7 @@ Exception: May capture as "anti-pattern" if important to avoid
 ```
 
 **Why noise**:
+
 - Doesn't help (or actively hurts)
 - Learn and move on
 - Exception: Important anti-patterns
@@ -276,21 +290,22 @@ Noise: "Tests should be unit tests" (opinion)
 ```
 
 **Why noise**:
+
 - Not verified
 - May be incorrect
 - Could mislead
 
 ## Decision Matrix
 
-| Characteristic | Signal ✅ | Noise ❌ |
-|----------------|-----------|----------|
-| **Frequency** | 3+ occurrences | 1-2 occurrences |
-| **Source** | Documented or consistent | Inferred from single instance |
-| **Temporal** | Across sessions, stable | Within session, temporary |
-| **Scope** | Project-wide | Personal or specific |
-| **Intent** | Deliberate choice | Happenstance |
-| **Value** | Saves time, prevents errors | No clear benefit |
-| **Context** | General applicability | Tied to specific situation |
+| Characteristic | Signal ✅                   | Noise ❌                      |
+| -------------- | --------------------------- | ----------------------------- |
+| **Frequency**  | 3+ occurrences              | 1-2 occurrences               |
+| **Source**     | Documented or consistent    | Inferred from single instance |
+| **Temporal**   | Across sessions, stable     | Within session, temporary     |
+| **Scope**      | Project-wide                | Personal or specific          |
+| **Intent**     | Deliberate choice           | Happenstance                  |
+| **Value**      | Saves time, prevents errors | No clear benefit              |
+| **Context**    | General applicability       | Tied to specific situation    |
 
 ## Examples with Analysis
 
@@ -300,15 +315,16 @@ Noise: "Tests should be unit tests" (opinion)
 
 **Analysis**:
 
-| Factor | Assessment | Signal/Noise |
-|--------|------------|--------------|
-| Frequency | Found in 12 files | ✅ Signal |
-| Consistency | Always for read-only queries | ✅ Signal |
-| Documentation | Not documented, but consistent | ⚠️ Moderate |
-| Scope | Project-wide pattern | ✅ Signal |
-| Temporal | Stable over weeks | ✅ Signal |
+| Factor        | Assessment                     | Signal/Noise |
+| ------------- | ------------------------------ | ------------ |
+| Frequency     | Found in 12 files              | ✅ Signal    |
+| Consistency   | Always for read-only queries   | ✅ Signal    |
+| Documentation | Not documented, but consistent | ⚠️ Moderate  |
+| Scope         | Project-wide pattern           | ✅ Signal    |
+| Temporal      | Stable over weeks              | ✅ Signal    |
 
 **Decision**: ✅ **CAPTURE**
+
 - Add to CLAUDE.md: "Use .lean() for read-only database queries"
 - Cite occurrences: "Found consistently in 12+ query files"
 
@@ -318,34 +334,37 @@ Noise: "Tests should be unit tests" (opinion)
 
 **Analysis**:
 
-| Factor | Assessment | Signal/Noise |
-|--------|------------|--------------|
-| Frequency | Many in one session | ❌ Noise |
-| Context | Debugging specific bug | ❌ Noise |
-| Temporal | Only during bug investigation | ❌ Noise |
-| Best practice | Should use proper debugger | ❌ Noise |
-| Persistence | Removed after debugging | ❌ Noise |
+| Factor        | Assessment                    | Signal/Noise |
+| ------------- | ----------------------------- | ------------ |
+| Frequency     | Many in one session           | ❌ Noise     |
+| Context       | Debugging specific bug        | ❌ Noise     |
+| Temporal      | Only during bug investigation | ❌ Noise     |
+| Best practice | Should use proper debugger    | ❌ Noise     |
+| Persistence   | Removed after debugging       | ❌ Noise     |
 
 **Decision**: ❌ **DON'T CAPTURE**
+
 - Temporary debugging approach
 - Not a pattern to codify
 - Part of problem-solving process
 
 ### Example 3: Pre-Commit Command Sequence
 
-**Observation**: User runs "bun test && bun lint && bun type-check" before git commits.
+**Observation**: User runs "bun test && bun lint && bun type-check" before git
+commits.
 
 **Analysis**:
 
-| Factor | Assessment | Signal/Noise |
-|--------|------------|--------------|
-| Frequency | 5 times across 3 sessions | ✅ Signal |
-| Consistency | Exact same sequence | ✅ Signal |
-| Intent | Quality gate before commit | ✅ Signal |
-| Time savings | ~30 sec per invocation | ✅ Signal |
-| Generalizability | Should always run before commit | ✅ Signal |
+| Factor           | Assessment                      | Signal/Noise |
+| ---------------- | ------------------------------- | ------------ |
+| Frequency        | 5 times across 3 sessions       | ✅ Signal    |
+| Consistency      | Exact same sequence             | ✅ Signal    |
+| Intent           | Quality gate before commit      | ✅ Signal    |
+| Time savings     | ~30 sec per invocation          | ✅ Signal    |
+| Generalizability | Should always run before commit | ✅ Signal    |
 
 **Decision**: ✅ **CAPTURE**
+
 - Create /pre-commit command
 - Consider pre-commit hook (with user approval)
 
@@ -355,14 +374,15 @@ Noise: "Tests should be unit tests" (opinion)
 
 **Analysis**:
 
-| Factor | Assessment | Signal/Noise |
-|--------|------------|--------------|
-| Frequency | Multiple attempts | ⚠️ Exploratory |
-| Consistency | Different approaches | ❌ Noise |
-| Stability | Still deciding | ❌ Noise |
-| Temporal | All in one session | ❌ Noise |
+| Factor      | Assessment           | Signal/Noise   |
+| ----------- | -------------------- | -------------- |
+| Frequency   | Multiple attempts    | ⚠️ Exploratory |
+| Consistency | Different approaches | ❌ Noise       |
+| Stability   | Still deciding       | ❌ Noise       |
+| Temporal    | All in one session   | ❌ Noise       |
 
 **Decision**: ❌ **DON'T CAPTURE YET**
+
 - Wait for decision
 - Note observation
 - Check back when approach stabilizes
@@ -374,15 +394,16 @@ Noise: "Tests should be unit tests" (opinion)
 
 **Analysis**:
 
-| Factor | Assessment | Signal/Noise |
-|--------|------------|--------------|
-| Source | Explicit documentation | ✅ Signal |
-| Authority | Project README | ✅ Signal |
-| Scope | All data fetching | ✅ Signal |
-| Verifiable | Can cite source | ✅ Signal |
-| Consistency | Confirmed in code (12 files) | ✅ Signal |
+| Factor      | Assessment                   | Signal/Noise |
+| ----------- | ---------------------------- | ------------ |
+| Source      | Explicit documentation       | ✅ Signal    |
+| Authority   | Project README               | ✅ Signal    |
+| Scope       | All data fetching            | ✅ Signal    |
+| Verifiable  | Can cite source              | ✅ Signal    |
+| Consistency | Confirmed in code (12 files) | ✅ Signal    |
 
 **Decision**: ✅ **CAPTURE IMMEDIATELY**
+
 - Add to CLAUDE.md with citation
 - High confidence (documented + observed)
 - First occurrence is enough (explicit doc)
@@ -433,6 +454,7 @@ Patterns in transition:
 ## Practical Rules of Thumb
 
 ### CAPTURE if:
+
 1. Repeated 3+ times OR explicitly documented
 2. Will save time or prevent errors
 3. Applies broadly (not situation-specific)
@@ -440,6 +462,7 @@ Patterns in transition:
 5. Stable over time
 
 ### DON'T CAPTURE if:
+
 1. Only seen once or twice
 2. Tied to specific bug/issue
 3. Personal preference without project grounding
@@ -447,6 +470,7 @@ Patterns in transition:
 5. Failed approach
 
 ### WAIT AND OBSERVE if:
+
 1. Pattern emerging but not established
 2. Only 2 occurrences (almost threshold)
 3. Uncertain if project-wide or personal
@@ -457,11 +481,13 @@ Patterns in transition:
 ### 1. Session Boundaries
 
 Patterns within one session are more likely noise:
+
 - Debugging session: Lots of temporary code
 - Exploration: Trying different approaches
 - Bug fix: One-off operations
 
 Patterns across sessions are more likely signal:
+
 - Repeated in different contexts
 - Stable over time
 - Not tied to specific issue
@@ -469,28 +495,33 @@ Patterns across sessions are more likely signal:
 ### 2. Evidence Requirements
 
 Higher bar for controversial changes:
+
 - CLAUDE.md: Require documentation OR 3+ observations
 - Commands: 3+ identical operations
 - Agents: Clear domain + repeated need
 - Hooks: User approval always
 
 Lower bar for obvious changes:
+
 - .claudeignore: 2-3 context pollution instances
 - Documented facts: 1 occurrence if explicitly written
 
 ### 3. Reversibility
 
 Lower bar if easy to undo:
+
 - .claudeignore additions (easy to remove)
 - Simple commands (easy to delete)
 
 Higher bar if hard to undo:
+
 - CLAUDE.md additions (will influence all future work)
 - Hooks (auto-executing, can be disruptive)
 
 ## Summary
 
 **High signal patterns**:
+
 - Repeated operations (3+)
 - Discovered conventions (documented or consistent)
 - Pain points with clear solutions
@@ -499,6 +530,7 @@ Higher bar if hard to undo:
 - Architecture decisions
 
 **Noise to avoid**:
+
 - One-off operations
 - Personal preferences
 - Temporary workarounds
@@ -506,6 +538,8 @@ Higher bar if hard to undo:
 - Failed approaches
 - Unverified assumptions
 
-**When uncertain**: Wait and observe. Better to miss a pattern than to capture noise.
+**When uncertain**: Wait and observe. Better to miss a pattern than to capture
+noise.
 
-**Gold standard**: Explicit documentation + consistent code = capture immediately with high confidence.
+**Gold standard**: Explicit documentation + consistent code = capture
+immediately with high confidence.
