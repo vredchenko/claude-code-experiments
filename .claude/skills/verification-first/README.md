@@ -58,23 +58,28 @@ understanding.
 ## Task: Process CSV files
 
 ### Phase 1: Understanding
+
 - What columns need extraction?
 - What format for output?
 - Have you done CSV processing before?
 
 ### Phase 2: Manual Process
+
 - Walk through: How would you do this in Excel?
 - What steps in what order?
 
 ### Phase 3: Verification
+
 - [ ] All expected rows present
 - [ ] Column data in correct format
 - [ ] Edge cases handled
 
 ### Phase 4: Automation
+
 [Build code with explanations and built-in verification]
 
 ### Phase 5: Verification Check
+
 - Run tests against checklist
 - User explains code functionality
 - Can user debug issues independently?
@@ -118,10 +123,10 @@ Based on research into:
 Inspired by and based on concepts from Eric J. Ma's blog posts:
 
 - **"Earn the privilege to use automation"**
-  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+  <https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/>
 
 - **"From nerd sniped to shipped: Using AI as a thinking tool"**
-  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
+  <https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/>
 
 ---
 
