@@ -1,30 +1,32 @@
 # Design Mappings: What Goes Where
 
-This document maps types of learnings to the appropriate Claude Code customization technique.
+This document maps types of learnings to the appropriate Claude Code
+customization technique.
 
 ## Quick Reference Matrix
 
-| Learning Type | Primary Technique | Secondary Technique | Trigger Threshold |
-|--------------|-------------------|---------------------|-------------------|
-| Project conventions | CLAUDE.md | - | 1st observation (if documented) |
-| Repeated workflows | Commands | Hooks (automation) | 3+ occurrences |
-| Specialized expertise | Agents | - | Domain identified |
-| Automated validations | Hooks | - | Clear enforcement need |
-| Context optimization | .claudeignore | - | Repeated context pollution |
-| File operation patterns | Hooks | - | 3+ similar operations |
-| Testing workflows | Commands | Hooks | Both manual and auto |
-| Deployment procedures | Commands | - | Standardized process |
-| Code style enforcement | Hooks | CLAUDE.md | Auto-format + guidelines |
-| Architecture patterns | CLAUDE.md | Agents | Core + deep dives |
-| Gotchas/pitfalls | CLAUDE.md | - | 1st occurrence (if significant) |
-| Security patterns | Agents | Hooks | Review + validation |
-| Performance patterns | Agents | CLAUDE.md | Specialized + general |
+| Learning Type           | Primary Technique | Secondary Technique | Trigger Threshold               |
+| ----------------------- | ----------------- | ------------------- | ------------------------------- |
+| Project conventions     | CLAUDE.md         | -                   | 1st observation (if documented) |
+| Repeated workflows      | Commands          | Hooks (automation)  | 3+ occurrences                  |
+| Specialized expertise   | Agents            | -                   | Domain identified               |
+| Automated validations   | Hooks             | -                   | Clear enforcement need          |
+| Context optimization    | .claudeignore     | -                   | Repeated context pollution      |
+| File operation patterns | Hooks             | -                   | 3+ similar operations           |
+| Testing workflows       | Commands          | Hooks               | Both manual and auto            |
+| Deployment procedures   | Commands          | -                   | Standardized process            |
+| Code style enforcement  | Hooks             | CLAUDE.md           | Auto-format + guidelines        |
+| Architecture patterns   | CLAUDE.md         | Agents              | Core + deep dives               |
+| Gotchas/pitfalls        | CLAUDE.md         | -                   | 1st occurrence (if significant) |
+| Security patterns       | Agents            | Hooks               | Review + validation             |
+| Performance patterns    | Agents            | CLAUDE.md           | Specialized + general           |
 
 ## Detailed Decision Trees
 
 ### When to Use CLAUDE.md
 
 **Add to CLAUDE.md if:**
+
 - ✅ Pattern applies universally across the project
 - ✅ It's a documented fact (found in code/docs)
 - ✅ It's a critical constraint that must always be respected
@@ -36,23 +38,28 @@ This document maps types of learnings to the appropriate Claude Code customizati
 
 ```markdown
 # Discovered Convention
-"All API calls in this project use React Query - found in api/README.md
-stating this is a project-wide standard. Never use native fetch directly."
+
+"All API calls in this project use React Query - found in api/README.md stating
+this is a project-wide standard. Never use native fetch directly."
 
 # Architecture Pattern
+
 "Database queries always use .lean() for read-only operations - found
 consistently across 15+ query files in src/db/"
 
 # Critical Constraint
-"Never use eval() or Function() constructor - explicit security policy
-in SECURITY.md line 45"
+
+"Never use eval() or Function() constructor - explicit security policy in
+SECURITY.md line 45"
 
 # Known Gotcha
-"Redis connection must be explicitly closed in tests - caused test hangs
-3 times. Pattern found in test-utils.ts:cleanup()"
+
+"Redis connection must be explicitly closed in tests - caused test hangs 3
+times. Pattern found in test-utils.ts:cleanup()"
 ```
 
 **Don't add to CLAUDE.md**:
+
 - ❌ One-off operations
 - ❌ Personal preferences without evidence
 - ❌ Temporary workarounds
@@ -61,6 +68,7 @@ in SECURITY.md line 45"
 ### When to Create a Command
 
 **Create command if:**
+
 - ✅ Operation repeated 3+ times
 - ✅ Multi-step workflow with predictable structure
 - ✅ Common debugging scenario
@@ -72,6 +80,7 @@ in SECURITY.md line 45"
 **Examples**:
 
 **Repeated Operation**:
+
 ```
 Observation: User runs "bun test && bun run lint && bun run type-check"
 before every commit (4 times)
@@ -80,6 +89,7 @@ Action: Create /pre-commit command
 ```
 
 **Multi-Step Workflow**:
+
 ```
 Observation: Database reset follows same pattern:
 1. docker-compose down db
@@ -92,6 +102,7 @@ Action: Create /db-reset command
 ```
 
 **Common Debug Scenario**:
+
 ```
 Observation: When API tests fail, always run:
 1. Check API logs: docker logs api-server
@@ -103,6 +114,7 @@ Action: Create /debug-api command
 ```
 
 **Don't create command for**:
+
 - ❌ Single use operations
 - ❌ Highly variable workflows
 - ❌ Exploratory work
@@ -110,6 +122,7 @@ Action: Create /debug-api command
 ### When to Create an Agent
 
 **Create agent if:**
+
 - ✅ Specialized domain expertise needed repeatedly
 - ✅ Complex analysis requiring deep context
 - ✅ Review process with specific criteria
@@ -119,6 +132,7 @@ Action: Create /debug-api command
 **Examples**:
 
 **Domain Expertise**:
+
 ```
 Observation: Database optimization questions come up regularly - query
 performance, indexing strategies, schema design
@@ -132,6 +146,7 @@ Action: Create database_optimization_agent.md with expertise on:
 ```
 
 **Review Process**:
+
 ```
 Observation: Security review needed before deploying auth changes
 (Explicit requirement in SECURITY.md)
@@ -144,6 +159,7 @@ Action: Create security_auditor_agent.md with checklist:
 ```
 
 **Specialized Analysis**:
+
 ```
 Observation: React performance optimization requires specialized knowledge
 - Re-render analysis
@@ -155,6 +171,7 @@ Action: Create react_performance_agent.md
 ```
 
 **Don't create agent for**:
+
 - ❌ Quick one-off reviews
 - ❌ Simple checklists (use commands instead)
 - ❌ Universal knowledge (add to CLAUDE.md)
@@ -162,6 +179,7 @@ Action: Create react_performance_agent.md
 ### When to Create a Hook
 
 **Create hook if:**
+
 - ✅ Automatic enforcement needed
 - ✅ Quality check should happen every time
 - ✅ Fast operation (< 2 seconds)
@@ -171,6 +189,7 @@ Action: Create react_performance_agent.md
 **Examples**:
 
 **Auto-Format** (Post-Edit hook):
+
 ```
 Observation: Code formatting inconsistencies in PRs
 (Recurring issue)
@@ -181,6 +200,7 @@ Command: prettier --write {file}
 ```
 
 **Pre-Commit Tests** (Pre-Bash hook):
+
 ```
 Observation: Broken code committed 3 times
 (Should have caught with tests)
@@ -191,6 +211,7 @@ Command: bun test && bun run lint
 ```
 
 **Secret Detection** (Post-Write hook):
+
 ```
 Observation: Nearly committed .env file
 (Security requirement)
@@ -201,6 +222,7 @@ Command: git-secrets --scan {file}
 ```
 
 **Don't create hook for**:
+
 - ❌ Slow operations (> 5 seconds) - use commands instead
 - ❌ Operations that fail frequently
 - ❌ Disruptive checks
@@ -208,6 +230,7 @@ Command: git-secrets --scan {file}
 ### When to Update .claudeignore
 
 **Add to .claudeignore if:**
+
 - ✅ Files repeatedly loaded but never useful
 - ✅ Large directories without source code
 - ✅ Build artifacts, generated files
@@ -215,6 +238,7 @@ Command: git-secrets --scan {file}
 - ✅ Context pollution observed
 
 **Auto-add triggers**:
+
 - Large directories (>1000 files) without source code
 - Repeated Grep/Read operations on irrelevant paths
 - Binary files being loaded unnecessarily
@@ -267,45 +291,54 @@ New Learning Observed
 ### Example 1: API Testing Pattern
 
 **Observation**: Testing API endpoints follows pattern:
+
 1. Start server
 2. Run curl command
 3. Check database state
-4. Stop server
-(Repeated 4 times)
+4. Stop server (Repeated 4 times)
 
 **Decision**:
+
 - **Primary**: Create `/test-api-endpoint` command (repeated workflow)
 - **Secondary**: Consider post-edit hook to run related tests automatically
 
 ### Example 2: TypeScript Strict Mode
 
-**Observation**: Found `"strict": true` in tsconfig.json, confirmed in docs as project standard
+**Observation**: Found `"strict": true` in tsconfig.json, confirmed in docs as
+project standard
 
 **Decision**:
+
 - **Primary**: Add to CLAUDE.md as universal constraint
 - **Secondary**: Consider hook to run type-check on edit
 
 ### Example 3: React Performance Issues
 
-**Observation**: Multiple performance optimization sessions dealing with re-renders, memoization
+**Observation**: Multiple performance optimization sessions dealing with
+re-renders, memoization
 
 **Decision**:
+
 - **Primary**: Create `react_performance_agent.md` (specialized expertise)
 - **Secondary**: Add general guidelines to CLAUDE.md
 
 ### Example 4: Pre-Commit Checks
 
-**Observation**: Manual "lint → test → type-check" sequence before every commit (5+ times)
+**Observation**: Manual "lint → test → type-check" sequence before every commit
+(5+ times)
 
 **Decision**:
+
 - **Primary**: Create pre-bash hook for git commit
 - **Alternative**: Create `/pre-commit` command if hook too disruptive
 
 ### Example 5: Database Schema Changes
 
-**Observation**: Database migrations must be reversible (found in CONTRIBUTING.md)
+**Observation**: Database migrations must be reversible (found in
+CONTRIBUTING.md)
 
 **Decision**:
+
 - **Primary**: Add to CLAUDE.md (documented convention)
 - **Secondary**: Create hook to validate migration files have up() and down()
 
@@ -314,11 +347,13 @@ New Learning Observed
 ### What if multiple techniques apply?
 
 **Use both when appropriate**:
+
 - CLAUDE.md for universal context + Agent for deep dives
 - Command for manual execution + Hook for automatic enforcement
 - CLAUDE.md for the rule + Hook for enforcement
 
 **Example**:
+
 ```
 Learning: All commits must follow Conventional Commits format
 
@@ -336,15 +371,18 @@ Rationale:
 ### Overlapping Concerns
 
 **Architecture patterns**:
+
 - High-level in CLAUDE.md
 - Deep analysis in specialized agent
 
 **Testing workflows**:
+
 - Quick smoke tests via hook
 - Full test suite via command
 - Test strategy in CLAUDE.md
 
 **Code quality**:
+
 - Auto-format via hook
 - Style guidelines in CLAUDE.md
 - Deep refactoring via agent
@@ -357,9 +395,11 @@ Choose technique based on:
 2. **Frequency** - Repeated (Command/Hook) vs. Occasional (Agent)
 3. **Automation** - Auto-enforce (Hook) vs. Manual (Command)
 4. **Context Weight** - Always needed (CLAUDE.md) vs. On-demand (Agent)
-5. **Action Type** - Enforcement (Hook) vs. Workflow (Command) vs. Knowledge (CLAUDE.md/Agent)
+5. **Action Type** - Enforcement (Hook) vs. Workflow (Command) vs. Knowledge
+   (CLAUDE.md/Agent)
 
 When in doubt:
+
 - Start with CLAUDE.md (easy to refactor later)
 - Prefer commands over agents for simple workflows
 - Only create hooks for fast, reliable checks

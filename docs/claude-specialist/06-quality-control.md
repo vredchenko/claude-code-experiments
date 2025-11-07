@@ -1,12 +1,14 @@
 # Quality Control: Preventing Bad Patterns
 
-This document describes mechanisms to prevent incorrect or low-quality patterns from being codified in Claude Code customizations.
+This document describes mechanisms to prevent incorrect or low-quality patterns
+from being codified in Claude Code customizations.
 
 ## Core Principle
 
 **Better to miss a good pattern than to capture a bad one.**
 
 Bad patterns can:
+
 - Mislead Claude in future sessions
 - Waste time with ineffective tools
 - Create maintenance burden
@@ -19,6 +21,7 @@ Bad patterns can:
 **Principle**: Don't capture patterns based on single observations.
 
 **Thresholds**:
+
 - **Commands**: 3+ identical operations
 - **CLAUDE.md conventions**: 3+ occurrences OR 1 explicit documentation
 - **Agents**: 3+ instances of specialized need
@@ -26,6 +29,7 @@ Bad patterns can:
 - **Hooks**: Clear requirement + user approval
 
 **Why**:
+
 - One-off operations are common during exploration
 - Temporary workarounds look like patterns
 - Edge cases shouldn't drive design
@@ -49,12 +53,15 @@ Result: Correctly avoided capturing noise
 **Principle**: New learnings shouldn't contradict existing knowledge.
 
 **Check before adding**:
+
 - Does this conflict with CLAUDE.md?
 - Does this contradict existing commands/agents?
 - Does this oppose documented project practices?
 
 **If contradiction found**:
-1. **Flag for user review**: "This contradicts existing guidance - clarification needed"
+
+1. **Flag for user review**: "This contradicts existing guidance - clarification
+   needed"
 2. **Present both**: Show existing vs. new information
 3. **Ask for resolution**: Which is correct? Both valid? Context-dependent?
 
@@ -119,23 +126,23 @@ function verifyPattern(pattern: Pattern): VerificationResult {
   // Check for explicit documentation
   const docSources = searchDocs(pattern);
   if (docSources.length > 0) {
-    return { confidence: 'high', sources: docSources };
+    return { confidence: "high", sources: docSources };
   }
 
   // Check for code comments
   const commentSources = searchComments(pattern);
   if (commentSources.length > 0) {
-    return { confidence: 'medium-high', sources: commentSources };
+    return { confidence: "medium-high", sources: commentSources };
   }
 
   // Check for consistent code patterns
   const occurrences = countOccurrences(pattern);
   if (occurrences >= 3) {
-    return { confidence: 'medium', occurrences };
+    return { confidence: "medium", occurrences };
   }
 
   // Single observation
-  return { confidence: 'low', occurrences: 1 };
+  return { confidence: "low", occurrences: 1 };
 }
 ```
 
@@ -144,12 +151,14 @@ function verifyPattern(pattern: Pattern): VerificationResult {
 **Principle**: Distinguish permanent patterns from temporary situations.
 
 **Red flags** for temporal patterns:
+
 - All occurrences in same session
 - Related to debugging specific issue
 - Tied to temporary workaround
 - Part of exploratory work
 
 **Green flags** for permanent patterns:
+
 - Occurrences across multiple sessions
 - Stable over time (weeks, not hours)
 - Not tied to specific bug/issue
@@ -188,10 +197,14 @@ Session on 2025-11-07:
 **Principle**: Distinguish project-specific patterns from personal preferences.
 
 **Is this pattern**:
-- ✅ **Project-specific**: Found in project docs, consistent in codebase, architectural decision
-- ❌ **Personal preference**: User's coding style, not documented, not consistently applied
+
+- ✅ **Project-specific**: Found in project docs, consistent in codebase,
+  architectural decision
+- ❌ **Personal preference**: User's coding style, not documented, not
+  consistently applied
 
 **Questions to ask**:
+
 - Is this documented anywhere in the project?
 - Would another team member follow this pattern?
 - Is this an architectural decision or personal choice?
@@ -323,6 +336,7 @@ git revert <commit-hash>
 ```
 
 **User commands**:
+
 ```
 User: "That pattern you added to CLAUDE.md is wrong"
 
@@ -408,6 +422,7 @@ Track when captured patterns turn out to be wrong:
 ```
 
 Use these to improve future pattern recognition:
+
 - Similar patterns should trigger extra verification
 - Categories prone to errors need higher thresholds
 - Certain sources more reliable than others
@@ -431,18 +446,21 @@ User never objects to .claudeignore additions
 Track quality of captured patterns:
 
 **Good indicators**:
+
 - ✅ Pattern used frequently after capture
 - ✅ No user corrections needed
 - ✅ Positive feedback scores
 - ✅ Referenced naturally in conversations
 
 **Bad indicators**:
+
 - ❌ User corrects or removes pattern
 - ❌ Pattern never referenced/used
 - ❌ Contradictions discovered later
 - ❌ Negative feedback
 
 **Quality score**:
+
 ```
 Pattern Quality = (Uses + Positive_Feedback - Corrections - Removals) / Time_Since_Capture
 
@@ -478,4 +496,5 @@ Quality control through:
    - Adjust thresholds
    - Improve recognition
 
-**Default stance**: When uncertain, ask user. Better to be cautious than to codify bad patterns.
+**Default stance**: When uncertain, ask user. Better to be cautious than to
+codify bad patterns.

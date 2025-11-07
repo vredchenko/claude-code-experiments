@@ -1,18 +1,19 @@
 # Claude Code Customization Techniques
 
-This document catalogs all available mechanisms for customizing Claude Code behavior, with guidance on when to use each.
+This document catalogs all available mechanisms for customizing Claude Code
+behavior, with guidance on when to use each.
 
 ## Quick Reference
 
-| Technique | Scope | Visibility | Best For |
-|-----------|-------|------------|----------|
-| CLAUDE.md | Project-wide | Always loaded | Core conventions, architecture |
-| Agents | On-demand | When invoked | Specialized expertise |
-| Commands | On-demand | Via `/cmd` | Repeated workflows |
-| Hooks | Event-driven | Auto-execute | Quality enforcement |
-| Skills | On-demand | Invokable | Cross-project capabilities |
-| .claudeignore | Context filtering | Always active | Exclude irrelevant files |
-| Config | Settings | Always active | Preferences, overrides |
+| Technique     | Scope             | Visibility    | Best For                       |
+| ------------- | ----------------- | ------------- | ------------------------------ |
+| CLAUDE.md     | Project-wide      | Always loaded | Core conventions, architecture |
+| Agents        | On-demand         | When invoked  | Specialized expertise          |
+| Commands      | On-demand         | Via `/cmd`    | Repeated workflows             |
+| Hooks         | Event-driven      | Auto-execute  | Quality enforcement            |
+| Skills        | On-demand         | Invokable     | Cross-project capabilities     |
+| .claudeignore | Context filtering | Always active | Exclude irrelevant files       |
+| Config        | Settings          | Always active | Preferences, overrides         |
 
 ## 1. CLAUDE.md
 
@@ -20,9 +21,11 @@ This document catalogs all available mechanisms for customizing Claude Code beha
 
 **Scope**: Project-wide instructions, always active
 
-**Purpose**: Core project conventions, architecture decisions, development workflows
+**Purpose**: Core project conventions, architecture decisions, development
+workflows
 
 **When to use**:
+
 - Project-specific requirements that apply universally
 - Critical constraints and guidelines
 - High-level architecture patterns
@@ -32,6 +35,7 @@ This document catalogs all available mechanisms for customizing Claude Code beha
 **Visibility**: Always loaded, highest priority context
 
 **Examples**:
+
 ```markdown
 # Project Conventions
 
@@ -42,6 +46,7 @@ This document catalogs all available mechanisms for customizing Claude Code beha
 ```
 
 **Characteristics**:
+
 - Highest priority context
 - Should remain concise (risk: becomes unwieldy)
 - Universal truths about the project
@@ -56,6 +61,7 @@ This document catalogs all available mechanisms for customizing Claude Code beha
 **Purpose**: Domain-specific expertise that's invoked when needed
 
 **When to use**:
+
 - Specialized tasks requiring deep domain knowledge
 - Critical review processes (security, performance, accessibility)
 - Different "modes" of operation (debugging, optimization, refactoring)
@@ -66,8 +72,10 @@ This document catalogs all available mechanisms for customizing Claude Code beha
 **Examples**:
 
 **security_auditor.md**:
+
 ```markdown
 You are a security-focused code reviewer. Analyze code for:
+
 - OWASP Top 10 vulnerabilities
 - Authentication/authorization flaws
 - Input validation gaps
@@ -76,8 +84,10 @@ You are a security-focused code reviewer. Analyze code for:
 ```
 
 **performance_optimizer.md**:
+
 ```markdown
 You are a performance optimization specialist. Focus on:
+
 - Database query efficiency (N+1 problems)
 - React re-render optimization
 - Bundle size analysis
@@ -86,8 +96,10 @@ You are a performance optimization specialist. Focus on:
 ```
 
 **api_design_reviewer.md**:
+
 ```markdown
 You review API design for consistency and best practices:
+
 - RESTful conventions
 - Naming consistency
 - Error response formats
@@ -96,6 +108,7 @@ You review API design for consistency and best practices:
 ```
 
 **Characteristics**:
+
 - Heavy context (can be verbose)
 - Specialized knowledge
 - Invoked explicitly when needed
@@ -110,6 +123,7 @@ You review API design for consistency and best practices:
 **Purpose**: Frequently repeated operations bundled into convenient commands
 
 **When to use**:
+
 - Common workflows that follow predictable patterns (3+ uses)
 - Multi-step operations repeated frequently
 - Standardized processes (deployment, testing, code reviews)
@@ -120,8 +134,10 @@ You review API design for consistency and best practices:
 **Examples**:
 
 **test-all.md**:
+
 ```markdown
 Run the complete test suite with coverage:
+
 1. Run unit tests: `bun test`
 2. Run integration tests: `bun test:integration`
 3. Generate coverage report: `bun test:coverage`
@@ -129,8 +145,10 @@ Run the complete test suite with coverage:
 ```
 
 **db-reset.md**:
+
 ```markdown
 Reset the database to clean state:
+
 1. Drop existing database
 2. Run all migrations
 3. Seed with test data
@@ -138,8 +156,10 @@ Reset the database to clean state:
 ```
 
 **deploy-staging.md**:
+
 ```markdown
 Deploy current branch to staging:
+
 1. Run tests and type checking
 2. Build production bundle
 3. Run database migrations on staging
@@ -149,6 +169,7 @@ Deploy current branch to staging:
 ```
 
 **Characteristics**:
+
 - Lightweight (short prompts)
 - Action-oriented
 - Frequently invoked
@@ -163,12 +184,14 @@ Deploy current branch to staging:
 **Purpose**: Automatic actions triggered by tool usage or session events
 
 **Types**:
+
 - **Pre-tool hooks** - Run before a tool executes
 - **Post-tool hooks** - Run after a tool completes
 - **User prompt submit hooks** - Run when user submits a message
 - **Session start hooks** - Run at session initialization (web sessions)
 
 **When to use**:
+
 - Automated validation (linting, type checking)
 - Automatic formatting
 - Commit message validation
@@ -190,26 +213,31 @@ Deploy current branch to staging:
 **Hook scenarios**:
 
 **Auto-format on save**:
+
 - Trigger: Post-Edit, Post-Write
 - Action: Run prettier/eslint --fix
 - Benefit: Consistent code style without thinking
 
 **Run tests after code changes**:
-- Trigger: Post-Edit (for *.ts, *.tsx files)
+
+- Trigger: Post-Edit (for _.ts, _.tsx files)
 - Action: Run tests for changed file
 - Benefit: Immediate feedback on breakage
 
 **Validate commit messages**:
+
 - Trigger: Pre-Bash (git commit)
 - Action: Check message format (conventional commits)
 - Benefit: Consistent git history
 
 **Security scanning**:
+
 - Trigger: Post-Write
 - Action: Check for secrets, vulnerabilities
 - Benefit: Prevent accidental secret commits
 
 **Characteristics**:
+
 - Automatic execution
 - Can be disruptive if too aggressive
 - Should be fast (avoid blocking work)
@@ -224,13 +252,17 @@ Deploy current branch to staging:
 **Purpose**: Complex, multi-step capabilities that can be invoked
 
 **When to use**:
+
 - Cross-project functionality
 - Complex workflows requiring multiple tool orchestrations
 - Domain-specific expertise packages
 
-**Note**: Skills are typically defined at user level, less common for project-specific use. Most project-specific needs are better served by Agents or Commands.
+**Note**: Skills are typically defined at user level, less common for
+project-specific use. Most project-specific needs are better served by Agents or
+Commands.
 
 **Characteristics**:
+
 - More complex than commands
 - Can span multiple projects
 - Less frequently used for project-specific customization
@@ -244,6 +276,7 @@ Deploy current branch to staging:
 **Purpose**: Prevent irrelevant files from consuming context window
 
 **When to use**:
+
 - Exclude build artifacts, dependencies, generated files
 - Ignore large data files or binaries
 - Filter out irrelevant configuration
@@ -286,6 +319,7 @@ coverage/
 ```
 
 **Characteristics**:
+
 - Improves context window efficiency
 - Reduces noise in file searches
 - Faster read operations
@@ -300,6 +334,7 @@ coverage/
 **Purpose**: Project-specific preferences and behaviors
 
 **When to use**:
+
 - Override default model selection
 - Configure hooks
 - Set project-specific preferences
@@ -325,6 +360,7 @@ coverage/
 ```
 
 **Characteristics**:
+
 - Project-specific overrides
 - Affects all sessions for this project
 - Version controlled
@@ -337,11 +373,14 @@ coverage/
 **Purpose**: Initial setup when starting a web session
 
 **When to use** (Web sessions only):
+
 - Environment setup (install dependencies)
 - Service initialization (start databases, servers)
 - Context preparation
 
-**Note**: Less relevant for CLI usage where environment persists between sessions. Primarily useful for ephemeral web-based environments that reset between sessions.
+**Note**: Less relevant for CLI usage where environment persists between
+sessions. Primarily useful for ephemeral web-based environments that reset
+between sessions.
 
 **Example**:
 
@@ -365,6 +404,7 @@ echo "Environment ready"
 ```
 
 **Characteristics**:
+
 - Web-session specific
 - Not applicable to persistent CLI environments
 - Can be time-consuming (runs once per session)
@@ -386,6 +426,7 @@ Each technique serves a specific purpose:
 - **Session hooks** - Web session setup
 
 Choose the right technique based on:
+
 - **Frequency** - How often is it needed?
 - **Scope** - Project-wide or specialized?
 - **Automation** - Should it auto-execute?

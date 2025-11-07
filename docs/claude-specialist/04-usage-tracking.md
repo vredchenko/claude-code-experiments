@@ -1,6 +1,7 @@
 # Usage Tracking and Feedback System
 
-This document describes how to measure and validate the utility of Claude Code customizations.
+This document describes how to measure and validate the utility of Claude Code
+customizations.
 
 ## Goals
 
@@ -95,12 +96,14 @@ This document describes how to measure and validate the utility of Claude Code c
 ### 2. Tracking Implementation
 
 **When to increment counters**:
+
 - Command invoked via `/command-name`
 - Agent loaded (track in agent prompt)
 - Hook executed (track in hook runner)
 - CLAUDE.md pattern referenced (harder to track, best effort)
 
 **Automatic tracking**:
+
 ```typescript
 // Pseudocode for command tracking
 function invokeCommand(commandName: string) {
@@ -114,7 +117,7 @@ function invokeCommand(commandName: string) {
     stats.commands[commandName] = {
       invocations: 0,
       first_used: new Date().toISOString(),
-      failures: 0
+      failures: 0,
     };
   }
 
@@ -146,6 +149,7 @@ function invokeCommand(commandName: string) {
 ### 3. Privacy Considerations
 
 **What to track**:
+
 - ✅ Invocation counts
 - ✅ Timestamps (for recency)
 - ✅ Success/failure rates
@@ -153,6 +157,7 @@ function invokeCommand(commandName: string) {
 - ✅ Feedback scores
 
 **What NOT to track**:
+
 - ❌ Command arguments (may contain sensitive data)
 - ❌ File paths (may reveal project structure)
 - ❌ Error messages (may contain sensitive info)
@@ -161,18 +166,21 @@ function invokeCommand(commandName: string) {
 **Storage options**:
 
 **Option A: Local only (gitignored)**
+
 - Pro: No privacy concerns
 - Pro: Personal usage patterns
 - Con: Not shared across team
 - Con: Lost when cloning fresh
 
 **Option B: Version controlled (aggregated)**
+
 - Pro: Shared team insights
 - Pro: Persists across clones
 - Con: Privacy considerations
 - Con: May create conflicts
 
-**Recommendation**: Start with Option A (gitignored), add Option B aggregated summary if team wants shared insights.
+**Recommendation**: Start with Option A (gitignored), add Option B aggregated
+summary if team wants shared insights.
 
 ## Feedback Collection
 
@@ -181,6 +189,7 @@ function invokeCommand(commandName: string) {
 **Principle**: Non-intrusive, easy to dismiss, valuable when provided.
 
 **Sampling strategy**:
+
 - 1st use: Always ask (validate early)
 - 5th use: Ask again (validate continued utility)
 - 20th use: Ask once more (validate long-term value)
@@ -190,6 +199,7 @@ function invokeCommand(commandName: string) {
 **Prompt examples**:
 
 **After command execution**:
+
 ```
 ✓ /test-all completed in 15s
 
@@ -205,6 +215,7 @@ Thanks! What made it useful? (optional, press Enter to skip)
 ```
 
 **After agent invocation**:
+
 ```
 [Security audit complete]
 
@@ -220,6 +231,7 @@ Optional: Any suggestions for improvement?
 ```
 
 **After hook execution (only on failure or occasional sampling)**:
+
 ```
 Post-edit hook (prettier) ran in 250ms
 
@@ -234,6 +246,7 @@ Post-edit hook (prettier) ran in 250ms
 ### 2. Periodic Reviews
 
 **Weekly Summary** (lightweight):
+
 ```
 This week you used:
 - /test-all (15 times) ⭐⭐⭐⭐⭐
@@ -244,6 +257,7 @@ Any tools feeling less useful? (yes/no/skip)
 ```
 
 **Monthly Deep Review** (via Specialist Agent):
+
 ```
 User: /reflect
 
@@ -300,6 +314,7 @@ Proceed with recommendations? (all/selective/none)
 ## A/B Testing Framework
 
 ### Purpose
+
 Validate that tools are actually valuable, not just accumulated cruft.
 
 ### Test Types
@@ -327,9 +342,9 @@ User: a
 [Records choice, executes command]
 ```
 
-**Test duration**: 30 days
-**Success criteria**: If user always chooses command, keep it
-**Failure criteria**: If user chooses manual 50%+ of time, consider removing
+**Test duration**: 30 days **Success criteria**: If user always chooses command,
+keep it **Failure criteria**: If user chooses manual 50%+ of time, consider
+removing
 
 #### 2. Hard Disable
 
@@ -348,9 +363,8 @@ If you need this command back, let me know and I'll re-enable it."
 [Records: Command was requested during disable period]
 ```
 
-**Test duration**: 30 days
-**Success criteria**: If never requested, consider removing
-**Failure criteria**: If requested multiple times, keep it
+**Test duration**: 30 days **Success criteria**: If never requested, consider
+removing **Failure criteria**: If requested multiple times, keep it
 
 #### 3. Feature Flag
 
@@ -367,9 +381,8 @@ If you need this command back, let me know and I'll re-enable it."
 # Track: Which version is faster, which is preferred
 ```
 
-**Test duration**: 30 days
-**Success criteria**: Pick version with better metrics
-**Measurement**: Time saved, feedback scores
+**Test duration**: 30 days **Success criteria**: Pick version with better
+metrics **Measurement**: Time saved, feedback scores
 
 ### A/B Test Configuration
 
@@ -387,7 +400,7 @@ If you need this command back, let me know and I'll re-enable it."
         "manual_choices": 0,
         "skipped": 0
       },
-      "decision": null  // Will be set at end of test
+      "decision": null // Will be set at end of test
     },
     "performance-optimizer-agent": {
       "type": "hard-disable",
@@ -407,16 +420,19 @@ If you need this command back, let me know and I'll re-enable it."
 ### Test Decision Criteria
 
 **Keep if**:
+
 - ✅ Shadow disable: Command chosen >80% of time
 - ✅ Hard disable: Requested 2+ times during disable
 - ✅ Feature flag: Clear winner on metrics
 
 **Remove if**:
+
 - ❌ Shadow disable: Manual chosen >50% of time
 - ❌ Hard disable: Never requested during 30 days
 - ❌ Feature flag: No measurable difference (remove complexity)
 
 **Modify if**:
+
 - 🔄 Mixed results but clear improvement opportunities
 - 🔄 Useful but needs better UX
 - 🔄 Right idea, wrong implementation
@@ -426,21 +442,25 @@ If you need this command back, let me know and I'll re-enable it."
 ### Identification
 
 **Low usage**:
+
 - Commands: <3 uses in 30 days
 - Agents: 0 uses in 60 days
 - Hooks: Failure rate >20%
 
 **Low value**:
+
 - Feedback score <3.0
 - Frequently skipped
 - Negative user comments
 
 **High maintenance**:
+
 - Frequent updates needed
 - Often breaks
 - Complex to maintain
 
 **Redundant**:
+
 - Multiple tools doing same thing
 - Tool obsoleted by better alternative
 - Functionality moved elsewhere
@@ -455,6 +475,7 @@ If you need this command back, let me know and I'll re-enable it."
 6. **If removing**: Create commit explaining why
 
 **Example pruning commit**:
+
 ```
 chore(claude): Remove /debug-cors command
 
@@ -475,17 +496,20 @@ need arises again.
 ## Integration with Implementation Strategy
 
 ### Specialist Agent
+
 - Analyzes usage stats
 - Identifies high/low-value tools
 - Proposes pruning candidates
 - Presents monthly summaries
 
 ### Improvement Command
+
 - Records new tool creation
 - Initializes usage tracking
 - Sets up feedback collection
 
 ### Background Detection
+
 - Observes patterns
 - Suggests when threshold hit
 - References usage stats for validation
@@ -495,12 +519,14 @@ need arises again.
 ### Quantitative
 
 **Usage metrics**:
+
 - Tool invocation frequency
 - Time saved (estimated)
 - Failure rates
 - Adoption speed (time to Nth use)
 
 **Quality metrics**:
+
 - Feedback scores (1-5 scale)
 - Feedback participation rate
 - A/B test success rate
@@ -509,12 +535,14 @@ need arises again.
 ### Qualitative
 
 **User sentiment**:
+
 - "Claude knows my project better"
 - "Common tasks are easier"
 - "Tools feel useful, not bloated"
 - "Suggestions are relevant"
 
 **System health**:
+
 - CLAUDE.md stays concise
 - Commands are actually used
 - Agents invoked regularly
@@ -525,11 +553,13 @@ need arises again.
 ### Local Usage Stats (.gitignored)
 
 **Pros**:
+
 - No privacy concerns
 - Personal usage patterns
 - No merge conflicts
 
 **Cons**:
+
 - Not shared across team
 - Lost on fresh clone
 - Can't aggregate team insights
@@ -537,11 +567,13 @@ need arises again.
 ### Aggregated Stats (Version Controlled)
 
 **Pros**:
+
 - Team-wide insights
 - Persistent across clones
 - Inform shared decisions
 
 **Cons**:
+
 - Privacy considerations
 - May create conflicts
 - Needs careful aggregation
@@ -551,6 +583,7 @@ need arises again.
 **Default**: Local stats only (.gitignored)
 
 **Optional**: User can opt-in to share aggregated stats:
+
 ```json
 {
   "usage_tracking": {
@@ -561,12 +594,13 @@ need arises again.
 ```
 
 **If shared**, only aggregate counts, no sensitive details:
+
 ```json
 {
   "team_usage": {
     "commands": {
-      "test-all": {"total_uses": 142, "unique_users": 3},
-      "db-reset": {"total_uses": 28, "unique_users": 2}
+      "test-all": { "total_uses": 142, "unique_users": 3 },
+      "db-reset": { "total_uses": 28, "unique_users": 2 }
     }
   }
 }
