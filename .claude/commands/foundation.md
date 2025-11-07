@@ -29,3 +29,15 @@ After the Foundation agent completes the workflow, the user should have:
 
 Use this command when starting complex automation, learning new technologies, or
 training team members in verification-first thinking.
+
+---
+
+## Attribution
+
+Based on concepts from Eric J. Ma's blog posts:
+
+- **"Earn the privilege to use automation"**
+  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+
+- **"From nerd sniped to shipped: Using AI as a thinking tool"**
+  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/

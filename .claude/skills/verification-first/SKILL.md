@@ -496,3 +496,20 @@ quickly.
 _"Give a developer an AI-generated solution, and they ship one feature. Teach a
 developer to verify and understand, and they ship robust systems for a
 lifetime."_
+
+## Attribution
+
+This skill is inspired by and based on concepts from:
+
+- **"Earn the privilege to use automation"** by Eric J. Ma
+  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+
+- **"From nerd sniped to shipped: Using AI as a thinking tool"** by Eric J. Ma
+  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
+
+Key concepts adapted:
+- The "illusion of competence" phenomenon in AI-assisted work
+- Earning the privilege to use automation through foundational understanding
+- Verification culture and systematic approaches to ensure correctness
+- Manual mastery before automation (pilot training analogy)
+- Research showing 40% of AI outputs are accepted without scrutiny
