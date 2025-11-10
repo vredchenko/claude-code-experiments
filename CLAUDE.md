@@ -358,6 +358,46 @@ bun run dev:mcp:karakeep
 - **Maintenance**: Living document - should be reviewed quarterly and updated
   when ATLAS framework changes. See document for detailed update process.
 
+### Complementary AI Security Documentation
+
+Building on the ATLAS foundation, additional specialized documentation provides
+depth in specific areas:
+
+#### OWASP LLM Security (`docs/ai-security/OWASP-LLM-SECURITY.md`)
+- **OWASP LLM Top 10 (2025)**: Application-layer LLM risks
+- **Prompt Injection Defenses**: Comprehensive defense catalog
+- **Testing Tools**: Promptfoo, Garak, Microsoft PyRIT
+- **Integration**: Maps to ATLAS tactics and techniques
+- **Focus**: Practical LLM application security
+
+#### Compliance Frameworks (`docs/ai-security/COMPLIANCE-FRAMEWORKS.md`)
+- **NIST AI RMF**: Risk management framework with security controls
+- **ISO/IEC 42001**: Certifiable AI management systems
+- **EU AI Act**: Regulatory compliance and security requirements
+- **Integration**: Shows how ATLAS fits into compliance
+- **Focus**: Legal/regulatory requirements, governance
+
+#### Red Team Methodologies (`docs/ai-security/RED-TEAM-METHODOLOGIES.md`)
+- **OpenAI Approach**: External and automated red teaming
+- **Microsoft PyRIT**: Production red teaming framework
+- **Industry Best Practices**: Systematic offensive testing
+- **Attack Techniques**: Detailed prompt injection, evasion methods
+- **Focus**: Operational red team processes
+
+#### Emerging Threats (`docs/ai-security/EMERGING-THREATS.md`)
+- **Agentic AI Security**: MAESTRO framework for autonomous agents
+- **Federated Learning**: Byzantine attacks, privacy threats
+- **Multi-Modal Attacks**: Vision-language exploitation
+- **Quantum ML**: Future threat landscape
+- **Focus**: Cutting-edge threats not yet in ATLAS
+
+#### Threat Intelligence (`docs/ai-security/THREAT-INTELLIGENCE.md`)
+- **CVE Tracking**: Real-world AI vulnerabilities
+- **Incident Case Studies**: Documented attacks and lessons
+- **Threat Actors**: Nation-state, cybercriminal profiles
+- **IoCs**: Indicators of compromise for AI attacks
+- **Focus**: Current threat landscape, actionable intelligence
+
 ### Using AI Security Capabilities
 
 **Quick Start**:
@@ -376,20 +416,35 @@ ls -la .claude/skills/adversarial-testing/
 
 **Example Workflows**:
 
-1. **Threat Modeling a New AI System**:
-   - Use ATLAS Threat Modeling Agent
-   - Apply AI Security Assessment Skill
-   - Reference MITRE-ATLAS-REFERENCE.md for tactics/techniques
+1. **Comprehensive AI Security Assessment**:
+   - Start: MITRE-ATLAS-REFERENCE.md (threat taxonomy)
+   - Apply: AI Security Assessment Skill
+   - Check: COMPLIANCE-FRAMEWORKS.md (regulatory requirements)
+   - Validate: Use RED-TEAM-METHODOLOGIES.md for testing
 
-2. **Testing Model Robustness**:
-   - Use AI Red Team Agent
-   - Apply Adversarial Testing Skill
-   - Validate with AI Defense Strategy Agent
+2. **LLM Application Security**:
+   - Review: OWASP-LLM-SECURITY.md (Top 10 risks)
+   - Defend: Implement prompt injection defenses
+   - Test: Use Promptfoo or Garak tools
+   - Monitor: THREAT-INTELLIGENCE.md for new CVEs
 
-3. **Building Secure ML Pipeline**:
-   - Use AI Defense Strategy Agent
-   - Apply AI Security Assessment Skill phases 3-6
-   - Reference ATLAS mitigations in documentation
+3. **Red Team Exercise**:
+   - Plan: RED-TEAM-METHODOLOGIES.md (OpenAI/Microsoft approaches)
+   - Execute: AI Red Team Agent with PyRIT
+   - Report: Map findings to ATLAS and OWASP
+   - Remediate: AI Defense Strategy Agent
+
+4. **Regulatory Compliance**:
+   - Assess: COMPLIANCE-FRAMEWORKS.md (NIST, ISO, EU AI Act)
+   - Model Threats: ATLAS Threat Modeling Agent
+   - Implement: Controls mapped to requirements
+   - Audit: Validate with Adversarial Testing Skill
+
+5. **Emerging Threat Preparation**:
+   - Research: EMERGING-THREATS.md (agentic AI, federated learning)
+   - Design: Defenses for future threats
+   - Monitor: THREAT-INTELLIGENCE.md for real-world incidents
+   - Update: Quarterly reviews of threat landscape
 
 ## Project Structure
 
