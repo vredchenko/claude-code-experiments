@@ -176,7 +176,8 @@ development, to play around with and re-use in other projects.
   3. **Black-Box Testing** - Query-based attacks, transfer attacks
   4. **Domain-Specific Testing** - LLM prompt injection, computer vision
      patches, model extraction
-  5. **Defense Validation** - Test adversarial training, preprocessing, detection
+  5. **Defense Validation** - Test adversarial training, preprocessing,
+     detection
   6. **Reporting** - Comprehensive results with actionable recommendations
 - **Use Cases**:
   - Model robustness testing
@@ -389,6 +390,7 @@ Building on the ATLAS foundation, additional specialized documentation provides
 depth in specific areas:
 
 #### OWASP LLM Security (`docs/ai-security/OWASP-LLM-SECURITY.md`)
+
 - **OWASP LLM Top 10 (2025)**: Application-layer LLM risks
 - **Prompt Injection Defenses**: Comprehensive defense catalog
 - **Testing Tools**: Promptfoo, Garak, Microsoft PyRIT
@@ -396,6 +398,7 @@ depth in specific areas:
 - **Focus**: Practical LLM application security
 
 #### Compliance Frameworks (`docs/ai-security/COMPLIANCE-FRAMEWORKS.md`)
+
 - **NIST AI RMF**: Risk management framework with security controls
 - **ISO/IEC 42001**: Certifiable AI management systems
 - **EU AI Act**: Regulatory compliance and security requirements
@@ -403,6 +406,7 @@ depth in specific areas:
 - **Focus**: Legal/regulatory requirements, governance
 
 #### Red Team Methodologies (`docs/ai-security/RED-TEAM-METHODOLOGIES.md`)
+
 - **OpenAI Approach**: External and automated red teaming
 - **Microsoft PyRIT**: Production red teaming framework
 - **Industry Best Practices**: Systematic offensive testing
@@ -410,6 +414,7 @@ depth in specific areas:
 - **Focus**: Operational red team processes
 
 #### Emerging Threats (`docs/ai-security/EMERGING-THREATS.md`)
+
 - **Agentic AI Security**: MAESTRO framework for autonomous agents
 - **Federated Learning**: Byzantine attacks, privacy threats
 - **Multi-Modal Attacks**: Vision-language exploitation
@@ -417,6 +422,7 @@ depth in specific areas:
 - **Focus**: Cutting-edge threats not yet in ATLAS
 
 #### Threat Intelligence (`docs/ai-security/THREAT-INTELLIGENCE.md`)
+
 - **CVE Tracking**: Real-world AI vulnerabilities
 - **Incident Case Studies**: Documented attacks and lessons
 - **Threat Actors**: Nation-state, cybercriminal profiles

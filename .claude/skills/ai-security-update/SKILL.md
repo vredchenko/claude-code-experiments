@@ -22,6 +22,7 @@ Use this skill when you need to:
 **"Living documentation requires active maintenance."**
 
 AI security evolves rapidly. This skill embodies:
+
 - **Proactive monitoring**: Regular checks for updates
 - **Systematic comparison**: Identify what changed
 - **Comprehensive propagation**: Update all affected components
@@ -32,22 +33,26 @@ AI security evolves rapidly. This skill embodies:
 ### Recommended Schedule
 
 **Monthly** (High Priority):
+
 - CVE tracking and threat intelligence
 - Critical security advisories
 - New attack techniques in the wild
 
 **Quarterly** (Standard):
+
 - MITRE ATLAS framework changes
 - OWASP LLM Top 10 updates
 - Industry research papers
 - Emerging threat landscape
 
 **Annually** (Planned):
+
 - NIST AI RMF updates
 - ISO standard revisions
 - Major compliance framework changes
 
 **As-Needed** (Reactive):
+
 - Major security incidents
 - Zero-day vulnerabilities
 - Regulatory changes (EU AI Act enforcement)
@@ -61,6 +66,7 @@ AI security evolves rapidly. This skill embodies:
 **Activities**:
 
 1. **MITRE ATLAS Monitoring**:
+
    ```bash
    # Primary sources to check
    - https://atlas.mitre.org/matrices/ATLAS
@@ -76,6 +82,7 @@ AI security evolves rapidly. This skill embodies:
    - Deprecated techniques
 
    **Using WebFetch**:
+
    ```
    Fetch: https://atlas.mitre.org/matrices/ATLAS
    Prompt: "List all tactics and count techniques. Identify any new tactics,
@@ -84,6 +91,7 @@ AI security evolves rapidly. This skill embodies:
    ```
 
 2. **OWASP Monitoring**:
+
    ```bash
    # Check for updates
    - https://genai.owasp.org/llmrisk/
@@ -97,6 +105,7 @@ AI security evolves rapidly. This skill embodies:
    - Updated mitigations
 
 3. **CVE and Vulnerability Tracking**:
+
    ```bash
    # Check CVE databases
    - https://nvd.nist.gov (search: AI, LLM, ML, PyTorch, TensorFlow)
@@ -111,6 +120,7 @@ AI security evolves rapidly. This skill embodies:
    - LLM application vulnerabilities
 
 4. **Compliance Framework Monitoring**:
+
    ```bash
    # Regulatory and standards updates
    - NIST AI: https://www.nist.gov/artificial-intelligence
@@ -124,6 +134,7 @@ AI security evolves rapidly. This skill embodies:
    - ISO 42001 amendments
 
 5. **Research and Threat Intelligence**:
+
    ```bash
    # Academic and industry sources
    - ArXiv: adversarial machine learning
@@ -141,42 +152,49 @@ AI security evolves rapidly. This skill embodies:
 **Deliverable**: Update assessment report
 
 **Example Assessment**:
+
 ```markdown
 ## AI Security Documentation Update Assessment
 
-**Date**: 2026-02-15
-**Checked By**: [Your name]
-**Next Review**: 2026-05-15 (quarterly)
+**Date**: 2026-02-15 **Checked By**: [Your name] **Next Review**: 2026-05-15
+(quarterly)
 
 ### MITRE ATLAS
+
 - ✅ No changes (still 14 tactics, 56 techniques)
 - 📝 New case study: "GPT-5 Jailbreak Incident (Jan 2026)"
 - 🔄 Updated mitigation for AML.T0051 (Prompt Injection)
 
 ### OWASP LLM Top 10
+
 - ✅ Still version 2025
 - 📝 Updated LLM01 guidance (new defense techniques)
 
 ### CVEs (Last 30 days)
+
 - 🚨 CVE-2026-12345: PyTorch RCE (CVSS 9.8) - CRITICAL
 - 🚨 CVE-2026-12346: Hugging Face Transformers XSS (CVSS 7.2)
 - ℹ️ 15 other AI-related CVEs (CVSS < 7.0)
 
 ### Compliance
+
 - 📅 EU AI Act: High-risk systems deadline approaching (Aug 2027)
 - ✅ NIST: No updates
 - ✅ ISO: No amendments
 
 ### Threat Intelligence
+
 - 📰 Major incident: "DeepMind Model Theft" (Feb 2026)
 - 📈 Prompt injection attacks up 45% (Q1 2026)
 - 🆕 New tool: Garak v2.0 with multi-modal testing
 
 ### Emerging Threats
+
 - 🔬 Research: "Quantum-Resistant ML Watermarking" (ArXiv)
 - 🤖 Agentic AI attacks in the wild (3 documented incidents)
 
 ### Recommendations
+
 1. CRITICAL: Add CVE-2026-12345 to THREAT-INTELLIGENCE.md
 2. HIGH: Add DeepMind case study to MITRE-ATLAS-REFERENCE.md
 3. MEDIUM: Update OWASP-LLM-SECURITY.md with new LLM01 defenses
@@ -190,39 +208,44 @@ AI security evolves rapidly. This skill embodies:
 **Priority Levels**:
 
 **P0 - Critical (Immediate)**:
+
 - Critical CVEs (CVSS 9.0+)
 - Active exploitation in the wild
 - Major security incidents affecting many users
 - Breaking regulatory changes
 
 **P1 - High (Within 1 week)**:
+
 - New ATLAS tactics or techniques
 - OWASP Top 10 major revisions
 - High-severity CVEs (CVSS 7.0-8.9)
 - Significant research breakthroughs
 
 **P2 - Medium (Within 1 month)**:
+
 - Case study additions
 - Mitigation updates
 - Tool version updates
 - Minor framework changes
 
 **P3 - Low (Next quarterly review)**:
+
 - Editorial improvements
 - Additional references
 - Formatting updates
 - Non-critical research additions
 
 **Decision Matrix**:
+
 ```markdown
 ## Update Prioritization
 
-| Change | Impact | Effort | Priority | Deadline |
-|--------|--------|--------|----------|----------|
-| CVE-2026-12345 | Critical | Low | P0 | Immediate |
-| DeepMind incident | High | Medium | P1 | 1 week |
-| OWASP LLM01 update | Medium | Low | P1 | 1 week |
-| Quantum research | Low | Low | P3 | Q2 review |
+| Change             | Impact   | Effort | Priority | Deadline  |
+| ------------------ | -------- | ------ | -------- | --------- |
+| CVE-2026-12345     | Critical | Low    | P0       | Immediate |
+| DeepMind incident  | High     | Medium | P1       | 1 week    |
+| OWASP LLM01 update | Medium   | Low    | P1       | 1 week    |
+| Quantum research   | Low      | Low    | P3       | Q2 review |
 ```
 
 ### Phase 3: Update Documentation
@@ -236,32 +259,37 @@ AI security evolves rapidly. This skill embodies:
 **When**: ATLAS framework changes, new case studies, mitigation updates
 
 **Process**:
+
 1. Read current `docs/ai-security/MITRE-ATLAS-REFERENCE.md`
 2. Identify sections to update
 3. Use Edit tool to make changes
 4. Update version history at bottom
 
 **Example Update**:
+
 ```markdown
 ### Case Study 6: GPT-5 Jailbreak Incident (2026)
 
-**Attack Type**: Multi-turn prompt injection with context manipulation
-**ATLAS Tactics**: TA0047 (ML Attack Staging), TA0034 (Impact)
-**CVSS**: N/A (Not a CVE, but high impact)
+**Attack Type**: Multi-turn prompt injection with context manipulation **ATLAS
+Tactics**: TA0047 (ML Attack Staging), TA0034 (Impact) **CVSS**: N/A (Not a CVE,
+but high impact)
 
 **Incident**:
+
 - Researchers demonstrated systematic jailbreak of GPT-5
 - Used chain-of-thought manipulation across 12 turns
 - Bypassed all safety filters
 - OpenAI patched within 48 hours
 
 **Lessons**:
+
 - Multi-turn attacks harder to defend
 - Context window size increases attack surface
 - Need stateful safety filters
 - Rapid response critical
 
 **Mitigations Applied**:
+
 - Enhanced multi-turn monitoring
 - Context-aware safety checks
 - Conversation state analysis
@@ -269,13 +297,15 @@ AI security evolves rapidly. This skill embodies:
 ```
 
 **Don't forget**:
+
 ```markdown
 ## Version History
 
 - **v1.0 (June 2021)**: Initial release
 - **v2.0 (2023)**: LLM expansion
 - **v3.0 (2025)**: Multi-modal attacks
-- **v3.1 (Feb 2026)**: Added GPT-5 case study, updated prompt injection mitigations
+- **v3.1 (Feb 2026)**: Added GPT-5 case study, updated prompt injection
+  mitigations
 ```
 
 #### 3.2 Update OWASP-LLM-SECURITY.md
@@ -283,13 +313,15 @@ AI security evolves rapidly. This skill embodies:
 **When**: OWASP updates, new defenses, tool updates
 
 **Process**:
+
 1. Check which risk(s) changed (LLM01-LLM10)
 2. Update mitigation sections
 3. Add new code examples if provided
 4. Update tool versions
 
 **Example**:
-```markdown
+
+````markdown
 ### LLM01: Prompt Injection
 
 [Existing content...]
@@ -297,6 +329,7 @@ AI security evolves rapidly. This skill embodies:
 **New Defense Technique** (Feb 2026):
 
 4. **Stateful Safety Monitoring**:
+
    ```python
    class StatefulSafetyFilter:
        def __init__(self):
@@ -318,7 +351,9 @@ AI security evolves rapidly. This skill embodies:
                return False, "Potential multi-turn attack detected"
            return True, "Safe"
    ```
-```
+````
+
+````
 
 #### 3.3 Update THREAT-INTELLIGENCE.md
 
@@ -349,14 +384,16 @@ malicious_model = craft_malicious_pytorch_model(payload="reverse_shell")
 
 # Victim loads model
 model = torch.load("malicious_model.pt")  # RCE triggered
-```
+````
 
 **Impact**:
+
 - Full system compromise
 - Model supply chain attacks
 - Training pipeline compromise
 
 **Mitigation**:
+
 ```python
 # Use weights_only parameter (PyTorch 2.5.2+)
 model = torch.load("model.pt", weights_only=True)
@@ -366,9 +403,10 @@ from safetensors.torch import load_file
 model = load_file("model.safetensors")
 ```
 
-**Patched Versions**: PyTorch >= 2.5.2
-**References**: CVE-2026-12345, PyTorch Security Advisory
-```
+**Patched Versions**: PyTorch >= 2.5.2 **References**: CVE-2026-12345, PyTorch
+Security Advisory
+
+````
 
 #### 3.4 Update COMPLIANCE-FRAMEWORKS.md
 
@@ -446,7 +484,7 @@ model = load_file("model.safetensors")
 - [x] Verified all cross-references work
 - [x] Checked for broken links
 - [x] Validated code examples
-```
+````
 
 ### Phase 5: Version Control and Commit
 
@@ -455,6 +493,7 @@ model = load_file("model.safetensors")
 **Commit Process**:
 
 1. **Review All Changes**:
+
    ```bash
    git status
    git diff docs/ai-security/
@@ -463,6 +502,7 @@ model = load_file("model.safetensors")
    ```
 
 2. **Stage Changes**:
+
    ```bash
    git add docs/ai-security/
    git add .claude/agents/ai-security/
@@ -471,6 +511,7 @@ model = load_file("model.safetensors")
    ```
 
 3. **Commit with Descriptive Message**:
+
    ```bash
    git commit -m "docs(ai-security): Monthly update (Feb 2026)
 
@@ -515,6 +556,7 @@ model = load_file("model.safetensors")
 **Validation Steps**:
 
 1. **Link Checking**:
+
    ```bash
    # Check all external links still work
    # (Use link checker tool or manual spot checks)
@@ -526,6 +568,7 @@ model = load_file("model.safetensors")
    - Validate tool version numbers
 
 3. **Code Example Testing**:
+
    ```bash
    # If updated Python code examples, test them
    python -c "
@@ -604,6 +647,7 @@ echo "4. Commit changes with detailed message"
 ## Primary Sources (Check Monthly)
 
 ### MITRE ATLAS
+
 - **URL**: https://atlas.mitre.org/matrices/ATLAS
 - **GitHub**: https://github.com/mitre-atlas/atlas-data
 - **What to Check**: New tactics, techniques, case studies
@@ -611,6 +655,7 @@ echo "4. Commit changes with detailed message"
 - **Last Checked**: [Date]
 
 ### OWASP GenAI Security
+
 - **URL**: https://genai.owasp.org/llmrisk/
 - **AI Exchange**: https://owaspai.org/
 - **What to Check**: LLM Top 10 updates, new risks
@@ -618,6 +663,7 @@ echo "4. Commit changes with detailed message"
 - **Last Checked**: [Date]
 
 ### CVE Databases
+
 - **NVD**: https://nvd.nist.gov
 - **Search Terms**: AI, LLM, ML, PyTorch, TensorFlow, Anthropic, OpenAI
 - **What to Check**: CVSS > 7.0, AI-specific vulnerabilities
@@ -626,20 +672,25 @@ echo "4. Commit changes with detailed message"
 ## Secondary Sources (Check Quarterly)
 
 ### NIST
+
 - **AI RMF**: https://www.nist.gov/itl/ai-risk-management-framework
 - **AI 100-2**: Adversarial ML taxonomy updates
 - **Last Checked**: [Date]
 
 ### EU AI Act
-- **Portal**: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai
+
+- **Portal**:
+  https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai
 - **What to Check**: Implementation deadlines, guidance
 - **Last Checked**: [Date]
 
 ### ISO
+
 - **42001**: Check for amendments
 - **Last Checked**: [Date]
 
 ### Research (ArXiv, Conferences)
+
 - **ArXiv**: Search "adversarial machine learning"
 - **Conferences**: NeurIPS, ICML, IEEE S&P, USENIX Security
 - **Last Checked**: [Date]
@@ -647,12 +698,14 @@ echo "4. Commit changes with detailed message"
 ## Vendor-Specific (As Needed)
 
 ### Tool Updates
+
 - **PyRIT**: https://github.com/Azure/PyRIT
 - **Promptfoo**: https://www.promptfoo.dev/
 - **Garak**: Check releases
 - **ART**: https://github.com/Trusted-AI/adversarial-robustness-toolbox
 
 ### Vendor Advisories
+
 - **OpenAI**: Security bulletins
 - **Anthropic**: Security updates
 - **Google**: AI security blog
@@ -709,22 +762,25 @@ Update is complete when:
 ## Integration with Existing Maintenance
 
 This skill integrates with the existing maintenance guidance in
-MITRE-ATLAS-REFERENCE.md "Maintaining This Document" section. Use both
-together for comprehensive upkeep.
+MITRE-ATLAS-REFERENCE.md "Maintaining This Document" section. Use both together
+for comprehensive upkeep.
 
 ## Tools and Resources
 
 **Web Monitoring**:
+
 - Use WebFetch tool to check URLs
 - Use WebSearch for recent developments
 - Manual review for detailed changes
 
 **Git Tools**:
+
 - `git diff` for reviewing changes
 - `git log` for tracking update history
 - `git blame` for attribution
 
 **Documentation Tools**:
+
 - Markdown linters for formatting
 - Link checkers for validation
 - Version control for history
@@ -735,7 +791,6 @@ together for comprehensive upkeep.
 
 ---
 
-**Skill Type**: Maintenance/Process
-**Domain**: AI Security Documentation
-**Expertise Level**: Intermediate
-**Time Commitment**: 2-4 hours monthly, 1 day quarterly
+**Skill Type**: Maintenance/Process **Domain**: AI Security Documentation
+**Expertise Level**: Intermediate **Time Commitment**: 2-4 hours monthly, 1 day
+quarterly
