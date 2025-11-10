@@ -339,6 +339,8 @@ bun run dev:mcp:karakeep
 ### MITRE ATLAS Reference Documentation
 
 - **Location**: `docs/ai-security/MITRE-ATLAS-REFERENCE.md`
+- **Source**: Based on MITRE ATLAS Matrices
+  (<https://atlas.mitre.org/matrices/ATLAS>)
 - **Purpose**: Comprehensive internalized ATLAS framework documentation
 - **Contents**:
   - Complete overview of MITRE ATLAS framework
@@ -353,7 +355,8 @@ bun run dev:mcp:karakeep
   - Tools and resources for AI security
   - Future threat trends (2025+)
 - **Usage**: Primary reference for all AI security agents and skills
-- **Updates**: Living document tracking latest AI security research
+- **Maintenance**: Living document - should be reviewed quarterly and updated
+  when ATLAS framework changes. See document for detailed update process.
 
 ### Using AI Security Capabilities
 
