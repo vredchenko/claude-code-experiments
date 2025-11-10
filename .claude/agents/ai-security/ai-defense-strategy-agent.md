@@ -34,10 +34,17 @@ You design secure AI systems with:
 - Complete mediation
 
 **Secure ML Pipeline Architecture**:
-```
-[Data Sources] → [Validation] → [Preprocessing] → [Training] → [Validation] → [Deployment] → [Monitoring]
-     ↓              ↓                ↓              ↓            ↓              ↓              ↓
- [Provenance]   [Sanitize]      [Anomaly Det]  [Adv Train] [Testing]    [Access Ctrl]  [Behavior Mon]
+
+```text
+[Data Sources] → [Validation] → [Preprocessing] → [Training]
+     ↓              ↓                ↓              ↓
+ [Provenance]   [Sanitize]      [Anomaly Det]  [Adv Train]
+
+↓ ↓ ↓ ↓
+
+[Validation] → [Deployment] → [Monitoring]
+     ↓              ↓              ↓
+ [Testing]    [Access Ctrl]  [Behavior Mon]
 ```
 
 **Key Components**:

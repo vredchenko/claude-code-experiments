@@ -678,7 +678,8 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 - **Official ATLAS Website**: https://atlas.mitre.org
 - **ATLAS GitHub**: https://github.com/mitre-atlas/atlas-data
 - **MITRE ATT&CK**: https://attack.mitre.org
-- **OWASP Top 10 for LLMs**: https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- **OWASP Top 10 for LLMs**:
+  <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
 - **NIST AI RMF**: https://www.nist.gov/itl/ai-risk-management-framework
 
 ## Version History
