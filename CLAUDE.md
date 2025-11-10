@@ -188,6 +188,31 @@ development, to play around with and re-use in other projects.
 - **Metrics**: Robustness scores, attack success rates, perturbation analysis
 - **Authorization**: Required for all offensive testing
 
+### AI Security Update Skill
+
+- **Location**: `.claude/skills/ai-security-update/SKILL.md`
+- **Purpose**: Systematic workflow for maintaining and updating AI security
+  documentation
+- **Philosophy**: "Keep security knowledge current - AI threats evolve rapidly"
+- **Workflow Phases**:
+  1. **Check for Updates** - Monitor upstream sources (ATLAS, OWASP, CVEs,
+     frameworks)
+  2. **Prioritize Updates** - Triage changes by priority (P0-P3)
+  3. **Update Documentation** - Apply changes to relevant files
+  4. **Propagate to Agents and Skills** - Ensure consistency across components
+  5. **Version Control and Commit** - Document changes properly
+  6. **Validation and Testing** - Verify updates are accurate
+- **Use Cases**:
+  - Monthly CVE reviews
+  - Quarterly framework updates
+  - New vulnerability incorporation
+  - Regulatory change tracking
+  - Maintaining threat intelligence
+- **Helper Script**: `scripts/check-ai-security-updates.sh` checks upstream
+  sources
+- **Update Cadence**: Monthly for CVEs, quarterly for frameworks
+- **Integration**: Works with all AI security documentation and agents
+
 ## Setup
 
 ### Quick Start
