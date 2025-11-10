@@ -27,7 +27,7 @@ Changes that are:
 
 **Add to .claudeignore**:
 
-```
+```text
 Observation: node_modules/ appears in 15 search results, never useful
 Action: Add node_modules/ to .claudeignore
 Auto-commit: YES
@@ -36,7 +36,7 @@ Rationale: Standard practice, obviously irrelevant, easy to revert
 
 **Create command for clear pattern**:
 
-```
+```text
 Observation: User ran "bun test && bun run lint && bun run type-check" 5 times
 Action: Create /pre-commit command
 Auto-commit: YES (if pattern is unambiguous)
@@ -45,7 +45,7 @@ Rationale: Clear repeated workflow, low risk, easy to remove
 
 **Update usage statistics**:
 
-```
+```text
 Observation: Command invoked
 Action: Increment usage counter in usage-stats.json
 Auto-commit: YES
@@ -54,7 +54,7 @@ Rationale: Automated tracking, no user impact, expected behavior
 
 **Document discovered facts**:
 
-```
+```text
 Observation: Found explicit comment in code: "Always use React Query"
 Action: Add to CLAUDE.md
 Auto-commit: MAYBE (see below for documentation changes)
@@ -113,7 +113,7 @@ Changes that:
 
 **Update CLAUDE.md with observed pattern**:
 
-```
+```text
 Observation: Found .lean() used in 12 database query files
 Action: Add to CLAUDE.md: "Use .lean() for read-only queries"
 Propose first: YES
@@ -122,7 +122,7 @@ Rationale: Interpretation of pattern, could be wrong, affects core guidance
 
 **Create new agent**:
 
-```
+```text
 Observation: 5 database optimization questions in 2 weeks
 Action: Create database_optimization_agent.md
 Propose first: YES
@@ -131,7 +131,7 @@ Rationale: Significant new tool, need to validate scope and content
 
 **Add hook for automation**:
 
-```
+```text
 Observation: Code formatting inconsistencies in commits
 Action: Add post-edit hook to run prettier
 Propose first: YES
@@ -140,7 +140,7 @@ Rationale: Auto-executing change, could be disruptive, user should approve
 
 **Modify existing command**:
 
-```
+```text
 Observation: /test-all command could be faster by running changed files first
 Action: Update /test-all to be smarter
 Propose first: YES
@@ -151,7 +151,7 @@ Rationale: Changing existing behavior, user might prefer current version
 
 **Template**:
 
-```
+```text
 I've noticed [pattern/observation].
 
 I propose [specific change]:
@@ -173,20 +173,17 @@ Proceed? (yes/no/modify)
 
 **Example proposal**:
 
-```markdown
+```text
 I've noticed React Query is used in all API calls (found in 12 components), and
 the README.md explicitly states "use React Query for all data fetching."
 
 I propose adding this to CLAUDE.md:
-```
 
 ## API Patterns
 
 - All data fetching uses React Query (never native fetch directly)
 - Query keys follow pattern: ['resource', id, ...filters]
 - Mutations use optimistic updates for better UX
-
-```
 
 Benefits:
 - Consistent API patterns across sessions
@@ -256,7 +253,7 @@ Changes that:
 
 **Remove existing tool**:
 
-```
+```text
 Observation: /debug-cors command used 0 times in 30 days
 Action: Remove the command
 Always ask: YES
@@ -265,7 +262,7 @@ Rationale: Destructive, might be needed later, user should decide
 
 **Change core instruction**:
 
-```
+```text
 Observation: CLAUDE.md says "use fetch()" but seeing React Query everywhere
 Action: Change CLAUDE.md to contradict itself
 Always ask: YES
@@ -274,7 +271,7 @@ Rationale: High risk, might be wrong, need user clarification
 
 **Restructure .claude/ organization**:
 
-```
+```text
 Observation: Many agents, could organize into subdirectories
 Action: Reorganize .claude/agents/ into categories
 Always ask: YES
@@ -283,7 +280,7 @@ Rationale: Structural change, user might have preferences
 
 **Disable or modify hook**:
 
-```
+```text
 Observation: pre-commit hook fails 30% of time
 Action: Disable or make less strict
 Always ask: YES
@@ -294,7 +291,7 @@ Rationale: User explicitly set up hook, should decide changes
 
 **Template**:
 
-```
+```text
 Analysis suggests [observation].
 
 Current situation:
@@ -312,7 +309,7 @@ What would you like to do?
 
 **Example question**:
 
-```markdown
+```text
 Analysis suggests the /debug-cors command may not be useful:
 
 Current situation:
@@ -344,7 +341,7 @@ What would you like to do?
 - Ask for final confirmation
 - Execute with clear commit message
 
-```
+```text
 User: Remove the debug-cors command, I don't need it
 
 Claude: "I'll remove the /debug-cors command.
@@ -370,7 +367,7 @@ git history if needed in future."
 
 ## Decision Flowchart
 
-```
+```text
 New improvement identified
         ↓
    Is it destructive/structural?
@@ -475,7 +472,7 @@ All automated or proposed changes should have clear commit messages:
 
 **Template**:
 
-```
+```text
 <type>(claude): <description>
 
 <body explaining what was learned and why change was made>
@@ -490,7 +487,7 @@ Risk: <any risks or caveats>
 
 **Auto-commit**:
 
-```
+```text
 chore(claude): Add dist/ to .claudeignore
 
 Observation: dist/ directory loaded in searches 12 times, never useful
@@ -501,7 +498,7 @@ Risk: Low (standard practice, easy to revert)
 
 **After proposal accepted**:
 
-```
+```text
 feat(claude): Add React Query convention to CLAUDE.md
 
 Observation: React Query used in all 12 API call sites, explicitly
@@ -514,7 +511,7 @@ Approved-by: User (proposal accepted 2025-11-07)
 
 **After user request**:
 
-```
+```text
 feat(claude): Create /test-auth command per user request
 
 User requested command for frequently-run test sequence.
@@ -554,14 +551,14 @@ Benefit: Quick access to auth module testing
 
 Allow user to set preferences:
 
-```json
+```jsonc
 {
   "improvements": {
     "auto_commit_level": "conservative", // "aggressive" | "conservative" | "ask_always"
     "auto_ignore": true, // Auto-commit .claudeignore changes
     "auto_commands": false, // Propose commands instead of auto-creating
-    "proposal_format": "concise" // "concise" | "detailed"
-  }
+    "proposal_format": "concise", // "concise" | "detailed"
+  },
 }
 ```
 
@@ -569,7 +566,7 @@ Allow user to set preferences:
 
 User can temporarily change behavior:
 
-```
+```text
 User: "Be more aggressive with improvements this session"
 Claude: [Increases auto-commit threshold]
 

@@ -270,7 +270,7 @@ thresholds before Phase 3.
 
 **Format**:
 
-```
+```text
 This week you used:
 - /test-all (15 times) ⭐⭐⭐⭐⭐
 - /db-reset (3 times) ⭐⭐⭐⭐⭐

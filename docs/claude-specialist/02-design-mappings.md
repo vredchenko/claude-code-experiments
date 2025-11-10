@@ -36,7 +36,7 @@ customization technique.
 
 **Examples to capture**:
 
-```markdown
+```text
 # Discovered Convention
 
 "All API calls in this project use React Query - found in api/README.md stating
@@ -81,7 +81,7 @@ times. Pattern found in test-utils.ts:cleanup()"
 
 **Repeated Operation**:
 
-```
+```text
 Observation: User runs "bun test && bun run lint && bun run type-check"
 before every commit (4 times)
 
@@ -90,7 +90,7 @@ Action: Create /pre-commit command
 
 **Multi-Step Workflow**:
 
-```
+```text
 Observation: Database reset follows same pattern:
 1. docker-compose down db
 2. docker-compose up -d db
@@ -103,7 +103,7 @@ Action: Create /db-reset command
 
 **Common Debug Scenario**:
 
-```
+```text
 Observation: When API tests fail, always run:
 1. Check API logs: docker logs api-server
 2. Check database state: psql -c "SELECT * FROM users"
@@ -133,7 +133,7 @@ Action: Create /debug-api command
 
 **Domain Expertise**:
 
-```
+```text
 Observation: Database optimization questions come up regularly - query
 performance, indexing strategies, schema design
 (5 occurrences over 2 weeks)
@@ -147,7 +147,7 @@ Action: Create database_optimization_agent.md with expertise on:
 
 **Review Process**:
 
-```
+```text
 Observation: Security review needed before deploying auth changes
 (Explicit requirement in SECURITY.md)
 
@@ -160,7 +160,7 @@ Action: Create security_auditor_agent.md with checklist:
 
 **Specialized Analysis**:
 
-```
+```text
 Observation: React performance optimization requires specialized knowledge
 - Re-render analysis
 - useMemo/useCallback usage
@@ -190,7 +190,7 @@ Action: Create react_performance_agent.md
 
 **Auto-Format** (Post-Edit hook):
 
-```
+```text
 Observation: Code formatting inconsistencies in PRs
 (Recurring issue)
 
@@ -201,7 +201,7 @@ Command: prettier --write {file}
 
 **Pre-Commit Tests** (Pre-Bash hook):
 
-```
+```text
 Observation: Broken code committed 3 times
 (Should have caught with tests)
 
@@ -212,7 +212,7 @@ Command: bun test && bun run lint
 
 **Secret Detection** (Post-Write hook):
 
-```
+```text
 Observation: Nearly committed .env file
 (Security requirement)
 
@@ -245,7 +245,7 @@ Command: git-secrets --scan {file}
 
 **Examples**:
 
-```
+```text
 Observation: node_modules/ appears in search results, slowing searches
 Action: Add node_modules/ to .claudeignore
 
@@ -258,7 +258,7 @@ Action: Add dist/ to .claudeignore
 
 ## Decision Flowchart
 
-```
+```text
 New Learning Observed
         ↓
     Is it a universal truth?
@@ -354,7 +354,7 @@ CONTRIBUTING.md)
 
 **Example**:
 
-```
+```text
 Learning: All commits must follow Conventional Commits format
 
 Implementation:

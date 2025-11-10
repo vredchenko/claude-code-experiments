@@ -16,7 +16,7 @@ current work.**
 
 **Examples**:
 
-```
+```text
 Signal: User runs "bun test && bun lint && bun type-check" before every commit (5 times)
 → Create /pre-commit command
 
@@ -40,7 +40,7 @@ codebase patterns.
 
 **Examples**:
 
-```
+```text
 Signal: README.md states "All API calls use React Query"
 → Add to CLAUDE.md with citation
 
@@ -66,7 +66,7 @@ Signal: All test files use vitest describe/it/expect pattern
 
 **Examples**:
 
-```
+```text
 Signal: CORS issues debugged twice with same steps
 → Create /debug-cors command
 
@@ -89,7 +89,7 @@ Signal: Formatting inconsistencies in PRs
 
 **Examples**:
 
-```
+```text
 Signal: React Query pattern for optimistic updates works well (used 3+ times)
 → Document pattern in CLAUDE.md
 
@@ -112,7 +112,7 @@ Signal: Testing strategy for async operations (repeated successfully)
 
 **Examples**:
 
-```
+```text
 Signal: Forgetting to call cleanup() in tests causes hangs (happened 3 times)
 → Add to CLAUDE.md: "Always call cleanup() in afterEach"
 
@@ -135,7 +135,7 @@ Signal: Redis connections must be closed in tests (caused CI failures)
 
 **Examples**:
 
-```
+```text
 Signal: Feature-based directory structure (documented in ARCHITECTURE.md)
 → Add to CLAUDE.md
 
@@ -160,7 +160,7 @@ Signal: Microservices communicate via REST APIs, not direct DB access
 
 **Examples**:
 
-```
+```text
 Noise: User runs complex regex to fix malformed data once
 → DON'T create command (unlikely to recur)
 
@@ -183,7 +183,7 @@ Noise: Exploratory git command to analyze history
 
 **Examples**:
 
-```
+```text
 Noise: User prefers `const` for everything (no project style guide)
 → DON'T add to CLAUDE.md (personal style)
 
@@ -208,7 +208,7 @@ Noise: User runs tests with --verbose flag (preference, not requirement)
 
 **Examples**:
 
-```
+```text
 Noise: Adding console.log everywhere to debug issue
 → DON'T capture as pattern (debugging, temporary)
 
@@ -231,7 +231,7 @@ Noise: Manually mocking module due to test bug
 
 **Examples**:
 
-```
+```text
 Noise: User tries 3 different state management approaches
 → DON'T capture yet (still exploring)
 
@@ -254,7 +254,7 @@ Noise: Refactoring component multiple times to find best structure
 
 **Examples**:
 
-```
+```text
 Noise: Tried approach A, didn't work, switched to approach B
 → DON'T capture approach A (failed)
 → MAYBE capture approach B if successful and repeated
@@ -278,7 +278,7 @@ Exception: May capture as "anti-pattern" if important to avoid
 
 **Examples**:
 
-```
+```text
 Noise: "This API endpoint seems slow" (observation without measurement)
 → DON'T add to CLAUDE.md (unverified assumption)
 
@@ -414,7 +414,7 @@ commits.
 
 Sometimes worth capturing what NOT to do:
 
-```
+```text
 ✅ Capture anti-pattern if:
 - Tried and proven harmful
 - Easy mistake to make
@@ -430,7 +430,7 @@ Example:
 
 General patterns with known exceptions:
 
-```
+```text
 ✅ Capture both pattern and exception:
 
 "Use React Query for all API calls
@@ -442,7 +442,7 @@ General patterns with known exceptions:
 
 Patterns in transition:
 
-```
+```text
 ⚠️ Note as evolving:
 
 "State management transitioning from Redux to Zustand
@@ -453,7 +453,7 @@ Patterns in transition:
 
 ## Practical Rules of Thumb
 
-### CAPTURE if:
+### CAPTURE if
 
 1. Repeated 3+ times OR explicitly documented
 2. Will save time or prevent errors
@@ -461,7 +461,7 @@ Patterns in transition:
 4. Based on facts, not assumptions
 5. Stable over time
 
-### DON'T CAPTURE if:
+### DON'T CAPTURE if
 
 1. Only seen once or twice
 2. Tied to specific bug/issue
@@ -469,7 +469,7 @@ Patterns in transition:
 4. Temporary or exploratory
 5. Failed approach
 
-### WAIT AND OBSERVE if:
+### WAIT AND OBSERVE if
 
 1. Pattern emerging but not established
 2. Only 2 occurrences (almost threshold)

@@ -36,7 +36,7 @@ Bad patterns can:
 
 **Example** of what NOT to capture:
 
-```
+```text
 Session 1: User runs complex regex to fix malformed data
 Observation: Complex data transformation
 
@@ -67,7 +67,7 @@ Result: Correctly avoided capturing noise
 
 **Example**:
 
-```
+```text
 Existing CLAUDE.md:
 "All API calls use React Query"
 
@@ -166,7 +166,7 @@ function verifyPattern(pattern: Pattern): VerificationResult {
 
 **Example of temporal (DON'T capture)**:
 
-```
+```text
 Session on 2025-11-07:
 - Bug: API endpoint returns 500
 - Workaround: Add console.log statements everywhere
@@ -178,7 +178,7 @@ Session on 2025-11-07:
 
 **Example of permanent (DO capture)**:
 
-```
+```text
 Session on 2025-11-01:
 - Observe: .lean() used in 4 query files
 
@@ -212,7 +212,7 @@ Session on 2025-11-07:
 
 **Example of personal preference (DON'T capture)**:
 
-```
+```text
 Observation: User prefers importing React as `import * as React`
 
 Analysis:
@@ -226,7 +226,7 @@ Analysis:
 
 **Example of project standard (DO capture)**:
 
-```
+```text
 Observation: All test files use `describe` and `it` from vitest
 
 Analysis:
@@ -243,7 +243,7 @@ Patterns that should NOT be captured without user confirmation:
 
 ### 1. Error-Related Patterns
 
-```
+```text
 ❌ Pattern based on workaround for bug
 ❌ Commands created during error investigation
 ❌ Conventions inferred from broken code
@@ -256,7 +256,7 @@ User repeatedly restarts server due to bug
 
 ### 2. Contradictory Patterns
 
-```
+```text
 ❌ New pattern contradicts existing CLAUDE.md
 ❌ New pattern conflicts with documented standard
 ❌ Unclear which pattern is correct
@@ -269,7 +269,7 @@ But found `"strict": false` in tsconfig.json
 
 ### 3. Over-Specific Patterns
 
-```
+```text
 ❌ Tied to specific bug/ticket/situation
 ❌ Only relevant for current work
 ❌ Won't generalize
@@ -282,7 +282,7 @@ Pattern: Complex data transformation scripts
 
 ### 4. Premature Optimization
 
-```
+```text
 ❌ Creating tools before need is proven
 ❌ Complex automation for rare operation
 ❌ Over-engineering simple tasks
@@ -295,7 +295,7 @@ User runs `git log --graph` once
 
 ### 5. Unstable Patterns
 
-```
+```text
 ❌ Pattern still evolving
 ❌ Approach changes frequently
 ❌ Experimentation phase
@@ -337,7 +337,7 @@ git revert <commit-hash>
 
 **User commands**:
 
-```
+```text
 User: "That pattern you added to CLAUDE.md is wrong"
 
 Claude: "I'll remove it. Which pattern specifically?"
@@ -356,7 +356,7 @@ misinformation. Original addition in commit abc123."
 
 **User can explicitly correct**:
 
-```
+```text
 User: "Actually, we use fetch() in some cases, not always React Query"
 
 Claude: "Thanks for clarifying. Should I:
@@ -374,7 +374,7 @@ Claude: [Updates CLAUDE.md with nuanced guidance, commits]
 
 If a tool is created but never used, A/B testing will identify it for removal:
 
-```
+```text
 Tool created: /debug-cors
 Usage: 0 times in 30 days
 A/B test: 30 days, never requested
@@ -387,7 +387,7 @@ Lesson: Wait for more occurrences before creating tools
 
 Specialist Agent periodically reviews all customizations:
 
-```
+```text
 Specialist Agent:
 
 "Reviewing CLAUDE.md patterns:
@@ -431,7 +431,7 @@ Use these to improve future pattern recognition:
 
 User corrections inform future decisions:
 
-```
+```text
 User frequently corrects CLAUDE.md additions
 → Increase threshold for CLAUDE.md (require more evidence)
 → Always propose CLAUDE.md changes, never auto-commit
@@ -461,7 +461,7 @@ Track quality of captured patterns:
 
 **Quality score**:
 
-```
+```text
 Pattern Quality = (Uses + Positive_Feedback - Corrections - Removals) / Time_Since_Capture
 
 High quality: >0.5

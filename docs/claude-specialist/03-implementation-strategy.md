@@ -67,7 +67,7 @@ improvements.
 
 ### Example Invocation
 
-```
+```text
 User: /reflect
 
 Claude (as Specialist Agent):
@@ -116,7 +116,7 @@ Proceed with these improvements? (all/selective/none)
 
 ### Agent Prompt Structure
 
-```markdown
+```text
 You are the Claude Code Specialist Agent, responsible for analyzing project
 patterns and proposing improvements to Claude's project-specific tooling.
 
@@ -208,7 +208,7 @@ Explicit trigger for capturing learnings from recent work.
 
 ### Example Invocation
 
-````
+````text
 User: /improve-claude
 
 Claude:
@@ -231,7 +231,7 @@ Recommendation: Add to CLAUDE.md
 - JWT tokens use RS256 (asymmetric) for better security
 - Private key in AUTH_PRIVATE_KEY env var
 - Public key in AUTH_PUBLIC_KEY env var
-````
+```
 
 Proceed? (yes/no/modify)
 
@@ -251,19 +251,18 @@ Proceed? (yes/no/modify)
 
 Found: All API routes use express-rate-limit with:
 
-- windowMs: 15 _ 60 _ 1000 (15 min)
+- windowMs: 15 _60_ 1000 (15 min)
 - max: 100 requests
 - standardHeaders: true
 
 Recommendation: Add to CLAUDE.md
 
 Proceed? (yes/no/modify)
-
 ````
 
 ### Command Prompt Structure
 
-```markdown
+```text
 Review recent work and identify learnings to capture in Claude Code
 customizations.
 
@@ -294,7 +293,7 @@ Present findings one at a time:
 - Where to capture it
 - Specific content to add
 - Ask for confirmation before committing
-````
+```
 
 ## 3. Background Pattern Detection
 
@@ -348,7 +347,7 @@ Built-in awareness during normal Claude operation (not a separate file/tool).
 
 ### Example Interaction
 
-```
+```text
 User: Run the tests for the authentication module
 
 Claude: [runs tests]
@@ -423,7 +422,7 @@ Prompt for lightweight reflection after work sessions.
 
 ### Example Interaction
 
-```
+```text
 [User completes feature work]
 
 Claude: "Session summary:
