@@ -1,5 +1,15 @@
 # MITRE ATLAS Reference Guide
 
+> **Source**: This document is based on the MITRE ATLAS framework, specifically
+> the ATLAS Matrices available at <https://atlas.mitre.org/matrices/ATLAS>
+>
+> **Attribution**: Content derived from MITRE ATLAS, a globally accessible
+> knowledge base maintained by MITRE Corporation.
+>
+> **Maintenance**: As ATLAS is a living framework that evolves with new threats,
+> this document should be periodically reviewed and updated to reflect changes
+> in the upstream framework.
+
 ## Overview
 
 **MITRE ATLAS** (Adversarial Threat Landscape for Artificial-Intelligence Systems)
@@ -10,6 +20,7 @@ from AI red teams and security groups.
 **First Released**: June 2021
 **Current Version**: Active development with 2025 updates
 **Official Site**: https://atlas.mitre.org
+**Matrices**: <https://atlas.mitre.org/matrices/ATLAS>
 
 ### Purpose
 
@@ -673,10 +684,83 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 4. **Case Study Documentation**: Share real-world findings
 5. **Community Contribution**: Submit to ATLAS database
 
+## Maintaining This Document
+
+As MITRE ATLAS is a **living framework**, it continuously evolves to address
+emerging AI security threats. This document should be periodically updated to
+stay current.
+
+### Update Triggers
+
+Review and update this document when:
+
+1. **New ATLAS Tactics/Techniques**: MITRE adds new tactics or techniques
+2. **Framework Restructuring**: Changes to ATLAS organization or taxonomy
+3. **Major AI Security Incidents**: New high-profile attacks or case studies
+4. **Tool/Framework Updates**: New security tools or defensive frameworks
+5. **Quarterly Reviews**: Regular scheduled reviews (recommended: quarterly)
+
+### Update Process
+
+1. **Monitor Upstream Changes**:
+   - Check ATLAS Matrices: <https://atlas.mitre.org/matrices/ATLAS>
+   - Follow ATLAS GitHub: <https://github.com/mitre-atlas/atlas-data>
+   - Subscribe to ATLAS announcements and blog posts
+   - Monitor AI security research (conferences, papers)
+
+2. **Compare and Identify Gaps**:
+   - Review new/modified tactics and techniques
+   - Check for deprecated content
+   - Identify new case studies or examples
+   - Note changes to mitigations or tools
+
+3. **Update Documentation**:
+   - Add new tactics/techniques with descriptions
+   - Update case studies with recent incidents
+   - Refresh tool recommendations
+   - Update threat trends and future outlook
+   - Increment version number and date
+
+4. **Propagate Changes to Agents/Skills**:
+   - Update ATLAS Threat Modeling Agent knowledge
+   - Refresh AI Red Team Agent techniques
+   - Update AI Defense Strategy Agent mitigations
+   - Revise AI Security Assessment Skill workflows
+   - Update Adversarial Testing Skill methodologies
+
+5. **Test and Validate**:
+   - Verify all agents still reference correct tactics/techniques
+   - Ensure skills align with current framework
+   - Update any code examples or tool configurations
+   - Test that documentation is internally consistent
+
+### Version Control
+
+Track major updates to maintain documentation history:
+
+- **Current Version**: 1.0 (2025-11-10)
+- **Based on**: MITRE ATLAS as of November 2025
+- **Next Review**: February 2026 (quarterly)
+
+### Maintenance Ownership
+
+**Recommended**: Assign a team member or rotation to:
+
+- Monitor ATLAS updates monthly
+- Perform quarterly documentation reviews
+- Coordinate updates across all AI security agents/skills
+- Maintain changelog of modifications
+
 ## References
 
+### Primary Sources
+
+- **ATLAS Matrices** (Primary Source): <https://atlas.mitre.org/matrices/ATLAS>
 - **Official ATLAS Website**: https://atlas.mitre.org
-- **ATLAS GitHub**: https://github.com/mitre-atlas/atlas-data
+- **ATLAS GitHub Repository**: <https://github.com/mitre-atlas/atlas-data>
+
+### Related Frameworks
+
 - **MITRE ATT&CK**: https://attack.mitre.org
 - **OWASP Top 10 for LLMs**:
   <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
