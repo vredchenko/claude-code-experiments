@@ -165,22 +165,24 @@ function invokeCommand(commandName: string) {
 
 **Storage options**:
 
-**Option A: Local only (gitignored)**
+### Option A: Local only (gitignored)
 
 - Pro: No privacy concerns
 - Pro: Personal usage patterns
 - Con: Not shared across team
 - Con: Lost when cloning fresh
 
-**Option B: Version controlled (aggregated)**
+### Option B: Version controlled (aggregated)
 
 - Pro: Shared team insights
 - Pro: Persists across clones
 - Con: Privacy considerations
 - Con: May create conflicts
 
-**Recommendation**: Start with Option A (gitignored), add Option B aggregated
-summary if team wants shared insights.
+### Recommendation
+
+Start with Option A (gitignored), add Option B aggregated summary if team wants
+shared insights.
 
 ## Feedback Collection
 
@@ -200,7 +202,7 @@ summary if team wants shared insights.
 
 **After command execution**:
 
-```
+```text
 ✓ /test-all completed in 15s
 
 Quick feedback (optional):
@@ -216,7 +218,7 @@ Thanks! What made it useful? (optional, press Enter to skip)
 
 **After agent invocation**:
 
-```
+```text
 [Security audit complete]
 
 Was the security_auditor agent helpful?
@@ -232,7 +234,7 @@ Optional: Any suggestions for improvement?
 
 **After hook execution (only on failure or occasional sampling)**:
 
-```
+```text
 Post-edit hook (prettier) ran in 250ms
 
 [No prompt - seamless]
@@ -247,7 +249,7 @@ Post-edit hook (prettier) ran in 250ms
 
 **Weekly Summary** (lightweight):
 
-```
+```text
 This week you used:
 - /test-all (15 times) ⭐⭐⭐⭐⭐
 - /db-reset (3 times) ⭐⭐⭐⭐⭐
@@ -258,7 +260,7 @@ Any tools feeling less useful? (yes/no/skip)
 
 **Monthly Deep Review** (via Specialist Agent):
 
-```
+```text
 User: /reflect
 
 Claude (Specialist Agent):
@@ -323,7 +325,7 @@ Validate that tools are actually valuable, not just accumulated cruft.
 
 **Concept**: Tool still exists but prompts user to choose.
 
-```
+```text
 User: /test-all
 
 Claude: "The /test-all command is in A/B test mode.
@@ -350,7 +352,7 @@ removing
 
 **Concept**: Temporarily remove tool completely.
 
-```
+```text
 User: /debug-cors
 
 Claude: "The /debug-cors command is temporarily disabled for A/B testing.
@@ -370,7 +372,7 @@ removing **Failure criteria**: If requested multiple times, keep it
 
 **Concept**: Create two versions, test which is better.
 
-```
+```text
 # Version A: Simple command
 /test-all → runs all tests
 
@@ -476,7 +478,7 @@ metrics **Measurement**: Time saved, feedback scores
 
 **Example pruning commit**:
 
-```
+```text
 chore(claude): Remove /debug-cors command
 
 Reason: A/B test showed command requested 0 times in 30 days

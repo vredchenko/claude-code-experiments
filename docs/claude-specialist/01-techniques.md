@@ -36,7 +36,7 @@ workflows
 
 **Examples**:
 
-```markdown
+```text
 # Project Conventions
 
 - All API calls use React Query - never use native fetch directly
@@ -73,7 +73,7 @@ workflows
 
 **security_auditor.md**:
 
-```markdown
+```text
 You are a security-focused code reviewer. Analyze code for:
 
 - OWASP Top 10 vulnerabilities
@@ -85,7 +85,7 @@ You are a security-focused code reviewer. Analyze code for:
 
 **performance_optimizer.md**:
 
-```markdown
+```text
 You are a performance optimization specialist. Focus on:
 
 - Database query efficiency (N+1 problems)
@@ -97,7 +97,7 @@ You are a performance optimization specialist. Focus on:
 
 **api_design_reviewer.md**:
 
-```markdown
+```text
 You review API design for consistency and best practices:
 
 - RESTful conventions
@@ -135,7 +135,7 @@ You review API design for consistency and best practices:
 
 **test-all.md**:
 
-```markdown
+```text
 Run the complete test suite with coverage:
 
 1. Run unit tests: `bun test`
@@ -146,7 +146,7 @@ Run the complete test suite with coverage:
 
 **db-reset.md**:
 
-```markdown
+```text
 Reset the database to clean state:
 
 1. Drop existing database
@@ -157,7 +157,7 @@ Reset the database to clean state:
 
 **deploy-staging.md**:
 
-```markdown
+```text
 Deploy current branch to staging:
 
 1. Run tests and type checking
@@ -220,7 +220,7 @@ Deploy current branch to staging:
 
 **Run tests after code changes**:
 
-- Trigger: Post-Edit (for _.ts, _.tsx files)
+- Trigger: Post-Edit (for _.ts,_.tsx files)
 - Action: Run tests for changed file
 - Benefit: Immediate feedback on breakage
 
@@ -284,7 +284,7 @@ Commands.
 
 **Examples**:
 
-```
+```text
 # Dependencies
 node_modules/
 vendor/
