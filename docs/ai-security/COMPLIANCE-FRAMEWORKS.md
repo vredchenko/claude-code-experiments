@@ -41,10 +41,9 @@ frameworks.
 
 ### Overview
 
-**Release**: January 2023
-**Status**: Voluntary guidance (US), increasingly adopted globally
-**Authority**: National Institute of Standards and Technology (NIST)
-**URL**: <https://www.nist.gov/itl/ai-risk-management-framework>
+**Release**: January 2023 **Status**: Voluntary guidance (US), increasingly
+adopted globally **Authority**: National Institute of Standards and Technology
+(NIST) **URL**: <https://www.nist.gov/itl/ai-risk-management-framework>
 
 **Companion**: NIST AI 100-2e2025 - Adversarial Machine Learning Taxonomy
 (formal definitions for attacks/mitigations)
@@ -58,6 +57,7 @@ The AI RMF organizes AI risk management into four functions:
 **Objective**: Establish organizational culture and policies for AI risk mgmt
 
 **Key Activities**:
+
 - Create AI governance structure
 - Assign roles and responsibilities
 - Establish risk tolerance
@@ -65,6 +65,7 @@ The AI RMF organizes AI risk management into four functions:
 - Ensure regulatory compliance
 
 **Security Controls**:
+
 - AI Security Policy documentation
 - Risk appetite statement
 - Incident response procedures
@@ -72,21 +73,25 @@ The AI RMF organizes AI risk management into four functions:
 - Audit and oversight processes
 
 **Implementation**:
+
 ```markdown
 ## AI Governance Charter
 
 ### Roles
+
 - **AI Security Officer**: Overall risk management
 - **ML Engineers**: Technical implementation
 - **Legal/Compliance**: Regulatory adherence
 - **Ethics Board**: Societal impact review
 
 ### Risk Tolerance
+
 - **Critical Systems**: Zero tolerance for safety failures
 - **Customer-Facing**: Low tolerance for bias/discrimination
 - **Internal Tools**: Moderate risk acceptable with monitoring
 
 ### Review Cadence
+
 - Quarterly risk assessments
 - Annual framework reviews
 - Post-incident evaluations
@@ -97,6 +102,7 @@ The AI RMF organizes AI risk management into four functions:
 **Objective**: Understand AI system context and potential risks
 
 **Key Activities**:
+
 - Document AI system purpose and capabilities
 - Identify stakeholders and impacts
 - Catalog data sources and dependencies
@@ -104,12 +110,14 @@ The AI RMF organizes AI risk management into four functions:
 - Assess societal and individual risks
 
 **Security Activities**:
+
 - **Threat Modeling**: Apply MITRE ATLAS framework
 - **Attack Surface Analysis**: APIs, models, data pipelines
 - **Dependency Mapping**: Supply chain risks
 - **Impact Assessment**: Consequences of security failures
 
 **Integration with ATLAS**:
+
 ```text
 NIST MAP Phase → ATLAS Threat Modeling
 
@@ -124,6 +132,7 @@ NIST MAP Phase → ATLAS Threat Modeling
 **Objective**: Evaluate and benchmark AI risks and trustworthiness
 
 **Key Activities**:
+
 - Establish risk metrics
 - Test for vulnerabilities
 - Measure robustness
@@ -133,6 +142,7 @@ NIST MAP Phase → ATLAS Threat Modeling
 **Security Metrics**:
 
 **Adversarial Robustness**:
+
 ```python
 # Measure model robustness
 def measure_robustness(model, test_data):
@@ -146,6 +156,7 @@ def measure_robustness(model, test_data):
 ```
 
 **Privacy Leakage**:
+
 ```python
 # Measure privacy risks
 def measure_privacy_leakage(model, test_data):
@@ -161,6 +172,7 @@ def measure_privacy_leakage(model, test_data):
 ```
 
 **Security Testing Results**:
+
 - Penetration test findings
 - Red team exercise outcomes
 - Vulnerability scan results
@@ -171,6 +183,7 @@ def measure_privacy_leakage(model, test_data):
 **Objective**: Prioritize and respond to AI risks
 
 **Key Activities**:
+
 - Prioritize risks by severity
 - Implement risk treatments
 - Monitor continuously
@@ -185,15 +198,18 @@ def measure_privacy_leakage(model, test_data):
 4. **Accept**: Document residual risk acceptance
 
 **Security Response**:
+
 ```markdown
 ## AI Security Incident Response
 
 ### Detection
+
 - Automated monitoring (accuracy drops, anomalies)
 - Security alerts (prompt injection attempts)
 - User reports
 
 ### Response
+
 1. **Contain**: Rate limit, roll back model if needed
 2. **Investigate**: Root cause analysis using ATLAS taxonomy
 3. **Remediate**: Fix vulnerability, update defenses
@@ -201,6 +217,7 @@ def measure_privacy_leakage(model, test_data):
 5. **Learn**: Update risk register, improve controls
 
 ### Post-Incident
+
 - Conduct retrospective
 - Update threat model
 - Enhance monitoring
@@ -215,31 +232,37 @@ def measure_privacy_leakage(model, test_data):
 Cybersecurity Framework with AI RMF
 
 **Creating Profiles**:
+
 ```markdown
 ## AI RMF Profile: Healthcare Diagnostic AI
 
 ### Context
+
 - Use Case: Medical image analysis
 - Risk Level: High (patient safety impact)
 - Regulations: HIPAA, FDA, EU AI Act (high-risk)
 
 ### Govern
+
 - Medical AI governance board established
 - FDA pre-market approval required
 - HIPAA compliance officer oversight
 
 ### Map
+
 - Threat model: ATLAS-based + medical device threats
 - Data: PHI requiring encryption, access controls
 - Dependencies: Cloud provider SOC 2, medical imaging devices
 
 ### Measure
+
 - Diagnostic accuracy: >95% required
 - Robustness: Adversarial accuracy >85%
 - Privacy: HIPAA compliance verified, differential privacy applied
 - Bias: Tested across demographics, < 5% accuracy variance
 
 ### Manage
+
 - Quarterly security audits
 - Continuous monitoring of accuracy
 - Incident response: 1-hour detection, 4-hour containment
@@ -249,11 +272,13 @@ Cybersecurity Framework with AI RMF
 ### Integration with Security Frameworks
 
 **NIST AI RMF + MITRE ATLAS**:
+
 - MAP → Threat modeling with ATLAS tactics
 - MEASURE → Test against ATLAS techniques
 - MANAGE → Implement ATLAS mitigations
 
 **NIST AI RMF + OWASP**:
+
 - MAP → Include OWASP LLM Top 10 in risk identification
 - MEASURE → Test for OWASP risks
 - MANAGE → Deploy OWASP controls
@@ -262,11 +287,9 @@ Cybersecurity Framework with AI RMF
 
 ### Overview
 
-**Release**: December 2023
-**Status**: International standard, certifiable
-**Authority**: ISO/IEC Joint Technical Committee
-**Certification**: Anthropic first certified (January 2025)
-**URL**: ISO Store (purchase required)
+**Release**: December 2023 **Status**: International standard, certifiable
+**Authority**: ISO/IEC Joint Technical Committee **Certification**: Anthropic
+first certified (January 2025) **URL**: ISO Store (purchase required)
 
 ### Why ISO 42001
 
@@ -293,6 +316,7 @@ Based on ISO high-level structure (Annex SL):
 #### Clause 6.1.4: Risk Assessment and Treatment
 
 **AI-Specific Risks to Address**:
+
 - Adversarial attacks (ATLAS taxonomy)
 - Data poisoning
 - Model theft/extraction
@@ -301,10 +325,12 @@ Based on ISO high-level structure (Annex SL):
 - Unintended harmful outputs
 
 **Risk Treatment Plan**:
+
 ```markdown
 ## ISO 42001 Risk Treatment Plan
 
 ### Risk #1: Adversarial Evasion Attacks
+
 - **Likelihood**: High (publicly known techniques)
 - **Impact**: High (incorrect predictions)
 - **Risk Level**: Critical
@@ -324,24 +350,28 @@ Based on ISO high-level structure (Annex SL):
 **Security Across Lifecycle**:
 
 **Development**:
+
 - Secure coding practices
 - Dependency management
 - Code review and testing
 - Model validation
 
 **Deployment**:
+
 - Access control implementation
 - Encryption (data at rest/in transit)
 - Monitoring and logging
 - Incident response procedures
 
 **Operations**:
+
 - Continuous monitoring
 - Performance degradation detection
 - Regular security testing
 - Patch management
 
 **Decommissioning**:
+
 - Secure model deletion
 - Data retention compliance
 - Audit log preservation
@@ -351,6 +381,7 @@ Based on ISO high-level structure (Annex SL):
 **Security Controls Required**:
 
 1. **Access Control** (A.6.1.1):
+
    ```yaml
    access_control:
      models:
@@ -411,6 +442,7 @@ security_metrics = {
 ```
 
 **Audit Evidence**:
+
 - Security test results
 - Penetration test reports
 - Incident logs and response
@@ -420,17 +452,20 @@ security_metrics = {
 ### Path to ISO 42001 Certification
 
 **Phase 1: Gap Analysis** (1-2 months)
+
 - Assess current AI management practices
 - Identify gaps vs. ISO 42001 requirements
 - Estimate effort and resources
 
 **Phase 2: Implementation** (6-12 months)
+
 - Document AI management system
 - Implement required controls
 - Train personnel
 - Conduct internal audits
 
 **Phase 3: Certification Audit** (1-2 months)
+
 - Select certification body
 - Stage 1 audit (documentation review)
 - Stage 2 audit (implementation verification)
@@ -438,6 +473,7 @@ security_metrics = {
 - Receive certificate
 
 **Ongoing: Surveillance** (Annual)
+
 - Annual surveillance audits
 - Maintain compliance
 - Continual improvement
@@ -445,11 +481,13 @@ security_metrics = {
 ### Integration with Other Standards
 
 **ISO 42001 + ISO 27001** (Information Security):
+
 - Complementary controls
 - Shared risk assessment approach
 - Integrated management system
 
 **ISO 42001 + ISO 9001** (Quality):
+
 - Process approach alignment
 - Quality and AI safety integration
 
@@ -457,11 +495,9 @@ security_metrics = {
 
 ### Overview
 
-**Entered Force**: August 1, 2024
-**Enforcement**: Staggered implementation through 2027
-**Authority**: European Commission
-**Scope**: Extraterritorial (like GDPR)
-**Penalties**: Up to €35M or 7% global revenue
+**Entered Force**: August 1, 2024 **Enforcement**: Staggered implementation
+through 2027 **Authority**: European Commission **Scope**: Extraterritorial
+(like GDPR) **Penalties**: Up to €35M or 7% global revenue
 
 ### Timeline
 
@@ -474,6 +510,7 @@ security_metrics = {
 #### Prohibited AI (Article 5)
 
 Immediate ban (as of February 2025):
+
 - Social scoring systems
 - Real-time biometric identification (public spaces)
 - Emotion recognition (workplace/education)
@@ -482,6 +519,7 @@ Immediate ban (as of February 2025):
 #### High-Risk AI (Annex III)
 
 **Categories**:
+
 1. Critical infrastructure (transport, utilities)
 2. Education and vocational training
 3. Employment and worker management
@@ -493,31 +531,37 @@ Immediate ban (as of February 2025):
 **Security Requirements for High-Risk AI**:
 
 **Article 9: Risk Management System**:
+
 ```markdown
 ## EU AI Act Risk Management
 
 ### Identification
+
 - Identify reasonably foreseeable risks (including security)
 - Consider misuse scenarios
 - Analyze attack vectors per MITRE ATLAS
 
 ### Evaluation
+
 - Assess probability and severity
 - Consider vulnerable populations
 - Evaluate technical and operational risks
 
 ### Mitigation
+
 - Implement appropriate safeguards
 - Apply defense-in-depth
 - Test mitigations effectiveness
 
 ### Documentation
+
 - Risk assessment report
 - Mitigation decisions and rationale
 - Residual risk acceptance
 ```
 
 **Article 10: Data Governance**:
+
 - Training data quality requirements
 - Bias detection and mitigation
 - Data provenance tracking
@@ -532,30 +576,36 @@ Providers must design high-risk AI systems to achieve:
 3. **Cybersecurity**: Protection against security threats
 
 **Cybersecurity Requirements**:
+
 ```markdown
 ## EU AI Act Cybersecurity Compliance
 
 ### Security by Design
+
 - Threat modeling (MITRE ATLAS recommended)
 - Secure development lifecycle
 - Security testing before deployment
 
 ### Adversarial Robustness
+
 - Test against adversarial examples
 - Implement defenses (adversarial training, input validation)
 - Monitor for attacks in production
 
 ### Data Protection
+
 - Encryption requirements
 - Access control
 - GDPR compliance
 
 ### Monitoring & Logging
+
 - Security event logging
 - Anomaly detection
 - Audit trails
 
 ### Incident Response
+
 - Security incident procedures
 - Breach notification (24-72 hours)
 - Corrective actions
@@ -564,26 +614,31 @@ Providers must design high-risk AI systems to achieve:
 **Article 72-73: Post-Market Monitoring & Incident Reporting**:
 
 **Monitoring Requirements**:
+
 - Collect and analyze data on AI performance
 - Identify emerging risks
 - Track security incidents
 
 **Incident Reporting** (Article 73):
+
 ```markdown
 ## Serious Incident Report
 
 ### Triggers
+
 - Death or serious injury
 - Serious disruption of critical infrastructure
 - Fundamental rights violations
 - Serious security breaches
 
 ### Timeline
+
 - **Immediate**: Internal notification (<1 hour)
 - **Short**: Market surveillance authority notification (15 days)
 - **Follow-up**: Detailed report with root cause
 
 ### Contents
+
 - Incident description
 - Affected systems/individuals
 - Root cause analysis
@@ -596,6 +651,7 @@ Providers must design high-risk AI systems to achieve:
 **Effective**: August 2, 2025
 
 **Transparency Obligations** (Article 53):
+
 - Technical documentation
 - Publicly accessible summary
 - Copyright compliance
@@ -603,6 +659,7 @@ Providers must design high-risk AI systems to achieve:
 **Systemic Risk Models** (Article 55):
 
 High-capability models with "systemic risk" must:
+
 - Report system to European Commission
 - Model evaluation and testing
 - Adversarial testing
@@ -610,12 +667,14 @@ High-capability models with "systemic risk" must:
 - Cybersecurity safeguards
 
 **Example GPAI Compliance**:
+
 ```markdown
 ## GPT-4 Class Model Compliance
 
 ### Classification: Systemic Risk GPAI
 
 ### Obligations
+
 1. ✅ Technical documentation prepared
 2. ✅ Public summary published
 3. ✅ Copyright compliance process established
@@ -625,6 +684,7 @@ High-capability models with "systemic risk" must:
 7. ✅ Model evaluation report (annually)
 
 ### Security Testing
+
 - Red team exercises: Quarterly
 - Adversarial robustness: FGSM, PGD, jailbreaks
 - Security incidents: 0 critical, 3 high in Q4 2025
@@ -664,11 +724,13 @@ High-capability models with "systemic risk" must:
 ### Integration with Security Frameworks
 
 **EU AI Act + MITRE ATLAS**:
+
 - Article 15 (Cybersecurity) → Implement ATLAS mitigations
 - Article 72 (Monitoring) → Detect ATLAS attack patterns
 - Article 73 (Incidents) → Report using ATLAS taxonomy
 
 **EU AI Act + ISO 42001**:
+
 - ISO 42001 certification helps demonstrate EU AI Act compliance
 - Risk management alignment
 - Many overlapping requirements
@@ -684,6 +746,7 @@ Similar to NIST AI RMF, international scope
 General InfoSec standard, applicable to AI systems
 
 **AI-Relevant Controls**:
+
 - Access control (A.9)
 - Cryptography (A.10)
 - Operations security (A.12)
@@ -692,11 +755,11 @@ General InfoSec standard, applicable to AI systems
 
 ### Cloud Security Alliance (CSA) AI Controls Matrix
 
-**Release**: June 2025
-**Content**: 242 controls across 18 domains
-**Purpose**: Cloud-specific AI security controls
+**Release**: June 2025 **Content**: 242 controls across 18 domains **Purpose**:
+Cloud-specific AI security controls
 
 **Domains Include**:
+
 - AI Model Security
 - Data Governance for AI
 - AI Supply Chain Security
@@ -737,7 +800,7 @@ Don't treat frameworks as separate:
 
 Maintain single source of truth:
 
-```
+```text
 docs/
 ├── risk-assessment.md (NIST MAP, ISO 42001 Clause 6)
 ├── threat-model.md (ATLAS-based, EU AI Act Article 9)
@@ -751,16 +814,17 @@ docs/
 
 Create mapping document:
 
-| Requirement | NIST AI RMF | ISO 42001 | EU AI Act | MITRE ATLAS | OWASP |
-|-------------|-------------|-----------|-----------|-------------|-------|
-| Threat Model | MAP | 6.1.4 | Art 9 | All tactics | LLM01-10 |
-| Adversarial Testing | MEASURE | 9.1 | Art 15 | All techniques | Testing |
-| Incident Response | MANAGE | 8.5 | Art 73 | Impact tactics | LLM10 |
-| Access Control | GOVERN | 7.4 | Art 15 | TA0039 | LLM06 |
+| Requirement         | NIST AI RMF | ISO 42001 | EU AI Act | MITRE ATLAS    | OWASP    |
+| ------------------- | ----------- | --------- | --------- | -------------- | -------- |
+| Threat Model        | MAP         | 6.1.4     | Art 9     | All tactics    | LLM01-10 |
+| Adversarial Testing | MEASURE     | 9.1       | Art 15    | All techniques | Testing  |
+| Incident Response   | MANAGE      | 8.5       | Art 73    | Impact tactics | LLM10    |
+| Access Control      | GOVERN      | 7.4       | Art 15    | TA0039         | LLM06    |
 
 ### 4. Continuous Compliance
 
 **Quarterly Activities**:
+
 - Review regulatory updates
 - Update risk assessments
 - Test security controls
@@ -768,6 +832,7 @@ Create mapping document:
 - Update documentation
 
 **Annual Activities**:
+
 - External audits (ISO 42001)
 - Comprehensive security assessment
 - Framework alignment review
@@ -776,12 +841,14 @@ Create mapping document:
 ### 5. Leverage Tools
 
 **Compliance Management**:
+
 - GRC (Governance, Risk, Compliance) platforms
 - Automated evidence collection
 - Control mapping tools
 - Audit management systems
 
 **Security Testing**:
+
 - Promptfoo (OWASP alignment)
 - ART (ATLAS techniques)
 - Custom compliance test suites
@@ -797,17 +864,19 @@ Create mapping document:
 
 ### Regulatory
 
-- **EU AI Act**: <https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai>
-- **European Parliament**: <https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence>
+- **EU AI Act**:
+  <https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai>
+- **European Parliament**:
+  <https://www.europarl.europa.eu/topics/en/article/20230601STO93804/eu-ai-act-first-regulation-on-artificial-intelligence>
 
 ### Guidance
 
-- **NIST AI RMF Playbook**: <https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook>
+- **NIST AI RMF Playbook**:
+  <https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook>
 - **ISO 42001 Implementation Guide**: Available from ISO
 - **EU AI Act Compliance Guides**: Multiple consulting firms
 
 ---
 
-**Document Version**: 1.0
-**Last Updated**: 2025-11-10
-**Next Review**: February 2026 (quarterly)
+**Document Version**: 1.0 **Last Updated**: 2025-11-10 **Next Review**: February
+2026 (quarterly)

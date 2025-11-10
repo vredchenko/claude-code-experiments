@@ -12,15 +12,14 @@
 
 ## Overview
 
-**MITRE ATLAS** (Adversarial Threat Landscape for Artificial-Intelligence Systems)
-is a globally accessible, living knowledge base of adversary tactics and
-techniques based on real-world attack observations and realistic demonstrations
-from AI red teams and security groups.
+**MITRE ATLAS** (Adversarial Threat Landscape for Artificial-Intelligence
+Systems) is a globally accessible, living knowledge base of adversary tactics
+and techniques based on real-world attack observations and realistic
+demonstrations from AI red teams and security groups.
 
-**First Released**: June 2021
-**Current Version**: Active development with 2025 updates
-**Official Site**: https://atlas.mitre.org
-**Matrices**: <https://atlas.mitre.org/matrices/ATLAS>
+**First Released**: June 2021 **Current Version**: Active development with 2025
+updates **Official Site**: <https://atlas.mitre.org> **Matrices**:
+<https://atlas.mitre.org/matrices/ATLAS>
 
 ### Purpose
 
@@ -48,6 +47,7 @@ including:
 Gathering information about ML systems to plan future attacks.
 
 **Key Techniques**:
+
 - Discover ML model ontology
 - Discover ML artifacts
 - Identify ML system dependencies
@@ -55,6 +55,7 @@ Gathering information about ML systems to plan future attacks.
 - Acquire public ML artifacts
 
 **Attacker Goals**:
+
 - Understand model architecture
 - Identify training data sources
 - Map system components
@@ -66,6 +67,7 @@ Establishing resources to support operations, including training adversarial
 models.
 
 **Key Techniques**:
+
 - Develop adversarial ML model capabilities
 - Obtain capabilities through adversarial ML attacks
 - Acquire ML artifacts
@@ -73,6 +75,7 @@ models.
 - Publish poisoned datasets
 
 **Attacker Goals**:
+
 - Build attack infrastructure
 - Create poisoned training data
 - Develop adversarial examples
@@ -83,12 +86,14 @@ models.
 Gaining initial foothold in the target ML system or its environment.
 
 **Key Techniques**:
+
 - Supply chain compromise
 - Exploit public-facing application
 - Valid accounts
 - Phishing
 
 **Attacker Goals**:
+
 - Gain entry to ML pipeline
 - Access training infrastructure
 - Compromise data sources
@@ -99,12 +104,14 @@ Gaining initial foothold in the target ML system or its environment.
 **ATLAS-Specific**: Gaining access to machine learning models.
 
 **Key Techniques**:
+
 - ML artifact compromise
 - Inference API access
 - Physical environment manipulation
 - Adversarial ML service
 
 **Attacker Goals**:
+
 - Query model for predictions
 - Extract model internals
 - Manipulate model behavior
@@ -118,12 +125,14 @@ bridge between traditional system access and ML-specific attacks.
 Running malicious code within ML systems or artifacts.
 
 **Key Techniques**:
+
 - Command and scripting interpreter
 - User execution
 - Exploit ML model serving
 - Poisoned ML model execution
 
 **Attacker Goals**:
+
 - Execute backdoored models
 - Run malicious training scripts
 - Deploy compromised inference code
@@ -134,12 +143,14 @@ Running malicious code within ML systems or artifacts.
 Maintaining access over time within ML systems.
 
 **Key Techniques**:
+
 - Backdoor ML model
 - Poisoned dataset persistence
 - Valid accounts
 - ML artifact modification
 
 **Attacker Goals**:
+
 - Embed backdoors in models
 - Ensure poisoned data remains
 - Maintain access credentials
@@ -150,11 +161,13 @@ Maintaining access over time within ML systems.
 Gaining higher-level permissions in ML systems.
 
 **Key Techniques**:
+
 - Valid accounts
 - Exploit ML infrastructure
 - Abuse elevation control mechanisms
 
 **Attacker Goals**:
+
 - Access training infrastructure
 - Modify production models
 - Control data pipelines
@@ -165,6 +178,7 @@ Gaining higher-level permissions in ML systems.
 Avoiding detection during ML attacks.
 
 **Key Techniques**:
+
 - Adversarial perturbations
 - Obfuscate adversarial data
 - Exploit ML model blind spots
@@ -172,6 +186,7 @@ Avoiding detection during ML attacks.
 - Transfer learning exploits
 
 **Attacker Goals**:
+
 - Evade anomaly detection
 - Bypass ML-based security
 - Hide malicious inputs
@@ -185,11 +200,13 @@ evasion.
 Stealing credentials for ML system access.
 
 **Key Techniques**:
+
 - Unsecured credentials
 - Brute force
 - Credential dumping from ML systems
 
 **Attacker Goals**:
+
 - Access training platforms
 - Steal API keys
 - Compromise model repositories
@@ -200,12 +217,14 @@ Stealing credentials for ML system access.
 Learning about ML system internals and capabilities.
 
 **Key Techniques**:
+
 - Model inversion attacks
 - Membership inference
 - System information discovery
 - Network service scanning
 
 **Attacker Goals**:
+
 - Reverse engineer models
 - Identify training data
 - Map architecture
@@ -216,12 +235,14 @@ Learning about ML system internals and capabilities.
 Gathering information from ML systems.
 
 **Key Techniques**:
+
 - Data from ML models
 - Data from information repositories
 - Screen capture
 - Data staged
 
 **Attacker Goals**:
+
 - Extract training data
 - Collect model predictions
 - Harvest sensitive outputs
@@ -232,12 +253,14 @@ Gathering information from ML systems.
 **ATLAS-Specific**: Preparing ML-specific attacks.
 
 **Key Techniques**:
+
 - Craft adversarial examples
 - Generate adversarial perturbations
 - Optimize adversarial triggers
 - Prepare poisoned data
 
 **Attacker Goals**:
+
 - Create evasion inputs
 - Prepare backdoor triggers
 - Optimize attack effectiveness
@@ -251,12 +274,14 @@ ML-specific attacks that don't exist in traditional cybersecurity.
 Stealing ML models, data, or intellectual property.
 
 **Key Techniques**:
+
 - Model extraction
 - Training data exfiltration
 - Exfiltration over API
 - Automated exfiltration
 
 **Attacker Goals**:
+
 - Steal model weights
 - Extract training algorithms
 - Copy proprietary data
@@ -270,6 +295,7 @@ documented cases.
 Disrupting, degrading, or destroying ML system capabilities.
 
 **Key Techniques**:
+
 - Model poisoning
 - Denial of ML service
 - Erode ML model integrity
@@ -277,6 +303,7 @@ Disrupting, degrading, or destroying ML system capabilities.
 - Trigger backdoor behavior
 
 **Attacker Goals**:
+
 - Degrade model accuracy
 - Cause misclassifications
 - Manipulate predictions
@@ -286,22 +313,24 @@ Disrupting, degrading, or destroying ML system capabilities.
 
 ### Data Poisoning
 
-**Category**: Resource Development, Persistence, Impact
-**Description**: Injecting malicious data into training sets to corrupt model
-behavior.
+**Category**: Resource Development, Persistence, Impact **Description**:
+Injecting malicious data into training sets to corrupt model behavior.
 
 **Variants**:
+
 - **Label flipping**: Changing labels in training data
 - **Feature poisoning**: Manipulating input features
 - **Backdoor poisoning**: Inserting trigger patterns
 - **Availability poisoning**: Degrading model performance
 
 **Real-World Examples**:
+
 - Tay chatbot corruption (2016)
 - Facial recognition poisoning attacks
 - Email spam filter evasion
 
 **Mitigations**:
+
 - Data provenance tracking
 - Anomaly detection in training data
 - Robust training algorithms
@@ -309,11 +338,11 @@ behavior.
 
 ### Model Extraction/Theft
 
-**Category**: Collection, Exfiltration
-**Description**: Stealing ML models through query-based attacks or direct
-access.
+**Category**: Collection, Exfiltration **Description**: Stealing ML models
+through query-based attacks or direct access.
 
 **Techniques**:
+
 - **Query-based extraction**: Using prediction APIs to reconstruct models
 - **Model distillation**: Training surrogate models on target outputs
 - **Direct theft**: Accessing model files or weights
@@ -323,6 +352,7 @@ access.
 theft resulting in multi-million dollar losses.
 
 **Mitigations**:
+
 - Query rate limiting
 - Prediction obfuscation
 - Model watermarking
@@ -330,23 +360,25 @@ theft resulting in multi-million dollar losses.
 
 ### Prompt Injection
 
-**Category**: Initial Access, Execution, Impact
-**Description**: Manipulating inputs to LLMs to bypass safety controls or
-extract sensitive data.
+**Category**: Initial Access, Execution, Impact **Description**: Manipulating
+inputs to LLMs to bypass safety controls or extract sensitive data.
 
 **Variants**:
+
 - **Direct injection**: Malicious prompts in user input
 - **Indirect injection**: Poisoned data sources (web pages, documents)
 - **Jailbreaking**: Bypassing safety guardrails
 - **Privilege escalation**: Gaining unauthorized system access
 
 **Modern Threats** (2025):
+
 - Multi-modal injection (images, audio, video)
 - Chain-of-thought manipulation
 - Tool-use exploitation
 - Agent hijacking
 
 **Mitigations**:
+
 - Input sanitization and validation
 - Output monitoring
 - Privilege separation
@@ -354,17 +386,18 @@ extract sensitive data.
 
 ### Adversarial Examples
 
-**Category**: Defense Evasion, ML Attack Staging, Impact
-**Description**: Crafted inputs designed to cause misclassification or
-unexpected behavior.
+**Category**: Defense Evasion, ML Attack Staging, Impact **Description**:
+Crafted inputs designed to cause misclassification or unexpected behavior.
 
 **Types**:
+
 - **White-box**: Full model access for optimization
 - **Black-box**: Query-based adversarial generation
 - **Physical**: Real-world adversarial objects
 - **Universal**: Perturbations effective across inputs
 
 **Attack Methods**:
+
 - Fast Gradient Sign Method (FGSM)
 - Projected Gradient Descent (PGD)
 - Carlini & Wagner (C&W) attacks
@@ -372,6 +405,7 @@ unexpected behavior.
 - One-pixel attacks
 
 **Mitigations**:
+
 - Adversarial training
 - Input preprocessing
 - Ensemble methods
@@ -379,22 +413,25 @@ unexpected behavior.
 
 ### Model Backdoors
 
-**Category**: Persistence, Impact
-**Description**: Hidden functionality triggered by specific inputs.
+**Category**: Persistence, Impact **Description**: Hidden functionality
+triggered by specific inputs.
 
 **Characteristics**:
+
 - Normal behavior on clean inputs
 - Malicious behavior on triggered inputs
 - Survives training and fine-tuning
 - Difficult to detect
 
 **Insertion Methods**:
+
 - Training data poisoning
 - Direct model manipulation
 - Fine-tuning attacks
 - Supply chain compromise
 
 **Mitigations**:
+
 - Model auditing and testing
 - Activation analysis
 - Neural cleanse techniques
@@ -405,6 +442,7 @@ unexpected behavior.
 ### Phase 1: Data Collection & Preparation
 
 **Threats**:
+
 - Data poisoning at source
 - Supply chain compromise
 - Privacy violations (training data extraction)
@@ -415,6 +453,7 @@ unexpected behavior.
 ### Phase 2: Model Training
 
 **Threats**:
+
 - Backdoor insertion
 - Hyperparameter manipulation
 - Training infrastructure compromise
@@ -425,6 +464,7 @@ unexpected behavior.
 ### Phase 3: Model Evaluation & Validation
 
 **Threats**:
+
 - Adversarial example evasion
 - Test set poisoning
 - Evaluation metric manipulation
@@ -435,6 +475,7 @@ unexpected behavior.
 ### Phase 4: Deployment & Serving
 
 **Threats**:
+
 - Model extraction
 - Inference manipulation
 - API abuse
@@ -445,6 +486,7 @@ unexpected behavior.
 ### Phase 5: Monitoring & Maintenance
 
 **Threats**:
+
 - Concept drift exploitation
 - Continuous poisoning
 - Model degradation
@@ -459,6 +501,7 @@ unexpected behavior.
 ATLAS complements ATT&CK by adding ML-specific tactics and techniques:
 
 **Shared Tactics**:
+
 - Initial Access
 - Execution
 - Persistence
@@ -471,6 +514,7 @@ ATLAS complements ATT&CK by adding ML-specific tactics and techniques:
 - Impact
 
 **ATLAS-Specific Tactics**:
+
 - ML Model Access (TA0045)
 - ML Attack Staging (TA0047)
 
@@ -480,10 +524,12 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 ### OWASP Top 10 for LLMs (2025)
 
 **Complementary Focus**:
+
 - OWASP: Application-level LLM vulnerabilities
 - ATLAS: Full ML system threat landscape
 
 **Key Overlaps**:
+
 - Prompt Injection (OWASP #1) → ATLAS Impact tactics
 - Sensitive Information Disclosure (OWASP #6) → ATLAS Collection/Exfiltration
 - Model Denial of Service (OWASP #4) → ATLAS Impact
@@ -492,10 +538,12 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 ### NIST AI Risk Management Framework
 
 **Complementary Focus**:
+
 - NIST: Risk management and governance
 - ATLAS: Threat landscape and attack techniques
 
 **Integration Points**:
+
 - NIST "Identify" → ATLAS Reconnaissance/Discovery
 - NIST "Protect" → ATLAS mitigation strategies
 - NIST "Detect" → ATLAS detection methods
@@ -506,49 +554,46 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 
 ### Case Study 1: Tay Chatbot Poisoning (2016)
 
-**Attack Type**: Data poisoning via user interaction
-**Tactics**: Resource Development, Execution, Impact
-**Techniques**: Online learning exploitation, adversarial data injection
-**Impact**: Reputational damage, service shutdown within 24 hours
-**Lessons**: Need for input filtering, human-in-the-loop safeguards
+**Attack Type**: Data poisoning via user interaction **Tactics**: Resource
+Development, Execution, Impact **Techniques**: Online learning exploitation,
+adversarial data injection **Impact**: Reputational damage, service shutdown
+within 24 hours **Lessons**: Need for input filtering, human-in-the-loop
+safeguards
 
 ### Case Study 2: ProofPoint Email Security Evasion
 
-**Attack Type**: Adversarial example generation
-**Tactics**: Defense Evasion, Impact
-**Techniques**: ML model blind spot exploitation
-**Impact**: Bypass of ML-based spam/phishing detection
-**Lessons**: Adversarial robustness critical for security applications
+**Attack Type**: Adversarial example generation **Tactics**: Defense Evasion,
+Impact **Techniques**: ML model blind spot exploitation **Impact**: Bypass of
+ML-based spam/phishing detection **Lessons**: Adversarial robustness critical
+for security applications
 
 ### Case Study 3: OpenAI vs. DeepSeek Model Theft (2024)
 
-**Attack Type**: Model distillation and extraction
-**Tactics**: ML Model Access, Collection, Exfiltration
-**Techniques**: API query-based model stealing
-**Impact**: Intellectual property theft, competitive disadvantage
-**Lessons**: API rate limiting, output obfuscation, legal protections needed
+**Attack Type**: Model distillation and extraction **Tactics**: ML Model Access,
+Collection, Exfiltration **Techniques**: API query-based model stealing
+**Impact**: Intellectual property theft, competitive disadvantage **Lessons**:
+API rate limiting, output obfuscation, legal protections needed
 
 ### Case Study 4: Facial Recognition Poisoning
 
-**Attack Type**: Training data poisoning
-**Tactics**: Resource Development, Persistence, Impact
-**Techniques**: Adversarial perturbations in public datasets
-**Impact**: Model misidentification, security bypass
-**Lessons**: Data provenance, robust training methods required
+**Attack Type**: Training data poisoning **Tactics**: Resource Development,
+Persistence, Impact **Techniques**: Adversarial perturbations in public datasets
+**Impact**: Model misidentification, security bypass **Lessons**: Data
+provenance, robust training methods required
 
 ### Case Study 5: GPT-based Malware Generation
 
-**Attack Type**: LLM jailbreaking and abuse
-**Tactics**: Execution, Impact
-**Techniques**: Prompt injection, safety bypass
-**Impact**: Automated malware/phishing generation
-**Lessons**: Output monitoring, use-case restrictions, safety layers
+**Attack Type**: LLM jailbreaking and abuse **Tactics**: Execution, Impact
+**Techniques**: Prompt injection, safety bypass **Impact**: Automated
+malware/phishing generation **Lessons**: Output monitoring, use-case
+restrictions, safety layers
 
 ## Detection Strategies
 
 ### Model Behavior Monitoring
 
 **Indicators of Compromise**:
+
 - Sudden accuracy degradation
 - Unusual prediction patterns
 - Increased confidence on misclassifications
@@ -556,6 +601,7 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 - Drift from expected distribution
 
 **Tools**:
+
 - Model performance dashboards
 - Prediction distribution analysis
 - Anomaly detection on outputs
@@ -564,12 +610,14 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 ### Input Monitoring
 
 **Detection Techniques**:
+
 - Adversarial example detection
 - Input distribution analysis
 - Prompt injection pattern matching
 - Multi-modal input validation
 
 **Tools**:
+
 - Input sanitization pipelines
 - Statistical outlier detection
 - Deep learning-based detectors
@@ -577,12 +625,14 @@ infrastructure, while ATLAS techniques exploit ML-specific vulnerabilities.
 ### Infrastructure Monitoring
 
 **Traditional Security**:
+
 - Network traffic analysis
 - Access log monitoring
 - API rate limiting
 - Authentication anomalies
 
 **ML-Specific**:
+
 - Model file integrity checking
 - Training data provenance tracking
 - Hyperparameter change auditing
@@ -756,15 +806,15 @@ Track major updates to maintain documentation history:
 ### Primary Sources
 
 - **ATLAS Matrices** (Primary Source): <https://atlas.mitre.org/matrices/ATLAS>
-- **Official ATLAS Website**: https://atlas.mitre.org
+- **Official ATLAS Website**: <https://atlas.mitre.org>
 - **ATLAS GitHub Repository**: <https://github.com/mitre-atlas/atlas-data>
 
 ### Related Frameworks
 
-- **MITRE ATT&CK**: https://attack.mitre.org
+- **MITRE ATT&CK**: <https://attack.mitre.org>
 - **OWASP Top 10 for LLMs**:
   <https://owasp.org/www-project-top-10-for-large-language-model-applications/>
-- **NIST AI RMF**: https://www.nist.gov/itl/ai-risk-management-framework
+- **NIST AI RMF**: <https://www.nist.gov/itl/ai-risk-management-framework>
 
 ## Version History
 
@@ -774,6 +824,5 @@ Track major updates to maintain documentation history:
 
 ---
 
-**Document Version**: 1.0
-**Last Updated**: 2025-11-10
-**Maintained By**: AI Security Research Team
+**Document Version**: 1.0 **Last Updated**: 2025-11-10 **Maintained By**: AI
+Security Research Team

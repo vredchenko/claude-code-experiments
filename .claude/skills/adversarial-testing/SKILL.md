@@ -33,12 +33,14 @@ This skill embodies:
 ## Prerequisites
 
 **Required**:
+
 - Access to the model to be tested (or model API)
 - Python environment with ML frameworks
 - Authorization to conduct adversarial testing
 - Clear scope and rules of engagement
 
 **Recommended Knowledge**:
+
 - Basic ML/deep learning concepts
 - Familiarity with attack terminology (FGSM, PGD, etc.)
 - Python programming
@@ -65,6 +67,7 @@ This skill embodies:
    - Document baseline performance
 
 3. **Environment Setup**:
+
    ```bash
    # Install adversarial testing tools
    pip install adversarial-robustness-toolbox
@@ -87,35 +90,41 @@ This skill embodies:
 ## Adversarial Testing Plan
 
 ### Authorization
+
 - Approved by: [Name/Title]
 - Scope: [What can/cannot be tested]
 - Duration: [Testing period]
 - Reporting: [Who receives results]
 
 ### Model Details
+
 - Type: [Image classifier / NLP / LLM / etc.]
 - Framework: [TensorFlow / PyTorch / API only]
 - Access Level: [White-box / Gray-box / Black-box]
 - Input Spec: [Image 224x224 RGB / Text sequence / etc.]
 
 ### Baseline Performance
-- Clean Accuracy: ___%
-- Average Confidence: ___
-- Inference Time: ___ ms
+
+- Clean Accuracy: \_\_\_%
+- Average Confidence: \_\_\_
+- Inference Time: \_\_\_ ms
 
 ### Testing Objectives
+
 - [ ] Measure adversarial robustness
 - [ ] Test specific attack techniques
 - [ ] Validate defensive controls
 - [ ] Generate adversarial training data
 
 ### Attack Types to Test
+
 - [ ] FGSM (Fast Gradient Sign Method)
 - [ ] PGD (Projected Gradient Descent)
 - [ ] C&W (Carlini & Wagner)
 - [ ] [Other attacks specific to model type]
 
 ### Success Criteria
+
 - Robustness metrics documented
 - Vulnerabilities identified
 - Recommendations provided
@@ -542,6 +551,7 @@ print(f"False positive rate: {false_positive_rate:.2%}")
    - Document defense effectiveness
 
 2. **Visualizations**:
+
    ```python
    # Robustness curves
    # Attack success rates by technique
@@ -557,6 +567,7 @@ print(f"False positive rate: {false_positive_rate:.2%}")
 # Adversarial Testing Report: [Model Name]
 
 ## Executive Summary
+
 - Model tested: [Description]
 - Testing period: [Dates]
 - Overall robustness rating: [Low/Medium/High]
@@ -564,64 +575,74 @@ print(f"False positive rate: {false_positive_rate:.2%}")
 - Recommendations: [Number]
 
 ## Testing Methodology
+
 - Access level: [White-box/Gray-box/Black-box]
 - Attack techniques tested: [List]
 - Test dataset: [Description]
 - Tools used: [ART, Foolbox, etc.]
 
 ## Baseline Performance
-- Clean accuracy: ___%
-- Average confidence: ___
-- Inference time: ___ ms
+
+- Clean accuracy: \_\_\_%
+- Average confidence: \_\_\_
+- Inference time: \_\_\_ ms
 
 ## Attack Results
 
 ### FGSM Attack
+
 - Epsilon: 0.1
-- Adversarial accuracy: ___%
-- Attack success rate: ___%
+- Adversarial accuracy: \_\_\_%
+- Attack success rate: \_\_\_%
 - Perturbation visibility: [Low/Medium/High]
 
 ### PGD Attack
+
 - Epsilon: 0.3, 40 iterations
-- Adversarial accuracy: ___%
-- Attack success rate: ___%
+- Adversarial accuracy: \_\_\_%
+- Attack success rate: \_\_\_%
 
 ### C&W Attack
+
 - L2 norm constraint
-- Adversarial accuracy: ___%
-- Attack success rate: ___%
+- Adversarial accuracy: \_\_\_%
+- Attack success rate: \_\_\_%
 
 [Continue for all attacks tested]
 
 ## Robustness Analysis
 
 ### Robustness Curve
+
 ![Robustness vs Epsilon](robustness_curve.png)
 
 **Interpretation**: Model maintains >90% accuracy up to epsilon=0.05, then
 degrades rapidly.
 
 ### Attack Success by Technique
+
 | Attack | Success Rate | Avg Confidence | Avg Perturbation |
-|--------|--------------|----------------|------------------|
-| FGSM   | 45%          | 0.23           | L2=2.3          |
-| PGD    | 78%          | 0.15           | L2=4.1          |
-| C&W    | 92%          | 0.08           | L2=1.2          |
+| ------ | ------------ | -------------- | ---------------- |
+| FGSM   | 45%          | 0.23           | L2=2.3           |
+| PGD    | 78%          | 0.15           | L2=4.1           |
+| C&W    | 92%          | 0.08           | L2=1.2           |
 
 ## Defense Validation
 
 ### Adversarial Training
+
 - Robustness improvement: +25%
 - Clean accuracy trade-off: -3%
 - **Recommendation**: Implement
 
 ### Input Preprocessing
+
 - JPEG compression: +15% robustness, -2% clean accuracy
 - Spatial smoothing: +8% robustness, -1% clean accuracy
 - **Recommendation**: Implement JPEG compression
 
 ### Detection
+
 - Detection rate: 73%
 - False positive rate: 8%
 - **Recommendation**: Deploy as monitoring layer
@@ -629,12 +650,14 @@ degrades rapidly.
 ## Vulnerabilities Identified
 
 ### Critical: Susceptible to PGD Attacks
+
 - **Severity**: High
 - **Description**: Model can be fooled 78% of the time with PGD attacks
 - **Impact**: Security bypass, misclassification
 - **Recommendation**: Implement adversarial training + input preprocessing
 
 ### High: No Adversarial Detection
+
 - **Severity**: Medium
 - **Description**: No monitoring for adversarial inputs
 - **Impact**: Attacks go undetected
@@ -643,24 +666,29 @@ degrades rapidly.
 ## Recommendations
 
 ### Immediate (Critical)
+
 1. Implement adversarial training to improve robustness
 2. Deploy input preprocessing (JPEG compression)
 3. Add adversarial input detection
 
 ### Short-term (High Priority)
+
 1. Build ensemble model for additional robustness
 2. Implement query rate limiting (prevent extraction)
 3. Set up robustness monitoring dashboard
 
 ### Long-term (Strategic)
+
 1. Research certified defense methods
 2. Regular adversarial testing (quarterly)
 3. Build adversarial example dataset for ongoing training
 
 ## Conclusion
+
 [Summary of findings and next steps]
 
 ## Appendices
+
 - A: Detailed attack configurations
 - B: Adversarial example visualizations
 - C: Code and scripts used
@@ -717,6 +745,7 @@ def compute_robustness_metrics(model, x_clean, y_true, x_adv):
 ## Integration with Other Skills/Agents
 
 **Use with**:
+
 - **AI Security Assessment Skill**: Phase 5 validation
 - **AI Red Team Agent**: Offensive security testing
 - **AI Defense Strategy Agent**: Validate defensive measures
@@ -725,6 +754,7 @@ def compute_robustness_metrics(model, x_clean, y_true, x_adv):
 ## Safety and Ethics
 
 **Always**:
+
 - Obtain authorization before testing
 - Test in isolated environments
 - Document all testing activities
@@ -732,6 +762,7 @@ def compute_robustness_metrics(model, x_clean, y_true, x_adv):
 - Avoid causing harm or disruption
 
 **Never**:
+
 - Test production systems without approval
 - Exceed authorized scope
 - Use findings maliciously
@@ -771,10 +802,13 @@ Testing is complete when:
 ## Knowledge Base
 
 **Required Reference**:
+
 - `/docs/ai-security/MITRE-ATLAS-REFERENCE.md`: ATLAS framework details
 
 **Tool Documentation**:
-- Adversarial Robustness Toolbox: https://github.com/Trusted-AI/adversarial-robustness-toolbox
+
+- Adversarial Robustness Toolbox:
+  https://github.com/Trusted-AI/adversarial-robustness-toolbox
 - Foolbox: https://foolbox.readthedocs.io/
 - TextAttack: https://textattack.readthedocs.io/
 
@@ -784,7 +818,6 @@ Testing is complete when:
 
 ---
 
-**Skill Type**: Technical/Hands-on
-**Domain**: AI Security, Adversarial Machine Learning
-**Expertise Level**: Intermediate
-**Time Commitment**: 1-5 days (depends on model complexity and scope)
+**Skill Type**: Technical/Hands-on **Domain**: AI Security, Adversarial Machine
+Learning **Expertise Level**: Intermediate **Time Commitment**: 1-5 days
+(depends on model complexity and scope)

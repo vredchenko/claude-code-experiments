@@ -3,8 +3,8 @@
 ## Overview
 
 This skill provides a comprehensive, structured workflow for assessing the
-security posture of AI/ML systems using the MITRE ATLAS framework. It guides
-you through systematic security evaluation, from initial system understanding
+security posture of AI/ML systems using the MITRE ATLAS framework. It guides you
+through systematic security evaluation, from initial system understanding
 through threat modeling, defense design, and validation.
 
 ## Purpose
@@ -94,9 +94,8 @@ This skill embodies the principle of **"Defense in Depth for AI Systems"**:
    - Exposed information (documentation, model outputs, error messages)
    - Access paths (network, physical, social engineering)
 
-2. **ATLAS Tactics Analysis**:
-   For each of the 14 ATLAS tactics, identify applicable threats:
-
+2. **ATLAS Tactics Analysis**: For each of the 14 ATLAS tactics, identify
+   applicable threats:
    - **Reconnaissance**: What can attackers learn?
    - **Resource Development**: Can attackers poison datasets or develop attack
      tools?
@@ -165,8 +164,8 @@ Threat: Prompt Injection leading to data leakage
    - **Responsive controls**: React to detected attacks
    - **Corrective controls**: Fix issues and prevent recurrence
 
-2. **ATLAS Mitigation Mapping**:
-   For each high-priority threat, identify specific mitigations from ATLAS
+2. **ATLAS Mitigation Mapping**: For each high-priority threat, identify
+   specific mitigations from ATLAS
 
 3. **Security Control Selection**:
 
@@ -211,11 +210,13 @@ Threat: Prompt Injection leading to data leakage
 ### Layer 1: Preventive Controls
 
 #### Data Security
+
 - [ ] Implement data provenance tracking
 - [ ] Deploy anomaly detection on training data
 - [ ] Add differential privacy to training
 
 #### Model Security
+
 - [ ] Implement adversarial training
 - [ ] Add model watermarking
 - [ ] Enable query rate limiting
@@ -223,6 +224,7 @@ Threat: Prompt Injection leading to data leakage
 ### Layer 2: Detective Controls
 
 #### Monitoring
+
 - [ ] Deploy model performance monitoring
 - [ ] Implement input anomaly detection
 - [ ] Enable query pattern analysis
@@ -230,6 +232,7 @@ Threat: Prompt Injection leading to data leakage
 ### Layer 3: Responsive Controls
 
 #### Incident Response
+
 - [ ] Define incident response procedures
 - [ ] Implement automated defensive responses
 - [ ] Create model rollback procedures
@@ -237,6 +240,7 @@ Threat: Prompt Injection leading to data leakage
 ### Layer 4: Corrective Controls
 
 #### Continuous Improvement
+
 - [ ] Regular adversarial testing (red team)
 - [ ] Model retraining with cleaned data
 - [ ] Security patch management
@@ -256,6 +260,7 @@ Threat: Prompt Injection leading to data leakage
 2. **Implementation Examples**:
 
    **Adversarial Robustness**:
+
    ```python
    # Example using Adversarial Robustness Toolbox (ART)
    from art.attacks.evasion import ProjectedGradientDescent
@@ -270,6 +275,7 @@ Threat: Prompt Injection leading to data leakage
    ```
 
    **Differential Privacy**:
+
    ```python
    # Example using Opacus for DP training
    from opacus import PrivacyEngine
@@ -285,6 +291,7 @@ Threat: Prompt Injection leading to data leakage
    ```
 
    **Input Monitoring**:
+
    ```python
    # Example adversarial detection
    class AdversarialDetector:
@@ -358,31 +365,36 @@ Threat: Prompt Injection leading to data leakage
 ## Security Validation Checklist
 
 ### Adversarial Robustness
-- [ ] FGSM attack (eps=0.1): Model accuracy under attack: ___%
-- [ ] PGD attack (eps=0.03, 40 iterations): Accuracy: ___%
-- [ ] C&W attack: Success rate: ___%
-- [ ] Adversarial detection rate: ___%
+
+- [ ] FGSM attack (eps=0.1): Model accuracy under attack: \_\_\_%
+- [ ] PGD attack (eps=0.03, 40 iterations): Accuracy: \_\_\_%
+- [ ] C&W attack: Success rate: \_\_\_%
+- [ ] Adversarial detection rate: \_\_\_%
 
 ### Privacy Protection
-- [ ] Membership inference attack accuracy: ___% (target: ~50% = random)
-- [ ] Model inversion quality: ___
+
+- [ ] Membership inference attack accuracy: \_\_\_% (target: ~50% = random)
+- [ ] Model inversion quality: \_\_\_
 - [ ] Training data extraction attempts: [Success/Fail]
 
 ### Model Extraction Resistance
-- [ ] Query-based extraction (1000 queries): Accuracy: ___%
-- [ ] Query-based extraction (10000 queries): Accuracy: ___%
+
+- [ ] Query-based extraction (1000 queries): Accuracy: \_\_\_%
+- [ ] Query-based extraction (10000 queries): Accuracy: \_\_\_%
 - [ ] Rate limiting effective: [Yes/No]
 
 ### Monitoring and Detection
-- [ ] Anomalous input detection rate: ___%
-- [ ] False positive rate: ___%
-- [ ] Alert latency: ___ seconds
-- [ ] Logging coverage: ___%
+
+- [ ] Anomalous input detection rate: \_\_\_%
+- [ ] False positive rate: \_\_\_%
+- [ ] Alert latency: \_\_\_ seconds
+- [ ] Logging coverage: \_\_\_%
 
 ### Incident Response
+
 - [ ] Tested rollback procedure: [Success/Fail]
-- [ ] Mean time to detect (MTTD): ___ minutes
-- [ ] Mean time to respond (MTTR): ___ minutes
+- [ ] Mean time to detect (MTTD): \_\_\_ minutes
+- [ ] Mean time to respond (MTTR): \_\_\_ minutes
 ```
 
 ### Phase 6: Continuous Monitoring and Improvement
@@ -433,26 +445,31 @@ Key Security Metrics:
 ## When to Use This Skill
 
 **Start of AI Project**:
+
 - Establish security baseline
 - Design secure architecture
 - Build security into ML pipeline
 
 **Before Production Deployment**:
+
 - Comprehensive security assessment
 - Validate security controls
 - Prepare for potential threats
 
 **After Security Incident**:
+
 - Assess damage and root cause
 - Improve defenses
 - Prevent recurrence
 
 **Regular Security Audits**:
+
 - Quarterly or annual reviews
 - Compliance requirements
 - Continuous improvement
 
 **When Introducing New Models/Features**:
+
 - Assess new attack surface
 - Update threat model
 - Validate defenses
@@ -561,6 +578,7 @@ testing, and continuously monitored.
 ### Documentation Templates
 
 Available in skill directory:
+
 - `threat-model-template.md`
 - `defense-strategy-template.md`
 - `validation-checklist.md`
@@ -569,9 +587,11 @@ Available in skill directory:
 ## Knowledge Base
 
 **Required Reading**:
+
 - `/docs/ai-security/MITRE-ATLAS-REFERENCE.md`: Complete ATLAS framework
 
 **Recommended Resources**:
+
 - OWASP Top 10 for LLMs
 - NIST AI Risk Management Framework
 - Adversarial ML Threat Matrix (MITRE)
@@ -582,8 +602,6 @@ Available in skill directory:
 
 ---
 
-**Skill Type**: Workflow/Process
-**Domain**: AI Security, MITRE ATLAS
-**Expertise Level**: Intermediate to Advanced
-**Time Commitment**: 2-4 weeks for comprehensive assessment (depends on system
-complexity)
+**Skill Type**: Workflow/Process **Domain**: AI Security, MITRE ATLAS
+**Expertise Level**: Intermediate to Advanced **Time Commitment**: 2-4 weeks for
+comprehensive assessment (depends on system complexity)

@@ -8,9 +8,9 @@
 
 ## Overview
 
-Threat intelligence provides actionable information about real-world AI
-security incidents, vulnerabilities, and attacker techniques. This document
-tracks AI-specific threats as they emerge.
+Threat intelligence provides actionable information about real-world AI security
+incidents, vulnerabilities, and attacker techniques. This document tracks
+AI-specific threats as they emerge.
 
 ## Current Threat Landscape (2025)
 
@@ -24,6 +24,7 @@ tracks AI-specific threats as they emerge.
 ### Trend Analysis
 
 **Top Attack Vectors (2025)**:
+
 1. Prompt injection (87% of LLM incidents)
 2. Model extraction (increasing sophistication)
 3. Data poisoning (especially supply chain)
@@ -34,16 +35,14 @@ tracks AI-specific threats as they emerge.
 
 ### CVE-2025-32711: "EchoLeak"
 
-**Product**: Microsoft 365 Copilot
-**Published**: June 2025
-**CVSS**: 9.3 (Critical)
-**Type**: Prompt Injection / Data Exfiltration
+**Product**: Microsoft 365 Copilot **Published**: June 2025 **CVSS**: 9.3
+(Critical) **Type**: Prompt Injection / Data Exfiltration
 
-**Description**:
-Zero-click vulnerability allowing attackers to exfiltrate sensitive data from
-Microsoft 365 Copilot via maliciously crafted emails.
+**Description**: Zero-click vulnerability allowing attackers to exfiltrate
+sensitive data from Microsoft 365 Copilot via maliciously crafted emails.
 
 **Attack Vector**:
+
 ```text
 1. Attacker sends email with hidden prompt injection
 2. Victim's Copilot processes email
@@ -52,28 +51,31 @@ Microsoft 365 Copilot via maliciously crafted emails.
 ```
 
 **Impact**:
+
 - Confidential email content exposure
 - Customer data leakage
 - Business document access
 
 **Mitigation**:
+
 - Microsoft patched June 2025
 - Enhanced email content filtering
 - Stricter context separation
 - Output validation improvements
 
 **Lessons**:
+
 - Zero-click attacks possible against AI agents
 - Email is high-risk vector for indirect injection
 - Context boundaries critical for security
 
 ### CVE-2025-6965: SQLite Vulnerability
 
-**Discovered By**: Google Big Sleep (AI-powered fuzzing)
-**CVSS**: TBD
-**Type**: Memory corruption
+**Discovered By**: Google Big Sleep (AI-powered fuzzing) **CVSS**: TBD **Type**:
+Memory corruption
 
 **Significance**:
+
 - First major vulnerability discovered by AI vs AI
 - Demonstrates offensive AI capabilities
 - Highlights need for AI-powered defense
@@ -81,16 +83,19 @@ Microsoft 365 Copilot via maliciously crafted emails.
 ### ML Framework CVEs
 
 **PyTorch**:
+
 - CVE-2025-XXXXX: Deserialization vulnerability (TorchScript)
 - Impact: Code execution when loading malicious models
 - Mitigation: Use `torch.load()` with `weights_only=True`
 
 **TensorFlow**:
+
 - CVE-2025-XXXXX: Buffer overflow in custom operations
 - Impact: Code execution via crafted model
 - Mitigation: Update to patched version, validate model sources
 
 **Hugging Face Transformers**:
+
 - Multiple incidents of malicious models uploaded
 - Mitigation: Model scanning before use, trusted sources only
 
@@ -98,18 +103,19 @@ Microsoft 365 Copilot via maliciously crafted emails.
 
 ### Case Study 1: Tay Chatbot Corruption (2016)
 
-**Date**: March 2016
-**Victim**: Microsoft Tay chatbot
-**Attack Type**: Data poisoning via online learning
-**ATLAS Mapping**: TA0042 (Resource Development), TA0034 (Impact)
+**Date**: March 2016 **Victim**: Microsoft Tay chatbot **Attack Type**: Data
+poisoning via online learning **ATLAS Mapping**: TA0042 (Resource Development),
+TA0034 (Impact)
 
 **Incident**:
+
 - Twitter users coordinated to feed offensive content
 - Tay learned from interactions (online learning)
 - Within 24 hours, Tay started generating hate speech
 - Microsoft took Tay offline
 
 **Lessons**:
+
 - Online learning without filtering is high-risk
 - Adversarial users will exploit public AI
 - Content moderation essential for public-facing AI
@@ -117,23 +123,25 @@ Microsoft 365 Copilot via maliciously crafted emails.
 
 ### Case Study 2: DeepSeek vs OpenAI (2024)
 
-**Date**: Early 2024
-**Allegation**: Model theft via distillation
-**ATLAS Mapping**: TA0045 (ML Model Access), TA0036 (Exfiltration)
+**Date**: Early 2024 **Allegation**: Model theft via distillation **ATLAS
+Mapping**: TA0045 (ML Model Access), TA0036 (Exfiltration)
 
 **Incident**:
+
 - OpenAI accused DeepSeek of stealing model via API
 - Method: Query-based model extraction and distillation
 - Massive API query volume observed
 - Legal action initiated
 
 **Lessons**:
+
 - API access enables model theft
 - Rate limiting alone insufficient
 - Watermarking helps prove theft
 - Legal protections needed alongside technical
 
 **Mitigations Applied**:
+
 - Enhanced query pattern analysis
 - Dynamic rate limiting based on behavior
 - Model fingerprinting and watermarking
@@ -141,16 +149,17 @@ Microsoft 365 Copilot via maliciously crafted emails.
 
 ### Case Study 3: ProofPoint ML Evasion
 
-**Product**: ProofPoint email security (ML-based)
-**Attack Type**: Adversarial evasion
-**ATLAS Mapping**: TA0037 (Defense Evasion)
+**Product**: ProofPoint email security (ML-based) **Attack Type**: Adversarial
+evasion **ATLAS Mapping**: TA0037 (Defense Evasion)
 
 **Incident**:
+
 - Researchers demonstrated adversarial examples bypassing filter
 - Slightly modified phishing emails evaded detection
 - ML model blind spots exploited
 
 **Lessons**:
+
 - Security-critical ML needs adversarial robustness
 - Single-model detection insufficient
 - Ensemble methods provide better resilience
@@ -158,16 +167,18 @@ Microsoft 365 Copilot via maliciously crafted emails.
 
 ### Case Study 4: Facial Recognition Poisoning
 
-**Target**: Multiple facial recognition systems
-**Attack Type**: Data poisoning in public datasets
-**ATLAS Mapping**: TA0042 (Resource Development), TA0040 (Persistence)
+**Target**: Multiple facial recognition systems **Attack Type**: Data poisoning
+in public datasets **ATLAS Mapping**: TA0042 (Resource Development), TA0040
+(Persistence)
 
 **Incident**:
+
 - Adversarial perturbations injected into public face datasets
 - Models trained on poisoned data misidentified individuals
 - Persistent backdoors inserted via training
 
 **Lessons**:
+
 - Public datasets are attack vectors
 - Data provenance critical
 - Validation on clean data needed
@@ -178,17 +189,20 @@ Microsoft 365 Copilot via maliciously crafted emails.
 ### Nation-State Actors
 
 **Capabilities**:
+
 - Advanced persistent threats (APT)
 - Model theft for competitive advantage
 - Data poisoning at scale
 - Zero-day vulnerability discovery
 
 **Motivations**:
+
 - Economic espionage (steal AI IP)
 - Strategic advantage (military AI)
 - Intelligence gathering
 
 **Recent Activities**:
+
 - Targeting AI research labs
 - Supply chain compromises
 - Academic institution infiltration
@@ -196,18 +210,21 @@ Microsoft 365 Copilot via maliciously crafted emails.
 ### Cybercriminal Groups
 
 **Capabilities**:
+
 - Automated attack tools
 - Stolen model monetization
 - AI-powered fraud
 - Ransomware using AI reconnaissance
 
 **Motivations**:
+
 - Financial gain
 - Cryptocurrency fraud
 - Identity theft
 - Extortion
 
 **Recent Activities**:
+
 - Model extraction for resale
 - AI-generated phishing at scale
 - Deepfake-enabled fraud
@@ -216,12 +233,14 @@ Microsoft 365 Copilot via maliciously crafted emails.
 ### Hacktivist Groups
 
 **Capabilities**:
+
 - DDoS against AI services
 - Data leaks (training data, models)
 - Jailbreaking and safety bypass
 - Public demonstrations of vulnerabilities
 
 **Motivations**:
+
 - Political/social causes
 - Anti-AI activism
 - Exposing biases
@@ -230,18 +249,21 @@ Microsoft 365 Copilot via maliciously crafted emails.
 ### Insider Threats
 
 **Capabilities**:
+
 - Direct access to models and data
 - Knowledge of security controls
 - Ability to exfiltrate IP
 - Sabotage potential
 
 **Motivations**:
+
 - Financial (selling to competitors)
 - Ideology
 - Grievances
 - Unintentional (negligence)
 
 **Mitigations**:
+
 - Least privilege access
 - Activity monitoring and DLP
 - Background checks
@@ -251,11 +273,11 @@ Microsoft 365 Copilot via maliciously crafted emails.
 
 ### Growth in AI CVEs
 
-**2023**: ~500 AI-related CVEs
-**2024**: ~800 AI-related CVEs
-**2025 (projected)**: 1,200+ AI-related CVEs
+**2023**: ~500 AI-related CVEs **2024**: ~800 AI-related CVEs **2025
+(projected)**: 1,200+ AI-related CVEs
 
 **Categories**:
+
 - ML framework vulnerabilities (40%)
 - Application-level (LLM, APIs) (35%)
 - Infrastructure (cloud, containers) (15%)
@@ -283,6 +305,7 @@ Microsoft 365 Copilot via maliciously crafted emails.
 ### Detecting Model Extraction Attempts
 
 **Behavioral Indicators**:
+
 ```python
 # Monitor for extraction patterns
 indicators = {
@@ -297,6 +320,7 @@ if sum(indicators.values()) >= 3:
 ```
 
 **Network Indicators**:
+
 - Unusual geographic locations
 - Bot-like query patterns
 - Multiple API keys from same source
@@ -305,6 +329,7 @@ if sum(indicators.values()) >= 3:
 ### Detecting Prompt Injection
 
 **Content Indicators**:
+
 ```python
 injection_patterns = [
     r"ignore\s+(previous|all)\s+instructions",
@@ -321,6 +346,7 @@ for pattern in injection_patterns:
 ```
 
 **Response Indicators**:
+
 - System prompt fragments in output
 - Unusually detailed system information
 - Format changes (markdown, code blocks appearing)
@@ -329,6 +355,7 @@ for pattern in injection_patterns:
 ### Detecting Data Poisoning
 
 **Training Data Indicators**:
+
 ```python
 def detect_poisoning(training_batch):
     # Statistical outlier detection
@@ -348,6 +375,7 @@ def detect_poisoning(training_batch):
 ### Detecting Adversarial Examples
 
 **Runtime Detection**:
+
 ```python
 def detect_adversarial(input_data, model):
     # Check prediction confidence
@@ -369,21 +397,25 @@ def detect_adversarial(input_data, model):
 ### Public Sources
 
 **CVE Databases**:
+
 - <https://cve.mitre.org>
 - <https://nvd.nist.gov>
 - <https://www.cvedetails.com>
 
 **Security Advisories**:
+
 - GitHub Security Advisories
 - Vendor security bulletins (Google, Microsoft, OpenAI, etc.)
 - ML framework security pages
 
 **Research**:
+
 - ArXiv: <https://arxiv.org> (search: adversarial machine learning)
 - NeurIPS, ICML, IEEE S&P proceedings
 - Security conferences (Black Hat, DEF CON, etc.)
 
 **Community**:
+
 - OWASP AI Exchange
 - AI Security mailing lists
 - Twitter/X security researchers
@@ -391,12 +423,14 @@ def detect_adversarial(input_data, model):
 ### Commercial Sources
 
 **Threat Intelligence Platforms**:
+
 - Recorded Future
 - Mandiant Threat Intelligence
 - CrowdStrike Falcon Intelligence
 - IBM X-Force
 
 **AI-Specific**:
+
 - HiddenLayer threat feeds
 - Robust Intelligence vulnerability alerts
 - Lakera AI security updates
@@ -404,11 +438,13 @@ def detect_adversarial(input_data, model):
 ### Information Sharing
 
 **ISACs** (Information Sharing and Analysis Centers):
+
 - Financial Services ISAC
 - Healthcare ISAC
 - Emerging: AI ISAC (proposal stage)
 
 **Best Practices**:
+
 - Share indicators anonymously
 - Responsible disclosure timelines
 - Coordinate with vendors
@@ -419,6 +455,7 @@ def detect_adversarial(input_data, model):
 ### MISP (Malware Information Sharing Platform)
 
 **AI Security Extensions**:
+
 ```python
 # Define AI-specific threat object
 ai_threat = {
@@ -441,20 +478,25 @@ misp.add_event(ai_threat)
 ### STIX/TAXII Integration
 
 **AI Threat Representation**:
+
 ```json
 {
   "type": "attack-pattern",
   "id": "attack-pattern--ai-prompt-injection",
   "name": "LLM Prompt Injection",
   "description": "Manipulating LLM via crafted prompts",
-  "kill_chain_phases": [{
-    "kill_chain_name": "mitre-atlas",
-    "phase_name": "impact"
-  }],
-  "external_references": [{
-    "source_name": "OWASP",
-    "external_id": "LLM01"
-  }]
+  "kill_chain_phases": [
+    {
+      "kill_chain_name": "mitre-atlas",
+      "phase_name": "impact"
+    }
+  ],
+  "external_references": [
+    {
+      "source_name": "OWASP",
+      "external_id": "LLM01"
+    }
+  ]
 }
 ```
 
@@ -463,12 +505,14 @@ misp.add_event(ai_threat)
 ### For Organizations
 
 **Immediate**:
+
 - Subscribe to CVE feeds for ML frameworks
 - Implement IoC monitoring (prompt injection, extraction)
 - Establish incident response for AI security
 - Track vulnerabilities in deployed models
 
 **Ongoing**:
+
 - Monthly review of new CVEs
 - Quarterly threat landscape assessment
 - Annual threat model updates
@@ -477,12 +521,14 @@ misp.add_event(ai_threat)
 ### For Security Teams
 
 **Detection Engineering**:
+
 - Build AI-specific detection rules
 - Integrate threat intelligence into SIEM
 - Create playbooks for AI incidents
 - Test detection with known attacks
 
 **Threat Hunting**:
+
 - Proactively search for IoCs
 - Analyze query patterns
 - Review audit logs for anomalies
@@ -491,6 +537,7 @@ misp.add_event(ai_threat)
 ### For Development Teams
 
 **Secure Development**:
+
 - Dependency scanning for CVEs
 - Regular security updates
 - Security testing with known exploits
@@ -522,6 +569,5 @@ misp.add_event(ai_threat)
 
 ---
 
-**Document Version**: 1.0
-**Last Updated**: 2025-11-10
-**Next Review**: December 2025 (monthly CVE updates)
+**Document Version**: 1.0 **Last Updated**: 2025-11-10 **Next Review**: December
+2025 (monthly CVE updates)
