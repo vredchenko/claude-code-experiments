@@ -4,8 +4,8 @@
 
 Experiments with Claude Code, MCP servers, AI security, and agentic workflows. Built with [Bun.js](https://bun.sh/) and the [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
 
-**Project board**: <https://github.com/users/vredchenko/projects/2/views/1>
-**Documentation**: <https://vredchenko.github.io/claude-code-experiments/>
+- **Project board**: <https://github.com/users/vredchenko/projects/2/views/1>
+- **Documentation**: <https://vredchenko.github.io/claude-code-experiments/>
 
 ## Quick Start
 
@@ -51,7 +51,10 @@ See `.devtooling/configs/` for MCP configuration templates.
 
 Comprehensive AI/ML security capabilities based on MITRE ATLAS:
 
-**Documentation** (`docs/ai-security/`):
+### Documentation
+
+Located in `docs/ai-security/`:
+
 - `MITRE-ATLAS-REFERENCE.md` - Complete ATLAS framework (14 tactics, 56 techniques)
 - `OWASP-LLM-SECURITY.md` - LLM Top 10 and defenses
 - `COMPLIANCE-FRAMEWORKS.md` - NIST, ISO, EU AI Act
@@ -59,34 +62,37 @@ Comprehensive AI/ML security capabilities based on MITRE ATLAS:
 - `EMERGING-THREATS.md` - Agentic AI, federated learning
 - `THREAT-INTELLIGENCE.md` - CVEs, incidents, IoCs
 
-**Agents** (`.claude/agents/ai-security/`):
+### Agents
+
+Located in `.claude/agents/ai-security/`:
+
 - **ATLAS Threat Modeling** - Systematic threat analysis
 - **AI Red Team** - Adversarial testing (requires authorization)
 - **AI Defense Strategy** - Security architecture and mitigations
 
-**Skills** (`.claude/skills/`):
+### Skills
+
+Located in `.claude/skills/`:
+
 - `ai-security-assessment/` - End-to-end security workflow
 - `adversarial-testing/` - Hands-on robustness testing
 - `ai-security-update/` - Documentation maintenance
 
 ## Development Agents
 
-**Foundation Agent** (`.claude/agents/foundation_agent.md`):
-Verification-first workflow - master fundamentals before automation
-
-**Grimface Agent** (`.claude/agents/grimface_agent.md`):
-Skeptical critical thinking for stress-testing ideas
-
-**Software Dev Specialist** (`.claude/agents/software-dev-specialist-cli.md`):
-CLI-focused development workflows
+- **Foundation Agent** (`.claude/agents/foundation_agent.md`) - Verification-first
+  workflow, master fundamentals before automation
+- **Grimface Agent** (`.claude/agents/grimface_agent.md`) - Skeptical critical
+  thinking for stress-testing ideas
+- **Software Dev Specialist** (`.claude/agents/software-dev-specialist-cli.md`) -
+  CLI-focused development workflows
 
 ## Skills
 
-**Verification-First Workflow** (`.claude/skills/verification-first/`):
-Structured workflow for building automation with understanding
-
-**Playwright Skill** (`.claude/skills/playwright-skill/`):
-Browser automation and testing
+- **Verification-First Workflow** (`.claude/skills/verification-first/`) -
+  Structured workflow for building automation with understanding
+- **Playwright Skill** (`.claude/skills/playwright-skill/`) - Browser automation
+  and testing
 
 ## Docker Services
 
@@ -99,9 +105,12 @@ minio:9000/9001     # Object storage (UI at :9001)
 
 ## Configuration
 
-MCP servers are disabled by default. Enable selectively from templates in `.devtooling/configs/`:
+MCP servers are disabled by default. Enable selectively from templates in
+`.devtooling/configs/`:
+
 - `.mcp.template.json` → `.mcp.json` (Claude Code CLI)
-- `mcp-servers-config.template.json` → `mcp-servers-config.json` (Standard MCP)
+- `mcp-servers-config.template.json` → `mcp-servers-config.json` (Standard
+  MCP)
 
 Environment variables in `.env`:
 ```bash
