@@ -41,5 +41,7 @@ Based on concepts from Eric J. Ma's blog posts:
 - **"From nerd sniped to shipped: Using AI as a thinking tool"** -
   [Link][eric-thinking-tool]
 
-[eric-automation]: https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
-[eric-thinking-tool]: https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
+[eric-automation]:
+  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+[eric-thinking-tool]:
+  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/

@@ -23,24 +23,26 @@ Then restart Claude Code to load MCP servers.
 
 - [Claude Code](https://claude.ai/code)
 - [Bun.js](https://bun.sh/)
-- [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
+- [Docker](https://www.docker.com/) &
+  [Docker Compose](https://docs.docker.com/compose/)
 
 ## MCP Servers
 
 Custom Model Context Protocol servers for Claude Code integrations:
 
-| Server | Purpose | Port |
-|--------|---------|------|
-| `gitlab-api` | GitLab REST API integration | - |
-| `gitlab-cli` | GitLab CLI (`glab`) operations | - |
-| `minio-backend` | Object storage (MinIO) | 9000/9001 |
-| `redis-backend` | Redis cache operations | 6379 |
-| `surrealdb-backend` | Multi-model database | 8000 |
-| `orlop-cli` | Orlop CLI operations | - |
-| `karakeep-cli` | Bookmark manager | - |
-| `sourcegraph` | Code search | - |
+| Server              | Purpose                        | Port      |
+| ------------------- | ------------------------------ | --------- |
+| `gitlab-api`        | GitLab REST API integration    | -         |
+| `gitlab-cli`        | GitLab CLI (`glab`) operations | -         |
+| `minio-backend`     | Object storage (MinIO)         | 9000/9001 |
+| `redis-backend`     | Redis cache operations         | 6379      |
+| `surrealdb-backend` | Multi-model database           | 8000      |
+| `orlop-cli`         | Orlop CLI operations           | -         |
+| `karakeep-cli`      | Bookmark manager               | -         |
+| `sourcegraph`       | Code search                    | -         |
 
 Run individual servers:
+
 ```bash
 bun run mcp:gitlab-api
 bun run mcp:minio
@@ -57,7 +59,8 @@ Comprehensive AI/ML security capabilities based on MITRE ATLAS:
 
 Located in `docs/ai-security/`:
 
-- `MITRE-ATLAS-REFERENCE.md` - Complete ATLAS framework (14 tactics, 56 techniques)
+- `MITRE-ATLAS-REFERENCE.md` - Complete ATLAS framework (14 tactics, 56
+  techniques)
 - `OWASP-LLM-SECURITY.md` - LLM Top 10 and defenses
 - `COMPLIANCE-FRAMEWORKS.md` - NIST, ISO, EU AI Act
 - `RED-TEAM-METHODOLOGIES.md` - Offensive testing
@@ -82,12 +85,13 @@ Located in `.claude/skills/`:
 
 ## Development Agents
 
-- **Foundation Agent** (`.claude/agents/foundation_agent.md`) - Verification-first
-  workflow, master fundamentals before automation
+- **Foundation Agent** (`.claude/agents/foundation_agent.md`) -
+  Verification-first workflow, master fundamentals before automation
 - **Grimface Agent** (`.claude/agents/grimface_agent.md`) - Skeptical critical
   thinking for stress-testing ideas
-- **Software Dev Specialist** (`.claude/agents/software-dev-specialist-cli.md`) -
-  CLI-focused development workflows
+- **Software Dev Specialist**
+  (`.claude/agents/software-dev-specialist-cli.md`) - CLI-focused development
+  workflows
 
 ## Skills
 
@@ -111,10 +115,10 @@ MCP servers are disabled by default. Enable selectively from templates in
 `.devtooling/configs/`:
 
 - `.mcp.template.json` → `.mcp.json` (Claude Code CLI)
-- `mcp-servers-config.template.json` → `mcp-servers-config.json` (Standard
-  MCP)
+- `mcp-servers-config.template.json` → `mcp-servers-config.json` (Standard MCP)
 
 Environment variables in `.env`:
+
 ```bash
 GITLAB_TOKEN=<your-token>
 MINIO_ROOT_PASSWORD=<password>
