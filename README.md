@@ -2,7 +2,9 @@
 
 [![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.ai/code)
 
-Experiments with Claude Code, MCP servers, AI security, and agentic workflows. Built with [Bun.js](https://bun.sh/) and the [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
+Experiments with Claude Code, MCP servers, AI security, and agentic workflows.
+Built with [Bun.js](https://bun.sh/) and the
+[MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
 
 - **Project board**: <https://github.com/users/vredchenko/projects/2/views/1>
 - **Documentation**: <https://vredchenko.github.io/claude-code-experiments/>
