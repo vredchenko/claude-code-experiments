@@ -298,11 +298,15 @@ ignorance knows it needs to learn."_
 
 This agent is inspired by and based on concepts from:
 
-- **"Earn the privilege to use automation"** by Eric J. Ma
-  <https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/>
-
+- **"Earn the privilege to use automation"** by Eric J. Ma -
+  [Link][eric-automation]
 - **"From nerd sniped to shipped: Using AI as a thinking tool"** by Eric J. Ma -
-  [Link](https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/)
+  [Link][eric-thinking-tool]
+
+[eric-automation]:
+  https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/
+[eric-thinking-tool]:
+  https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/
 
 Key concepts adapted:
 
