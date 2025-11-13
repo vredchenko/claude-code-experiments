@@ -2,233 +2,111 @@
 
 [![Claude](https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=claude&logoColor=white)](https://claude.ai/code)
 
-Sandbox for playing around with Claude Code. Built with
-[Bun.js](https://bun.sh/) and the official
-[MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
-
-Co-authored together with **Claude Code**!
+Experiments with Claude Code, MCP servers, AI security, and agentic workflows. Built with [Bun.js](https://bun.sh/) and the [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk).
 
 **Project board**: <https://github.com/users/vredchenko/projects/2/views/1>
-
-**Github Pages**: <https://vredchenko.github.io/claude-code-experiments/>
+**Documentation**: <https://vredchenko.github.io/claude-code-experiments/>
 
 ## Quick Start
 
-1. **Copy environment template:**
+```bash
+cp .env.template .env
+# Edit .env with your credentials
+bun run start
+```
 
-   ```bash
-   cp .env.template .env
-   ```
+Then restart Claude Code to load MCP servers.
 
-2. **Edit `.env` with your credentials:**
-   - `GITLAB_TOKEN`: Your GitLab personal access token
-   - `MINIO_ROOT_PASSWORD`: Your preferred MinIO password
+## Requirements
 
-3. **Run setup script:**
-
-   ```bash
-   bun start.ts
-   ```
-
-4. **Restart Claude Code** to load MCP servers
-
-## Dev Dependencies
-
-This project requires the following development dependencies:
-
-- **[Claude Code](https://claude.ai/code)** - Anthropic's agentic coding tool
-  (Claude Code alternatives are possible but not tested)
-- **[Bun.js](https://bun.sh/)** - Fast JavaScript runtime and package manager
-- **[Docker](https://www.docker.com/)** - Container platform for services
-- **[Docker Compose](https://docs.docker.com/compose/)** - Multi-container
-  application orchestration
-
-Additional MCP component-specific dependencies are automatically installed
-during setup and include specialized libraries for GitLab integration, database
-connections, and storage operations.
-
-## What You Get
-
-Through Claude Code, you can now:
-
-### **File Storage (MinIO)**
-
-- Create and manage storage buckets
-- Upload/download files
-- Browse and organize objects
-- Access web UI at <http://localhost:9001>
-
-### **Multi-Model Database (SurrealDB)**
-
-- Full-featured database with document, graph, key-value, and time-series
-  support
-- Natural language queries via Claude Code → SurrealQL translation
-- Relationship modeling and graph traversal
-- Real-time subscriptions and live queries
-- Access database at <http://localhost:8000>
-- Official SurrealMCP integration for comprehensive tooling
-
-### **GitLab Integration**
-
-- List issues and merge requests
-- View project information
-- Access CI/CD pipeline data
-- Works with GitLab.com or self-hosted instances
+- [Claude Code](https://claude.ai/code)
+- [Bun.js](https://bun.sh/)
+- [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
 
 ## MCP Servers
 
-Custom Model Context Protocol (MCP) servers for various integrations:
+Custom Model Context Protocol servers for Claude Code integrations:
 
-### Available Servers
+| Server | Purpose | Port |
+|--------|---------|------|
+| `gitlab-api` | GitLab REST API integration | - |
+| `gitlab-cli` | GitLab CLI (`glab`) operations | - |
+| `minio-backend` | Object storage (MinIO) | 9000/9001 |
+| `redis-backend` | Redis cache operations | 6379 |
+| `surrealdb-backend` | Multi-model database | 8000 |
+| `orlop-cli` | Orlop CLI operations | - |
+| `karakeep-cli` | Bookmark manager | - |
+| `sourcegraph` | Code search | - |
 
-#### GitLab Integration
-
-- **`gitlab-cli`** - Uses `glab` CLI commands for GitLab operations
-- **`gitlab-api`** - Direct GitLab REST API integration
-
-#### Storage & Database
-
-- **`minio-backend`** - MinIO object storage operations
-- **`redis-backend`** - Redis cache operations
-- **`surrealdb-backend`** - SurrealDB multi-model database operations
-
-### Server Structure
-
-```text
-mcp/
-└── servers/
-    ├── gitlab-api/
-    │   └── index.ts
-    ├── gitlab-cli/
-    │   └── index.ts
-    ├── minio-backend/
-    │   └── index.ts
-```
-
-### Configuration
-
-#### MCP Configuration Files
-
-This project includes **two MCP configuration files** for maximum compatibility:
-
-- **`.mcp.json`** - Used by **Claude Code CLI**
-- **`mcp-servers-config.json`** - **Standard MCP format** for other AI providers
-
-Both files define the same servers and are kept in sync for compatibility.
-
-#### Enabling MCP Connectors
-
-**By default, all MCP servers are disabled** to save on token usage and improve
-performance. MCP servers are selectively enabled as needed:
-
-1. **Template files contain complete configurations:**
-   - `.devtooling/configs/.mcp.template.json` - Complete Claude Code MCP
-     configuration
-   - `.devtooling/configs/mcp-servers-config.template.json` - Complete standard
-     MCP configuration
-
-2. **Actual config files start empty:**
-   - `.mcp.json` - Contains only `{"mcpServers": {}}`
-
-   - `mcp-servers-config.json` - Contains only `{"mcpServers": {}}`
-
-3. **To enable specific MCP servers:**
-
-   ```bash
-   # Copy desired server configs from template to actual config
-   # Example: Enable MinIO and GitLab API servers
-   # Manually copy the server objects from .devtooling/configs/ template files to root config files
-   ```
-
-4. **Available MCP servers:**
-   - `minio-backend` - MinIO object storage operations
-   - `gitlab-api` - Direct GitLab REST API integration
-   - `gitlab-cli` - GitLab CLI operations
-   - `redis-backend` - Redis cache operations
-   - `surrealdb-backend` - SurrealDB database operations
-   - `orlop-cli` - Orlop CLI operations
-   - `karakeep-cli` - Karakeep bookmark manager operations
-
-5. **After enabling servers, restart Claude Code** to load the new configuration
-
-#### Running Servers
-
-All servers are configured for auto-start and can be run individually:
-
+Run individual servers:
 ```bash
-# GitLab servers
-bun run mcp/servers/gitlab-cli/index.ts
-bun run mcp/servers/gitlab-api/index.ts
-
-# Storage servers
-bun run mcp/servers/minio-backend/index.ts
-bun run mcp/servers/redis-backend/index.ts
-bun run mcp/servers/surrealdb-backend/index.ts
+bun run mcp:gitlab-api
+bun run mcp:minio
+bun run mcp:surrealdb
 ```
 
-### Features
+See `.devtooling/configs/` for MCP configuration templates.
 
-**GitLab Servers:**
+## AI Security
 
-- Listing and viewing issues
-- Listing and viewing merge requests
-- Project information
-- Pipeline status (API server only)
+Comprehensive AI/ML security capabilities based on MITRE ATLAS:
 
-**MinIO Server:**
+**Documentation** (`docs/ai-security/`):
+- `MITRE-ATLAS-REFERENCE.md` - Complete ATLAS framework (14 tactics, 56 techniques)
+- `OWASP-LLM-SECURITY.md` - LLM Top 10 and defenses
+- `COMPLIANCE-FRAMEWORKS.md` - NIST, ISO, EU AI Act
+- `RED-TEAM-METHODOLOGIES.md` - Offensive testing
+- `EMERGING-THREATS.md` - Agentic AI, federated learning
+- `THREAT-INTELLIGENCE.md` - CVEs, incidents, IoCs
 
-- Create/list buckets
-- Upload/download/delete objects
-- List objects with prefix filtering
+**Agents** (`.claude/agents/ai-security/`):
+- **ATLAS Threat Modeling** - Systematic threat analysis
+- **AI Red Team** - Adversarial testing (requires authorization)
+- **AI Defense Strategy** - Security architecture and mitigations
 
-**Redis Server:**
+**Skills** (`.claude/skills/`):
+- `ai-security-assessment/` - End-to-end security workflow
+- `adversarial-testing/` - Hands-on robustness testing
+- `ai-security-update/` - Documentation maintenance
 
-- Key-value operations (get/set/delete)
-- List operations (push/pop/range)
-- Hash operations
-- Pub/sub messaging
+## Development Agents
 
-**SurrealDB Server:** (via official SurrealMCP sidecar)
+**Foundation Agent** (`.claude/agents/foundation_agent.md`):
+Verification-first workflow - master fundamentals before automation
 
-- **Architecture**: TypeScript MCP Wrapper → Official SurrealMCP Docker
-  Container → SurrealDB Community Edition
-- **Database Operations**: Full SurrealQL query execution (`query`, `select`,
-  `insert`, `create`, `upsert`, `update`, `delete`)
-- **Relationship Management**: Graph operations (`relate`) for connecting data
-  across tables
-- **Connection Management**: Database switching (`connect_endpoint`,
-  `use_namespace`, `use_database`)
-- **Administration**: List resources (`list_namespaces`, `list_databases`),
-  health monitoring
-- **Multi-Model Storage**: Documents, graphs, key-value, time-series in one
-  database
-- **Claude Code Integration**: Natural language → SurrealQL query translation,
-  schema design assistance
+**Grimface Agent** (`.claude/agents/grimface_agent.md`):
+Skeptical critical thinking for stress-testing ideas
 
-### Docker Services
+**Software Dev Specialist** (`.claude/agents/software-dev-specialist-cli.md`):
+CLI-focused development workflows
 
-The project includes the following Docker services in `docker-compose.yml`:
+## Skills
 
-**Database & Storage:**
+**Verification-First Workflow** (`.claude/skills/verification-first/`):
+Structured workflow for building automation with understanding
 
-- **`surrealdb`** (`surrealdb/surrealdb:latest`): Multi-model database on port
-  8000
-- **`surrealdb-mcp`** (`surrealdb/surrealmcp:latest`): Official SurrealMCP
-  server on port 3004
-- **`redis`** (`redis:7-alpine`): Redis cache on port 6379
-- **`minio`** (`minio/minio:latest`): Object storage on ports 9000/9001
+**Playwright Skill** (`.claude/skills/playwright-skill/`):
+Browser automation and testing
 
-**Service Dependencies:**
+## Docker Services
 
-- `surrealdb-mcp` depends on `surrealdb` health check
-- All services connected via `dev-network` for internal communication
-- Persistent volumes for data storage
+```yaml
+surrealdb:8000      # Multi-model database
+surrealdb-mcp:3004  # Official SurrealMCP server
+redis:6379          # Cache
+minio:9000/9001     # Object storage (UI at :9001)
+```
 
-### Environment Variables
+## Configuration
 
-Key environment variables (see `.env.template` for full list):
+MCP servers are disabled by default. Enable selectively from templates in `.devtooling/configs/`:
+- `.mcp.template.json` → `.mcp.json` (Claude Code CLI)
+- `mcp-servers-config.template.json` → `mcp-servers-config.json` (Standard MCP)
 
-- `SURREALDB_USERNAME/PASSWORD`: Database authentication
-- `SURREALDB_MCP_URL`: SurrealMCP sidecar endpoint (<http://localhost:3004>)
-- `MINIO_ROOT_PASSWORD`: MinIO admin password
-- `GITLAB_TOKEN`: GitLab API access token
+Environment variables in `.env`:
+```bash
+GITLAB_TOKEN=<your-token>
+MINIO_ROOT_PASSWORD=<password>
+SURREALDB_USERNAME=root
+SURREALDB_PASSWORD=root
+```
