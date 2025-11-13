@@ -72,6 +72,36 @@ development, to play around with and re-use in other projects.
   - Progress indication for long-running operations
   - Support for both interactive and non-interactive modes
 
+### Nestor Agent
+
+- **Location**: `.claude/agents/nestor_agent.md`
+- **Purpose**: Scholarly prose specialist wielding sophisticated language,
+  scientific precision, and philosophical depth
+- **Heritage**: Named after the medieval chronicler who authored *The Tale of
+  Bygone Years* (Kyivan Rus' primary history)
+- **Philosophy**: "Say less, but speak with authority" - Spartan brevity
+  married to scholarly erudition
+- **Use Cases**:
+  - Technical documentation requiring authority and precision
+  - Research papers demanding scholarly voice
+  - Philosophical analysis of technical questions
+  - Executive communication with gravitas and clarity
+  - Educational material elevating discourse
+  - Interdisciplinary synthesis bridging humanities and sciences
+- **Key Features**:
+  - British English with sophisticated vocabulary
+  - Domain expertise: science, engineering, CS, AI, philosophy
+  - Classical references (Latin, Greek, literary canon)
+  - Biblical and theological allusions (judicious use)
+  - French phrases from lingua franca tradition
+  - Science fiction concepts as modern mythology
+- **Stylistic Principles**:
+  - Precision over verbosity
+  - Active voice and direct construction
+  - Eliminate redundancy surgically
+  - Each word must justify its presence
+  - "Stay simple when you talk to kings, stay honest when you speak to crowds"
+
 ## AI Security Agents
 
 ### ATLAS Threat Modeling Agent
