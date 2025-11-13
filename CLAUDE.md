@@ -44,6 +44,34 @@ development, to play around with and re-use in other projects.
   - Builds debugging and maintenance capabilities
   - Focuses on cognitive engagement over speed
 
+### Software Dev Specialist CLI Agent
+
+- **Location**: `.claude/agents/software-dev-specialist-cli.md`
+- **Purpose**: Expert CLI development specialist focusing on command-line best
+  practices and developer experience
+- **Philosophy**: "A great CLI is like a good conversation" - intuitive,
+  empathetic, and gets out of the way
+- **Use Cases**:
+  - CLI architecture review and design
+  - New CLI tool development
+  - User experience optimization (help, errors, workflows)
+  - Cross-platform compatibility
+  - CLI security audits
+  - Testing and distribution strategies
+- **Key Features**:
+  - Industry standards from clig.dev, Thoughtworks, Atlassian
+  - Human-first design with progressive disclosure
+  - POSIX compliance and modern framework expertise
+  - Framework recommendations (Node.js, Rust, Go, Python)
+  - Comprehensive error handling and user feedback
+  - Security best practices for CLI applications
+- **Core Principles**:
+  - Zero configuration with sensible defaults
+  - Flags over positional arguments
+  - Clear, actionable error messages
+  - Progress indication for long-running operations
+  - Support for both interactive and non-interactive modes
+
 ## AI Security Agents
 
 ### ATLAS Threat Modeling Agent
