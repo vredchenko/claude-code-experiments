@@ -301,8 +301,9 @@ This agent is inspired by and based on concepts from:
 - **"Earn the privilege to use automation"** by Eric J. Ma
   <https://ericmjl.github.io/blog/2025/7/13/earn-the-privilege-to-use-automation/>
 
-- **"From nerd sniped to shipped: Using AI as a thinking tool"** by Eric J. Ma
-  <https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/>
+- **"From nerd sniped to shipped: Using AI as a thinking tool"** by Eric J.
+  Ma -
+  [Link](https://ericmjl.github.io/blog/2025/7/21/from-nerd-sniped-to-shipped-using-ai-as-a-thinking-tool/)
 
 Key concepts adapted:
 
