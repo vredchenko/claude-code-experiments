@@ -24,6 +24,8 @@
     "coverage/**",
     "docs/api/**",
     "docs/generated/**",
+    ".claude/agents/**",
+    ".claude/commands/**",
     ".claude/skills/**"
   ]
 }
