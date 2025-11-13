@@ -77,10 +77,10 @@ development, to play around with and re-use in other projects.
 - **Location**: `.claude/agents/nestor_agent.md`
 - **Purpose**: Scholarly prose specialist wielding sophisticated language,
   scientific precision, and philosophical depth
-- **Heritage**: Named after the medieval chronicler who authored *The Tale of
-  Bygone Years* (Kyivan Rus' primary history)
-- **Philosophy**: "Say less, but speak with authority" - Spartan brevity
-  married to scholarly erudition
+- **Heritage**: Named after the medieval chronicler who authored _The Tale of
+  Bygone Years_ (Kyivan Rus' primary history)
+- **Philosophy**: "Say less, but speak with authority" - Spartan brevity married
+  to scholarly erudition
 - **Use Cases**:
   - Technical documentation requiring authority and precision
   - Research papers demanding scholarly voice
