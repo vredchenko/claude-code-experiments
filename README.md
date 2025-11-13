@@ -93,7 +93,7 @@ Located in `.claude/skills/`:
   (`.claude/agents/software-dev-specialist-cli.md`) - CLI-focused development
   workflows
 
-## Skills
+## Development Skills
 
 - **Verification-First Workflow** (`.claude/skills/verification-first/`) -
   Structured workflow for building automation with understanding
